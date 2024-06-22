@@ -19,7 +19,7 @@ export default function TabLayout() {
           tabBarIcon:({color}) => <Ionicons name="search" size={24} color={color} />
         }}/>
         <Tabs.Screen name='booking' options={{
-          tabBarLabel:"Booking",
+          tabBarLabel:"Bookings",
           tabBarIcon:({color}) => <Ionicons name="car" size={24} color={color} />
         }}/>
         <Tabs.Screen name='dashboard' options={{
