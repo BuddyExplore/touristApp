@@ -10,25 +10,25 @@ export default function TabLayout() {
         headerShown:false,
          tabBarActiveTintColor:Colors.PRIMARY
     }}>
-        <Tabs.Screen name='home' options={{
-          tabBarLabel:"Home",
-          tabBarIcon:({color}) => <Ionicons name="home" size={24} color={color} />
-        }}/>
         <Tabs.Screen name='explore' options={{
           tabBarLabel:"Explore",
-          tabBarIcon:({color}) => <Ionicons name="search" size={24} color={color} />
+          tabBarIcon:({color}) => <Ionicons name="compass-outline" size={24} color={color} />
         }}/>
-        <Tabs.Screen name='booking' options={{
-          tabBarLabel:"Bookings",
-          tabBarIcon:({color}) => <Ionicons name="car" size={24} color={color} />
+        <Tabs.Screen name='book' options={{
+          tabBarLabel:"Book",
+          tabBarIcon:({color}) => <Ionicons name="calendar-clear-outline" size={24} color={color} />
         }}/>
-        <Tabs.Screen name='dashboard' options={{
-          tabBarLabel:"Dashboard",
-          tabBarIcon:({color}) => <Ionicons name="bar-chart" size={24} color={color} />
+        <Tabs.Screen name='shop' options={{
+          tabBarLabel:"Shop",
+          tabBarIcon:({color}) => <Ionicons name="bag-outline" size={24} color={color} />
+        }}/>
+        <Tabs.Screen name='blogs' options={{
+          tabBarLabel:"Blogs",
+          tabBarIcon:({color}) => <Ionicons name="newspaper-outline" size={24} color={color} />
         }}/>
         <Tabs.Screen name='profile' options={{
           tabBarLabel:"Profile",
-          tabBarIcon:({color}) => <Ionicons name="people-circle" size={24} color={color} />
+          tabBarIcon:({color}) => <Ionicons name="people-circle-outline" size={24} color={color} />
         }}/>
 
     </Tabs>

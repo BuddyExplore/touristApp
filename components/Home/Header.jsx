@@ -50,7 +50,7 @@ export default function Header() {
             borderRadius:8
         }}>
             <Ionicons name="search" size={24} color={Colors.SECOND} />
-            <TextInput placeholder='Search for Landmarks...'  
+            <TextInput placeholder='Search for Landmarks & Activities...'  
                 style={{
                     fontFamily:'outfit',
                     fontSize:16
