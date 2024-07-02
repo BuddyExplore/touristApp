@@ -32,13 +32,13 @@ export default function LandMarks() {
             }}>View all</Text>
         </View>
 
-        {/* <FlatList 
+        <FlatList 
             data={preferencesList}
             horizontal={true}
             renderItem={({item, index}) => (
                 <PrefernceItem prefernce={item} key={index}/>
             )}
-        /> */}
+        />
 
     </View>
 

@@ -3,7 +3,7 @@ import React from 'react'
 import { Colors } from '../../constants/Colors'
 import PrefernceItem from './PrefernceItem';
 
-export default function Activities() {
+export default function LandMarks() {
     const preferencesList = [
         { name: 'Adventure', icon: '⚙️', img:require('../../assets/images/Home/Prefernces/adventurer.png')  },
         { name: 'Camping', icon: '👤', img:require('../../assets/images/Home/Prefernces/tent.png')  },
@@ -32,13 +32,14 @@ export default function Activities() {
             }}>View all</Text>
         </View>
 
-        {/* <FlatList 
+        <FlatList 
+            showsHorizontalScrollIndicator={false}
             data={preferencesList}
             horizontal={true}
             renderItem={({item, index}) => (
                 <PrefernceItem prefernce={item} key={index}/>
             )}
-        /> */}
+        />
 
     </View>
 
