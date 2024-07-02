@@ -2,14 +2,15 @@ import { View, Text, FlatList } from 'react-native'
 import React from 'react'
 import { Colors } from '../../constants/Colors'
 import PrefernceItem from './PrefernceItem';
+import ActivityItem from './ActivityItem';
 
-export default function LandMarks() {
+export default function Activities() {
     const preferencesList = [
-        { name: 'Adventure', icon: '⚙️', img:require('../../assets/images/Home/Prefernces/adventurer.png')  },
-        { name: 'Camping', icon: '👤', img:require('../../assets/images/Home/Prefernces/tent.png')  },
-        { name: 'Wild Life', icon: '🔔', img:require('../../assets/images/Home/Prefernces/wildlife.png')  },
-        { name: 'Snorkeling', icon: '🔔', img:require('../../assets/images/Home/Prefernces/mask.png')  },
-        { name: 'Kayaking', icon: '🔔', img:require('../../assets/images/Home/Prefernces/kayak.png') },
+        { name: 'Snorkeling', where:'Arugambay', icon: '🔔', img:require('../../assets/images/Home/Activities/snorkeling.jpg')  },
+        { name: 'Kayaking', where:'Madu riveer', icon: '👤', img:require('../../assets/images/Home/Activities/kayaking.jpg')  },
+        { name: 'Wild Life', where:'Yala', icon: '🔔', img:require('../../assets/images/Home/Activities/safari.jpeg')  },
+        { name: 'Hiking', where:'Ella Rock', icon: '⚙️', img:require('../../assets/images/Home/Activities/hiking.jpeg')  },
+        // { name: 'Kayaking', icon: '🔔', img:require('../../assets/images/Home/Prefernces/kayak.png') },
       ];
 
   return (
@@ -38,7 +39,7 @@ export default function LandMarks() {
             data={preferencesList}
             horizontal={true}
             renderItem={({item, index}) => (
-                <PrefernceItem prefernce={item} key={index}/>
+                <ActivityItem prefernce={item} key={index}/>
             )}
         />
 

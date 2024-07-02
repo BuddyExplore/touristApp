@@ -44,9 +44,9 @@ export default function Header() {
             gap:10,
             alignItems:'center',
             backgroundColor:'#fff',
-            padding:10,
-            marginVertical:10,
-            marginTop:15,
+            padding:8,
+            marginVertical:2,
+            marginTop:12,
             borderRadius:8
         }}>
             <Ionicons name="search" size={24} color={Colors.SECOND} />
