@@ -7,9 +7,7 @@ export default function PreferenceItem({ prefernce }) {
             <TouchableOpacity style={styles.touchable}>
                 <ImageBackground source={prefernce.img} style={styles.image}>
                     <View style={styles.textContainer}>
-                        {/* <Text style={styles.likesText}>❤️ 1500</Text> */}
                         <Text style={styles.mainText}>{prefernce.name}</Text>
-                        {/* <Text style={styles.subText}>රුවන්වැලිසෑය</Text> */}
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
@@ -24,11 +22,11 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     touchable: {
-        width: 100,
-        height: 100,
+        width: 130,
+        height: 200,
         borderRadius: 10,
         overflow: 'hidden', // Ensures rounded corners are applied to the image ''
-        backgroundColor: 'rgba(0, 0, 0, 0.02)'
+        // backgroundColor: 'rgba(0, 0, 0, 0.02)'
     },
     image: {
         width: '100%',
@@ -37,7 +35,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         padding: 10,
-        backgroundColor: 'rgba(0, 0, 0, 0.3)', // Semi-transparent background for text visibility
+        // backgroundColor: 'rgba(0, 0, 0, 0.3)', // Semi-transparent background for text visibility
         borderBottomLeftRadius:10,
         justifyContent: 'center',
     },
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     mainText: {
         color: 'white',
         fontWeight: 'bold',
-        marginLeft: 15
+        // marginLeft: 15
     },
     subText: {
         color: 'white',

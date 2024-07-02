@@ -16,6 +16,7 @@ export default function LandMarks() {
     <View>
         <View style={{
             padding:20,
+            paddingBottom:0,
             display:'flex',
             flexDirection:'row',
             justifyContent:'space-between',
