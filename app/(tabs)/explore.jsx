@@ -34,6 +34,7 @@ export default function Home() {
           <PlanTrip />
         </ScrollView>
 
+        {/* bottm right button */}
         <Portal>
           <FAB
             style={styles.fab}
@@ -44,7 +45,7 @@ export default function Home() {
           <Menu
             visible={visible}
             onDismiss={closeMenu}
-            anchor={{ x: 300, y: 650 }} // Adjust the position as needed
+            anchor={{ x: 300, y: 350 }} // Adjust the position as needed
             style={styles.menu} // Apply custom menu style
           >
             <Menu.Item
@@ -61,6 +62,7 @@ export default function Home() {
             />
           </Menu>
         </Portal>
+
       </View>
     </Provider>
   );
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.SECOND
   },
   menu: {
-    backgroundColor: Colors.SECOND, // Custom background color
+    // backgroundColor: Colors.SECOND, // Custom background color
     width: 150, // Custom width
     height: 'auto', // Custom height, adjust as needed
   },

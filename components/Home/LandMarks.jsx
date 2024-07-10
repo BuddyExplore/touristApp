@@ -25,7 +25,7 @@ export default function LandMarks() {
             <Text style={{
                 fontSize:20,
                 fontFamily:'outfit-bold'
-            }}>Explore popular landmarks</Text>
+            }}>Explore popular landmark</Text>
             <Text style={{
                 color:Colors.PRIMARY,
                 fontFamily:'outfit-medium'
@@ -33,6 +33,7 @@ export default function LandMarks() {
         </View>
 
         <FlatList 
+            showsHorizontalScrollIndicator = {false}
             data={preferencesList}
             horizontal={true}
             renderItem={({item, index}) => (
