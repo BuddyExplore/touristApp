@@ -4,7 +4,9 @@ import React from 'react'
 export default function blogs() {
   return (
     <View>
-      <Text>dashboard</Text>
+      <Text>Blogs and Articles</Text>
+
+      
     </View>
   )
 }
