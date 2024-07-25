@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   View,
   Text,
@@ -10,40 +11,15 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import localImage from "../../assets/images/blogs/1.jpg";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
-
-const blogData = [
-  {
-    id: 1,
-    title: "Blog Title 1",
-    content:
-      "This is a short description of the first blog content. It gives a glimpse of what the blog is about.",
-    imageUrl: localImage,
-  },
-  {
-    id: 2,
-    title: "Blog Title 2",
-    content:
-      "This is a short description of the second blog content. It provides a preview of the blog topic.",
-    imageUrl: localImage,
-  },
-  {
-    id: 3,
-    title: "Blog Title 3",
-    content:
-      "This is a short description of the third blog content. It summarizes the main points of the blog.",
-    imageUrl: localImage,
-  },
-];
 
 const BlogBox = ({ title, content, imageUrl }) => {
   return (
     <View style={styles.blogBox}>
       <View style={styles.row}>
-        <Image source={imageUrl} style={styles.image} />
+        <Image source={{ uri: imageUrl }} style={styles.image} />
         <Text style={styles.title}>{title}</Text>
       </View>
       <Text style={styles.content}>{content}</Text>
@@ -52,12 +28,43 @@ const BlogBox = ({ title, content, imageUrl }) => {
 };
 
 const Blogs = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [newBlog, setNewBlog] = useState({
     title: "",
     content: "",
     image: null,
   });
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5001/api/travel/blog/allBlog"
+        );
+        setBlogs(response.data.content);
+        setFilteredBlogs(response.data.content);
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  useEffect(() => {
+    if (searchQuery === "") {
+      setFilteredBlogs(blogs);
+    } else {
+      setFilteredBlogs(
+        blogs.filter((blog) =>
+          blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+    }
+  }, [searchQuery, blogs]);
 
   const handleImagePick = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -78,10 +85,28 @@ const Blogs = () => {
     }
   };
 
-  const handleAddBlog = () => {
-    blogData.push({ ...newBlog, id: blogData.length + 1 });
-    setModalVisible(false);
-    setNewBlog({ title: "", content: "", image: null });
+  const handleAddBlog = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5001/api/travel/blog/createBlog",
+        {
+          title: newBlog.title,
+          content: newBlog.content,
+        }
+      );
+      if (response.data.code === "00") {
+        setBlogs([...blogs, { ...newBlog, id: blogs.length + 1 }]);
+        setFilteredBlogs([...blogs, { ...newBlog, id: blogs.length + 1 }]);
+        setModalVisible(false);
+        setNewBlog({ title: "", content: "", image: null });
+        Alert.alert("Success", "Created blog");
+      } else {
+        Alert.alert("Error", response.data.message || "Failed to create blog");
+      }
+    } catch (error) {
+      console.error("Error creating blog:", error);
+      Alert.alert("Error", "An error occurred while creating the blog");
+    }
   };
 
   return (
@@ -91,6 +116,7 @@ const Blogs = () => {
           style={{
             display: "flex",
             flexDirection: "row",
+            marginRight: 0,
             gap: 10,
             alignItems: "center",
             backgroundColor: "#fff",
@@ -98,7 +124,7 @@ const Blogs = () => {
             marginVertical: 10,
             marginTop: 15,
             borderRadius: 8,
-            width: "80%",
+            width: "95%",
           }}
         >
           <Ionicons name="search" size={24} color={Colors.SECOND} />
@@ -108,6 +134,8 @@ const Blogs = () => {
               fontFamily: "outfit",
               fontSize: 16,
             }}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
           />
         </View>
 
@@ -119,7 +147,7 @@ const Blogs = () => {
         </TouchableOpacity>
       </View>
 
-      {blogData.map((blog) => (
+      {filteredBlogs.map((blog) => (
         <BlogBox
           key={blog.id}
           title={blog.title}
@@ -137,6 +165,12 @@ const Blogs = () => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => setModalVisible(false)}
+            >
+              <Ionicons name="close" size={24} color={Colors.SECOND} />
+            </TouchableOpacity>
             <Text style={styles.modalTitle}>Add New Blog</Text>
             <TextInput
               placeholder="Title"
@@ -166,12 +200,6 @@ const Blogs = () => {
             >
               <Text style={styles.buttonText}>Add Blog</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, { backgroundColor: Colors.THIRD }]}
-              onPress={() => setModalVisible(false)}
-            >
-              <Text style={styles.buttonText}>Cancel</Text>
-            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -181,7 +209,7 @@ const Blogs = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: 30,
   },
   blogBox: {
     backgroundColor: "white",
@@ -235,13 +263,16 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     padding: 20,
-    width: "80%",
+    width: "70%",
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 5,
+  },
+  closeButton: {
+    alignSelf: "flex-end",
   },
   modalTitle: {
     fontSize: 20,
@@ -260,7 +291,7 @@ const styles = StyleSheet.create({
   button: {
     padding: 10,
     borderRadius: 20,
-    width: "70%",
+    width: "60%",
     marginTop: 10,
     marginBottom: 10,
   },
