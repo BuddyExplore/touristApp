@@ -1,7 +1,6 @@
 import { View, Text, FlatList , Image} from 'react-native'
 import React from 'react'
 import { Colors } from '../../../constants/Colors'
-import VehListItems from './VehListItem';
 import VehListItem from './VehListItem';
 
 

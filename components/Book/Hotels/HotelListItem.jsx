@@ -1,10 +1,26 @@
 import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import HotelModal from './HotelModal';
 
 export default function HotelListItem({ prefernce }) {
+
+    const [showModal, setShowModal] = useState(false);
+
+    handleShowModal = () => {
+        setShowModal(true);
+    }
+
+    handleCloseModal = (itemName) => {
+        if(itemName === 1 ){
+            setShowModal(false);
+        }
+        
+    }
+
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.touchable}>
+            <TouchableOpacity style={styles.touchable} onPress={() => setShowModal(true)}>
             <View style={{
             display:'flex',
             flexDirection: 'row',
@@ -35,7 +51,7 @@ export default function HotelListItem({ prefernce }) {
             </View>
         </View>
             </TouchableOpacity>
-            
+            {showModal && <HotelModal hotelInfo={prefernce} visibility={showModal} closeModal={handleCloseModal}/>}
         </View>
     );
 }

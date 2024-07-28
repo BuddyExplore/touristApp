@@ -2,6 +2,7 @@ import { ClerkProvider, SignedIn, SignedOut, ClerkLoaded } from "@clerk/clerk-ex
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { Text } from 'react-native'
+
 // import * as SecureStore from 'expo-secure-store';
 
 // export default function RootLayout() {

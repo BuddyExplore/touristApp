@@ -1,10 +1,25 @@
 import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import React from 'react';
+import React , {useState} from 'react';
+import GuideModal from './GuideModal';
 
 export default function GuidesListItem({ prefernce }) {
+
+    const [showModal, setShowModal] = useState(false);
+
+    handleShowModal = () => {
+        setShowModal(true);
+    }
+
+    handleCloseModal = (itemName) => {
+        if(itemName === 1 ){
+            setShowModal(false);
+        }
+        
+    }
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.touchable}>
+            <TouchableOpacity style={styles.touchable} onPress={() => setShowModal(true)}>
             <View style={{
             display:'flex',
             flexDirection: 'row',
@@ -35,7 +50,7 @@ export default function GuidesListItem({ prefernce }) {
             </View>
         </View>
             </TouchableOpacity>
-            
+            {showModal && <GuideModal guideInfo={prefernce} visibility={showModal} closeModal={handleCloseModal}/>}
         </View>
     );
 }

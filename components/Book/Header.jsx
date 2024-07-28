@@ -8,7 +8,7 @@ export default function Header() {
     <View style={{
         padding:20,
         paddingTop:40,
-        backgroundColor:Colors.SECOND,
+        backgroundColor:Colors.PRIMARY,
         borderBottomLeftRadius:20,
         borderBottomRightRadius:20
     }}>
@@ -38,7 +38,7 @@ export default function Header() {
         </View>
 
         {/* search bar */}
-        <View style={{
+        {/* <View style={{
             display:'flex',
             flexDirection:'row',
             gap:10,
@@ -56,7 +56,7 @@ export default function Header() {
                     fontSize:16
                 }}
             />
-        </View>
+        </View> */}
 
     </View>
   )
