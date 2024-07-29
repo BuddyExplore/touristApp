@@ -2,7 +2,8 @@ import {
     StyleSheet,
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
   } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { Colors } from "../../../constants/Colors";
@@ -28,12 +29,15 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 
     const [rooms, setRooms] = useState(1);
-    const [adults, setAdults] = useState(2);
+    const [adults, setAdults] = useState(1);
     const [children, setChildren] = useState(0);
   
 
     handleNext = (itemName) => {
-        onPress(1);
+
+      onPress(1);
+
+        
     }
 
     return (
@@ -94,14 +98,20 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
                 <View
                 style={{
                     flexDirection: "row",
-                    width: '60%',
+                    width: '50%',
                     justifyContent: "space-between",
                     alignItems: "center",
                     marginVertical: 5,
                 }}
                 >
-                <Text style={{ fontSize: 16, fontWeight: "500" }}>Adults</Text>
+                <Text style={{ fontSize: 16 }}>Adults</Text>
               
+                <View style={{
+                  display:'flex',
+                  flexDirection: 'row',
+                  justifyContent: "space-between",
+                  width: 100
+                }}>
                 <TouchableOpacity
                   onPress={() => setAdults(Math.max(1, adults - 1))}
                   style={{
@@ -160,23 +170,28 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
                     +
                   </Text>
                 </TouchableOpacity>
-              
+                    </View>
             </View>
 
             
             <View
                 style={{
                     flexDirection: "row",
-                    width: '60%',
+                    width: '50%',
                     justifyContent: "space-between",
                     alignItems: "center",
                     marginVertical: 10,
                 }}
                 >
-                <Text style={{ fontSize: 16, fontWeight: "500" }}>Children</Text>
-              
+                <Text style={{ fontSize: 16 }}>Children</Text>
+                <View style={{
+                  display:'flex',
+                  flexDirection: 'row',
+                  justifyContent: "space-between",
+                  width: 100
+                }}>
                 <TouchableOpacity
-                  onPress={() => setChildren(Math.max(1, adults - 1))}
+                  onPress={() => setChildren(Math.max(0, children - 1))}
                   style={{
                     width: 26,
                     height: 26,
@@ -213,7 +228,7 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
                 </TouchableOpacity>
   
                 <TouchableOpacity
-                  onPress={() => setChildren(adults + 1)}
+                  onPress={() => setChildren(children + 1)}
                   style={{
                     width: 26,
                     height: 26,
@@ -233,7 +248,7 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
                     +
                   </Text>
                 </TouchableOpacity>
-              
+                </View>
             </View>
                 
             </View>

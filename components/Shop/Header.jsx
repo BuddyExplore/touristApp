@@ -8,7 +8,7 @@ export default function Header() {
     <View style={{
         padding:20,
         paddingTop:40,
-        backgroundColor:Colors.SECOND,
+        backgroundColor:Colors.PRIMARY,
         borderBottomLeftRadius:20,
         borderBottomRightRadius:20
     }}>

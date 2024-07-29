@@ -4,17 +4,19 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../../constants/Colors';
 import HotelModalDetails from './HotelModalDetails';
 import HotelModalStep2 from './HotelModalStep2';
-
-
+import HotelModalStep3 from './HotelModalStep3'
+import HotelModalStep4 from './HotelModalStep4'
 
 export default function HotelModal({ hotelInfo , visibility , closeModal}) {
 
     const [modalVisible, setModalVisible] = useState(visibility);
     const [locationName, setLocationName] = useState('Thummulla');
+    const [hotelDetails, setHotelDetails] = useState({ name: 'Double Room with Balcony', where:'Balcony , Bathroom , View , TV', beds: '1 double bed', price: '11,550' , img:require('../../../assets/images/Book/Hotels/Room1.jpg')  });
 
     const [step1, setStep1] = useState(true);
     const [step2, setStep2] = useState(false);
     const [step3, setStep3] = useState(false);
+    const [step4, setStep4] = useState(false);
 
     handleCloseModal = (itemName) => {
         closeModal(1);
@@ -26,19 +28,17 @@ export default function HotelModal({ hotelInfo , visibility , closeModal}) {
             setStep1(false);
             setStep2(true);
             setStep3(false);
+            setStep4(false);
         }
         
     }
 
-    handleStep3 = (itemName) => {
-        if(itemName.step === 2){
-            setLocationName(itemName.location);
-            console.log(itemName)
+    handleStep3 = (item) => {
+            setHotelDetails(item);
             setStep1(false);
             setStep2(false);
-            setStep3(true);
-        }
-        
+            setStep3(false);
+            setStep4(true);  
     }
 
     handleStep2 = (itemName) => {
@@ -46,7 +46,9 @@ export default function HotelModal({ hotelInfo , visibility , closeModal}) {
           setStep1(false);
           setStep2(false);
           setStep3(true);
+          setStep4(false);
       }
+      
       
   }
 
@@ -84,6 +86,8 @@ export default function HotelModal({ hotelInfo , visibility , closeModal}) {
             <ScrollView>
             {step1 && <HotelModalDetails hotelInfo={hotelInfo} onPress={handleStep1}/>}
             {step2 && <HotelModalStep2 hotelInfo={hotelInfo} onPress={handleStep2}/>}
+            {step3 && <HotelModalStep3 hotelInfo={hotelInfo} onPress={handleStep3}/>}
+            {step4 && <HotelModalStep4 hotelInfo={hotelInfo} roomInfo={hotelDetails} onPress={handleCloseModal}/>}
             </ScrollView>
             
           </View>
