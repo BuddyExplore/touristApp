@@ -201,9 +201,9 @@ const Signup = () => {
                 }}
               >
                 {isPasswordShown == true ? (
-                  <Ionicons name="eye-off" size={24} color="black" />
-                ) : (
                   <Ionicons name="eye" size={24} color="black" />
+                ) : (
+                  <Ionicons name="eye-off" size={24} color="black" />
                 )}
               </TouchableOpacity>
             </View>
