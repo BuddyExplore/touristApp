@@ -31,7 +31,7 @@ const ForgotPassword = () => {
             }}>
 
                 <Image
-                    source={require("../../assets/images/auth/logo1.png")}
+                    source={require("../../assets/images/logo.png")}
                     style={{
                         width: 200,
                         height: 200,
@@ -42,7 +42,7 @@ const ForgotPassword = () => {
                 <View>
                     <Text style={{
                         fontSize: 24,
-                        fontWeight: 'bold',
+                        //fontWeight: 'bold',
                         color: 'black',
                         marginVertical: 20,
                     }}>
@@ -88,7 +88,7 @@ const ForgotPassword = () => {
                       color: "gray",
                     }}
                   >
-                    Back to Login
+                    <Text>Back to Login</Text>
                   </TouchableOpacity>
 
                     </View>
@@ -104,7 +104,7 @@ const ForgotPassword = () => {
 const styles = StyleSheet.create({
     inputTextTop: {
         fontSize: 16,
-        fontWeight: 400,
+        //fontWeight: 400,
         marginVertical: 8
     },
     link: {

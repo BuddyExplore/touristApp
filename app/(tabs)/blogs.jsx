@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: "bold",
+    //fontWeight: "bold",
     color: "#000",
     flexShrink: 1,
   },
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 20,
-    fontWeight: "bold",
+    //fontWeight: "bold",
     marginBottom: 20,
   },
   input: {
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontWeight: "bold",
+    //fontWeight: "bold",
     fontSize: 16,
     textAlign: "center",
   },

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
+  TextInput
 } from "react-native";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -13,7 +14,6 @@ import CustomInput from "./Custom/CustomInput";
 import CustomButton from "./Custom/CustomButton";
 import SocialButtons from "./Custom/SocialButtons";
 import { useSignup } from "../../hooks/useSignup";
-import { TextInput } from "react-native-gesture-handler";
 import Checkbox from "expo-checkbox";
 import { useRouter, useNavigation } from "expo-router";
 
@@ -30,7 +30,14 @@ const Signup = () => {
 
   const onSignupPressed = async (e) => {
     e.preventDefault();
-    await handleSignup(first_name, last_name, mobile_no, email, password);
+    const result = await handleSignup(first_name, last_name, mobile_no, email, password);
+  
+    if (result.ok) {
+      router.replace("/Login");
+    } else {
+      console.error(result.message);
+      // You can display the error message to the user here
+    }
   };
 
   const onTermsOfUsePressed = () => {
@@ -45,7 +52,7 @@ const Signup = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-      <View style={{ flex: 1, marginHorizontal: 22, marginVertical: 40 }}>
+      <View style={{ flex: 1, marginHorizontal: 22, marginVertical: 5 }}>
         {/*<View style={{
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -53,7 +60,7 @@ const Signup = () => {
                 }}>
 
                     <Image
-                        source={require("../../assets/images/auth/logo1.png")}
+                        source={require("../../assets/images/logo.png")}
                         style={{
                             width: 200,
                             height: 200,
@@ -65,7 +72,7 @@ const Signup = () => {
           <Text
             style={{
               fontSize: 24,
-              fontWeight: "bold",
+              //fontWeight: "bold",
               color: "black",
               marginVertical: 12,
             }}
@@ -91,7 +98,7 @@ const Signup = () => {
               <CustomInput
                 placeholder="Enter your first name"
                 placeholderTextColor="black"
-                keyboardType="textInput"
+                keyboardType="text"
                 style={{
                   width: "100%",
                 }}
@@ -289,7 +296,7 @@ const Signup = () => {
                 color: "gray",
               }}
             >
-              Already have an account? Login
+              <Text>Already have an account? Login</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -301,7 +308,7 @@ const Signup = () => {
 const styles = StyleSheet.create({
   inputTextTop: {
     fontSize: 16,
-    fontWeight: 400,
+    //fontWeight: 400,
     marginVertical: 8,
   },
   link: {

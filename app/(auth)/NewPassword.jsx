@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Image, SafeAreaView, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image, SafeAreaView, Pressable, TextInput } from 'react-native';
 import { Colors } from '../../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import CustomInput from './Custom/CustomInput';
 import CustomButton from './Custom/CustomButton';
-import { TextInput } from 'react-native-gesture-handler';
 
 
 const NewPassword = () => {
@@ -32,7 +31,7 @@ const NewPassword = () => {
             }}>
 
                 <Image
-                    source={require("../../assets/images/auth/logo1.png")}
+                    source={require("../../assets/images/logo.png")}
                     style={{
                         width: 200,
                         height: 200,
@@ -43,7 +42,7 @@ const NewPassword = () => {
                 <View>
                     <Text style={{
                         fontSize: 24,
-                        fontWeight: 'bold',
+                        //fontWeight: 'bold',
                         color: 'black',
                         marginVertical: 20,
                     }}>
@@ -154,7 +153,7 @@ const NewPassword = () => {
 const styles = StyleSheet.create({
     inputTextTop: {
         fontSize: 16,
-        fontWeight: 400,
+        //fontWeight: 400,
         marginVertical: 8
     },
     link: {

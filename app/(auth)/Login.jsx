@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
+  TextInput,
 } from "react-native";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -13,7 +14,6 @@ import CustomInput from "./Custom/CustomInput";
 import CustomButton from "./Custom/CustomButton";
 import SocialButtons from "./Custom/SocialButtons";
 import { useLogin } from "../../hooks/useLogin";
-import { TextInput } from "react-native-gesture-handler";
 import { useRouter, useNavigation } from "expo-router";
 
 const Login = () => {
@@ -26,7 +26,14 @@ const Login = () => {
 
   const onLoginPressed = async (e) => {
     e.preventDefault();
-    await handleLogin(email, password);
+    const result = await handleLogin(email, password);
+    
+    if (result.ok) {
+      router.replace("/explore");
+    } else {
+      console.error(result.message);
+      // You can display the error message to the user here
+    }
   };
 
   const [isPasswordShown, setIsPasswordShown] = useState(true);
@@ -38,15 +45,14 @@ const Login = () => {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            marginTop: 50,
-            marginBottom: 50,
+            marginTop: 40,
           }}
         >
           <Image
-            source={require("../../assets/images/auth/logo1.png")}
+            source={require("../../assets/images/logo.png")}
             style={{
-              width: 200,
-              height: 200,
+              width: 160,
+              height: 150,
             }}
           />
         </View>
@@ -55,7 +61,7 @@ const Login = () => {
           <Text
             style={{
               fontSize: 24,
-              fontWeight: "bold",
+              //fontWeight: "bold",
               color: "black",
               marginVertical: 20,
             }}
@@ -133,7 +139,7 @@ const Login = () => {
                 color: Colors.PRIMARY,
               }}
             >
-              Forgot Password?
+             <Text>Forgot Password?</Text> 
             </TouchableOpacity>
           </View>
 
@@ -192,7 +198,7 @@ const Login = () => {
                 color: "gray",
               }}
             >
-              Dont have an account? Create one
+              <Text>Dont have an account? Create one</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -204,7 +210,7 @@ const Login = () => {
 const styles = StyleSheet.create({
   inputTextTop: {
     fontSize: 16,
-    fontWeight: 400,
+    //fontWeight: 400,    
     marginVertical: 8,
   },
   link: {
