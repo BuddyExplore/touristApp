@@ -36,7 +36,7 @@ export default function VehList() {
             <Text style={{
                 color:Colors.PRIMARY,
                 fontFamily:'outfit-medium'
-            }}>View all</Text>
+            }}>Filter</Text>
         </View>
         {preferencesList.map((item, index) => (
                 <VehListItem prefernce={item} key={index}/>

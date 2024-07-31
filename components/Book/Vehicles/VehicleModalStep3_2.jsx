@@ -56,27 +56,7 @@ export default function VehicleModalStep3({ vehicleInfo , onPress , locationName
                     >
                     <Text style={{color: 'white'}}><Ionicons name="add-outline" size={30} /></Text>
                 </TouchableOpacity>
-                <Text style={styles.destinationsHeader}>Select your dates</Text>
-                {/* <Calendar
-                    onDayPress={onDayPress}
-                    markedDates={selectedDates}
-                    markingType={'multi-dot'}
-                    style={styles.calendar}
-                /> */}
-                <View style={{transform: [{ scale: 0.8 }],}}>
-                 <CalendarPicker 
-                  onDateChange={onDayPress} 
-                  allowRangeSelection={true}
-                  minDate={new Date()}
-                  maxRangeDuration={10}
-                  selectedRangeStyle={{
-                      backgroundColor:Colors.PRIMARY,
-                  }}
-                  selectedDayTextStyle={{
-                      color:Colors.WHITE,
-                  }}
-                  />
-                  </View>
+                
                 <TouchableOpacity
                     style={[styles.editButton, styles.buttonClose]}
                     onPress = {handleNext}
@@ -120,7 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 18,
-    marginTop: 30,
+    marginTop: 70,
   },
   buttonTxt : {
     fontSize: 21,

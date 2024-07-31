@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../../constants/Colors';
 import VehicleModalDetails from './VehicleModalDetails'
 import VehicleModalStep2 from './VehicleModalStep2'
-import VehicleModalStep3 from './VehicleModalStep3_2';
+import VehicleModalStep3 from './VehicleModalStep3';
 
 
 
@@ -86,8 +86,8 @@ export default function VehicleModal({ vehicleInfo , visibility , closeModal}) {
             </View>
 
             {step1 && <VehicleModalDetails vehicleInfo={vehicleInfo} onPress={handleStep1}/>}
-            {/* {step2 && <VehicleModalStep2 vehicleInfo={vehicleInfo} onPress={handleStep2}/>} */}
-            {step2 && <VehicleModalStep3 vehicleInfo={vehicleInfo} onPress={handleStep3} locationName={locationName}/>}
+            {step2 && <VehicleModalStep2 vehicleInfo={vehicleInfo} onPress={handleStep2}/>}
+            {step3 && <VehicleModalStep3 vehicleInfo={vehicleInfo} onPress={handleStep3} locationName={locationName}/>}
             
           </View>
         </View>

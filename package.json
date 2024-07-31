@@ -35,7 +35,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.2",
-    "react-native-calendar-picker": "^8.0.4",
+    "react-native-calendar-picker": "^8.0.5",
     "react-native-calendars": "^1.1306.0",
     "react-native-checkbox-group": "^1.0.3",
     "react-native-date-ranges": "^2.5.0",

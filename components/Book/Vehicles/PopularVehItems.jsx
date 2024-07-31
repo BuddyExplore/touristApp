@@ -1,10 +1,26 @@
 import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import React from 'react';
+import React , {useState} from 'react';
+import VehicleModal from './VehiclesModal1';
 
 export default function PopularVehItems({ prefernce }) {
+
+    const [showModal, setShowModal] = useState(false);
+
+    handleShowModal = () => {
+        setShowModal(true);
+    }
+
+    handleCloseModal = (itemName) => {
+        if(itemName === 1 ){
+            setShowModal(false);
+        }
+        
+    }
+
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.touchable}>
+            <TouchableOpacity style={styles.touchable} onPress={() => setShowModal(true)}>
                 <ImageBackground source={prefernce.img} style={styles.image}>
                     <View style={styles.textContainer}>
                         {/* <Text style={styles.likesText}>❤️ 1500</Text> */}
@@ -20,6 +36,9 @@ export default function PopularVehItems({ prefernce }) {
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
+
+            {showModal && <VehicleModal vehicleInfo={prefernce} visibility={showModal} closeModal={handleCloseModal}/>}
+
         </View>
     );
 }
