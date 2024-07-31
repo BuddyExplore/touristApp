@@ -1,14 +1,14 @@
 import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import React from 'react';
 
-export default function Item({ prefernce }) {
+export default function Item({ itemName , itemImg}) {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.touchable}>
-                <ImageBackground source={require("../../assets/images/Shop/item1.jpg")} style={styles.image}>
+                <ImageBackground source={itemImg} style={styles.image}>
                     <View style={styles.textContainer}>
                         {/* <Text style={styles.likesText}>❤️ 1500</Text> */}
-                        <Text style={styles.mainText}>Item1</Text>
+                        <Text style={styles.mainText}>{itemName}</Text>
                         <Image source={require("../../assets/images/Book/4star.png")}
                 style={{
                     width:50,
@@ -29,9 +29,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         margin: 10,
+        width: 200
     },
     touchable: {
-        width: 200,
+        width: '100%',
         height: 200,
         borderRadius: 10,
         overflow: 'hidden', // Ensures rounded corners are applied to the image ''

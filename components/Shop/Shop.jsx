@@ -62,16 +62,16 @@ const Shop = ({onPressBack}) => {
         </View> */}
         
         <View style={styles.row}>
-            <Item title="Item 1" />
-            <Item title="Item 2" />
+            <Item itemName={'Shirt'} itemImg={require('../../assets/images/Shop/batikshirt.jpg')} title="Item 1" />
+            <Item itemName={'Keytag'} itemImg={require('../../assets/images/Shop/keytag.jpg')} title="Item 2" />
         </View>
         <View style={styles.row}>
-            <Item title="Item 3" />
-            <Item title="Item 4" />
+            <Item itemName={'Short'} itemImg={require('../../assets/images/Shop/batikshort.png')} title="Item 3" />
+            <Item itemName={'Walpaper'} itemImg={require('../../assets/images/Shop/walpaper.jpg')} title="Item 4" />
         </View>
         <View style={styles.row}>
-            <Item title="Item 5" />
-            <Item title="Item 6" />
+            <Item itemName={'Toy 1'} itemImg={require('../../assets/images/Shop/item1.jpg')} title="Item 5" />
+            <Item itemName={'Toy 2'} itemImg={require('../../assets/images/Shop/item.jpg')} title="Item 6" />
         </View>
  
     </View>
@@ -82,4 +82,10 @@ const Shop = ({onPressBack}) => {
 
 export default Shop
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    row: {
+        display:'flex',
+        width: '100%',
+        justifyContent: 'space-between'
+    }
+})
