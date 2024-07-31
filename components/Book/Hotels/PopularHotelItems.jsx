@@ -1,7 +1,7 @@
-import { View, Text, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import React from 'react';
 
-export default function PreferenceItem({ prefernce }) {
+export default function PopularHotelItems({ prefernce }) {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.touchable}>
@@ -9,7 +9,14 @@ export default function PreferenceItem({ prefernce }) {
                     <View style={styles.textContainer}>
                         {/* <Text style={styles.likesText}>❤️ 1500</Text> */}
                         <Text style={styles.mainText}>{prefernce.name}</Text>
-                        {/* <Text style={styles.subText}>රුවන්වැලිසෑය</Text> */}
+                        <Image source={require("../../../assets/images/Book/4star.png")}
+                style={{
+                    width:50,
+                    height:15,
+                    marginLeft: 5
+                }}
+            />
+                        <Text style={styles.subText}> 📍 {prefernce.where}</Text>
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
@@ -24,8 +31,8 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     touchable: {
-        width: 100,
-        height: 100,
+        width: 200,
+        height: 200,
         borderRadius: 10,
         overflow: 'hidden', // Ensures rounded corners are applied to the image ''
         backgroundColor: 'rgba(0, 0, 0, 0.02)'
@@ -51,7 +58,7 @@ const styles = StyleSheet.create({
     mainText: {
         color: 'white',
         fontWeight: 'bold',
-        marginLeft: 15
+        marginLeft: 5
     },
     subText: {
         color: 'white',

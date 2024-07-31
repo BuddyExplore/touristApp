@@ -8,7 +8,7 @@ export default function Header() {
     <View style={{
         padding:20,
         paddingTop:40,
-        backgroundColor:Colors.SECOND,
+        backgroundColor:Colors.PRIMARY,
         borderBottomLeftRadius:20,
         borderBottomRightRadius:20
     }}>
@@ -28,7 +28,7 @@ export default function Header() {
             <View>
                 <Text style={{
                     color:'#fff'
-                }}>Welcome,</Text>
+                }}>Buy and reserve your items,</Text>
                 <Text style={{
                     color:'#fff',
                     fontSize:19,
@@ -50,7 +50,7 @@ export default function Header() {
             borderRadius:8
         }}>
             <Ionicons name="search" size={24} color={Colors.SECOND} />
-            <TextInput placeholder='Search for Landmarks & Activities...'  
+            <TextInput placeholder='Search for Shops & items...'  
                 style={{
                     fontFamily:'outfit',
                     fontSize:16

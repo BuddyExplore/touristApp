@@ -1,21 +1,21 @@
 import { View, Text, FlatList } from 'react-native'
 import React from 'react'
 import { Colors } from '../../constants/Colors'
-import PrefernceItem from './PrefernceItem';
+import LandMarksItem from './LandMarksItem';
 
 export default function LandMarks() {
     const preferencesList = [
-        { name: 'Adventure', icon: '⚙️', img:require('../../assets/images/Home/Prefernces/adventurer.png')  },
-        { name: 'Camping', icon: '👤', img:require('../../assets/images/Home/Prefernces/tent.png')  },
-        { name: 'Wild Life', icon: '🔔', img:require('../../assets/images/Home/Prefernces/wildlife.png')  },
-        { name: 'Snorkeling', icon: '🔔', img:require('../../assets/images/Home/Prefernces/mask.png')  },
-        { name: 'Kayaking', icon: '🔔', img:require('../../assets/images/Home/Prefernces/kayak.png') },
+        { name: 'Arugambay', icon: '⚙️', img:require('../../assets/images/Home/Landmarks/arugambay.jpg')  },
+        { name: 'Ella Rock', icon: '👤', img:require('../../assets/images/Home/Landmarks/ellarock.jpg')  },
+        { name: 'Galle Fort', icon: '🔔', img:require('../../assets/images/Home/Landmarks/gallefort.jpg')  },
+        { name: 'Ruwanweliseya', icon: '🔔', img:require('../../assets/images/Home/Landmarks/ruwanweliseya.jpg')  },
       ];
 
   return (
     <View>
         <View style={{
             padding:20,
+            paddingBottom:0,
             display:'flex',
             flexDirection:'row',
             justifyContent:'space-between',
@@ -25,20 +25,21 @@ export default function LandMarks() {
             <Text style={{
                 fontSize:20,
                 fontFamily:'outfit-bold'
-            }}>Explore popular landmarks</Text>
+            }}>Explore popular landmark</Text>
             <Text style={{
                 color:Colors.PRIMARY,
                 fontFamily:'outfit-medium'
             }}>View all</Text>
         </View>
 
-        {/* <FlatList 
+        <FlatList 
+            showsHorizontalScrollIndicator = {false}
             data={preferencesList}
             horizontal={true}
             renderItem={({item, index}) => (
-                <PrefernceItem prefernce={item} key={index}/>
+                <LandMarksItem prefernce={item} key={index}/>
             )}
-        /> */}
+        />
 
     </View>
 
