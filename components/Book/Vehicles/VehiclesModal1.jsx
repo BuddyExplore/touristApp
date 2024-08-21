@@ -4,9 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../../constants/Colors';
 import VehicleModalDetails from './VehicleModalDetails'
 import VehicleModalStep2 from './VehicleModalStep2'
-import VehicleModalStep3 from './VehicleModalStep3';
-
-
+import VehicleModalStep3 from './VehicleModalStep3'; 
 
 export default function VehicleModal({ vehicleInfo , visibility , closeModal}) {
 
@@ -27,8 +25,7 @@ export default function VehicleModal({ vehicleInfo , visibility , closeModal}) {
             setStep1(false);
             setStep2(true);
             setStep3(false);
-        }
-        
+        }  
     }
 
     handleStep2 = (itemName) => {

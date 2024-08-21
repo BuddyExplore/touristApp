@@ -1,35 +1,45 @@
-import { StyleSheet, Text, View , ScrollView , TextInput} from 'react-native'
-import React, {useState} from 'react'
-import PopularVehicles from './PopularVehicles';
-import VehList from './VehList';
-import VehicleSearchFilter from './VehicleSearchFilter';
-import { Ionicons } from '@expo/vector-icons';
-import { Colors } from '../../../constants/Colors';
+import { StyleSheet, Text, View, ScrollView, TextInput } from "react-native";
+import React, { useState } from "react";
+import PopularVehicles from "./PopularVehicles";
+import VehList from "./VehList";
+import VehicleSearchFilter from "./VehicleSearchFilter";
+import { Ionicons } from "@expo/vector-icons";
+import { Colors } from "../../../constants/Colors";
 
 const Vehicles = () => {
   const [searchPressedBtn, setSearchPressedBtn] = useState(false);
 
   const handleSearch = () => {
-    setSearchPressedBtn(!searchPressedBtn)
-  }
+    setSearchPressedBtn(!searchPressedBtn);
+  };
   return (
     <View>
-       
-            <VehicleSearchFilter searchPressed={handleSearch} isSearch={!searchPressedBtn}/>
-            {!searchPressedBtn && <PopularVehicles />}
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
-            {searchPressedBtn && <VehList />}
-        </ScrollView>
-    </View>
-  )
-}
+      {!searchPressedBtn && (
+        <>
+          <VehicleSearchFilter
+            searchPressed={handleSearch}
+            isSearch={!searchPressedBtn}
+          />
+          <PopularVehicles />
+        </>
+      )}
 
-export default Vehicles
+      {searchPressedBtn && (
+        <>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <VehList />
+        </ScrollView>
+        </>
+      )}
+     
+    </View>
+  );
+};
+
+export default Vehicles;
 
 const styles = StyleSheet.create({
-
-    scrollContainer: {
-      paddingBottom: 600, // To prevent content from being hidden behind FAB
-    },
-  
-  });
+  scrollContainer: {
+    paddingBottom: 600, // To prevent content from being hidden behind FAB
+  },
+});

@@ -1,102 +1,101 @@
-import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import React , {useState}from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import React, { useState } from 'react';
 import VehicleModal from './VehicleModal';
+import { Ionicons } from '@expo/vector-icons'; // Import Ionicons for the arrowhead
 
 export default function VehListItem({ prefernce }) {
+  const [showModal, setShowModal] = useState(false);
 
-    const [showModal, setShowModal] = useState(false);
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
 
-    handleShowModal = () => {
-        setShowModal(true);
+  const handleCloseModal = (itemName) => {
+    if (itemName === 1) {
+      setShowModal(false);
     }
+  };
 
-    handleCloseModal = (itemName) => {
-        if(itemName === 1 ){
-            setShowModal(false);
-        }
-        
-    }
-
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.touchable} onPress={() => setShowModal(true)}>
-            <View style={{
-            display:'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 20,
-            backgroundColor:'white'
-        }}>
-            <Image source={prefernce.img}
-                style={{
-                    width:100,
-                    height:100,
-                }}
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={() => setShowModal(true)}
+      >
+        <View style={styles.rowContainer}>
+          <Image source={prefernce.img} style={styles.image} />
+          <View style={styles.textContainer}>
+            <Text style={styles.mainText}>{prefernce.name}</Text>
+            {/* <Text style={styles.subText}>Driver : {prefernce.driver}</Text> */}
+            <Image
+              source={require("../../../assets/images/Book/4star.png")}
+              style={styles.starImage}
             />
-            <View>
-            <Text style={{
-                    color:'black',
-                    fontSize:19,
-                    fontWeight: 'bold'
-                }}>{prefernce.name}</Text>
-                <Text style={{
-                    color:'black',
-                }}>Driver : {prefernce.driver}</Text>
-                <Image source={require("../../../assets/images/Book/4star.png")}
-                style={{
-                    width:70,
-                    height:20,
-                }} />
-                <Text style={styles.subText}>📍 {prefernce.where}</Text>
-                
-            </View>
+            <Text style={styles.subText}>{prefernce.where}</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={24} color="black" style={styles.arrowIcon} />
         </View>
-            </TouchableOpacity>
-            {showModal && <VehicleModal vehicleInfo={prefernce} visibility={showModal} closeModal={handleCloseModal}/>}
-            
-            
-        </View>
-    );
+      </TouchableOpacity>
+      {showModal && (
+        <VehicleModal
+          vehicleInfo={prefernce}
+          visibility={showModal}
+          closeModal={handleCloseModal}
+        />
+      )}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 10,
-    },
-    touchable: {
-        width: '100%',
-        height: 100,
-        borderRadius: 10,
-        overflow: 'hidden', // Ensures rounded corners are applied to the image ''
-        backgroundColor: 'rgba(0, 0, 0, 0.02)'
-    },
-    image: {
-        width: 100,
-        height: '100%',
-        justifyContent: 'flex-end', // Positions text at the bottom
-    },
-    textContainer: {
-        padding: 10,
-        backgroundColor: 'rgba(0, 0, 0, 0.3)', // Semi-transparent background for text visibility
-        borderBottomLeftRadius:10,
-        justifyContent: 'center',
-    },
-    likesText: {
-        color: 'white',
-        fontWeight: 'bold',
-        position: 'absolute',
-        top: 10,
-        right: 10,
-    },
-    mainText: {
-        color: 'white',
-        fontWeight: 'bold',
-    },
-    subText: {
-        marginTop: 5,
-        color: 'black',
-        fontSize: 12
-    },
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10,
+  },
+  touchable: {
+    width: '100%',
+    borderRadius: 10,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(0, 0, 0, 0.02)',
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'white',
+  },
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+  },
+  textContainer: {
+    flex: 1,
+    paddingLeft: 10,
+  },
+  mainText: {
+    color: 'black',
+    fontSize: 19,
+    fontWeight: 'bold',
+  },
+  starImage: {
+    width: 70,
+    height: 20,
+    marginVertical: 5,
+  },
+  subText: {
+    marginTop: 5,
+    color: 'black',
+    fontSize: 12,
+  },
+  arrowIcon: {
+    marginLeft: 10,
+  },
 });
