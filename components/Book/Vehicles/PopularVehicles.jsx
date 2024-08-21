@@ -3,10 +3,7 @@ import React, {useState} from 'react'
 import { Colors } from '../../../constants/Colors'
 import PopularVehItems from './PopularVehItems';
 
-
-export default function PopularVehicles() {
-
-    
+export default function PopularVehicles() { 
     const preferencesList = [
         { name: 'Nissan Clipper', where:'Battaramulla', icon: '🔔', img:require('../../../assets/images/Book/Vehicles/Vehicle1.jpg')  },
         { name: 'Toyota Hiace', where:'Maharagama', icon: '👤', img:require('../../../assets/images/Book/Vehicles/Vehicle2.jpg')  },
@@ -23,7 +20,7 @@ export default function PopularVehicles() {
             display:'flex',
             flexDirection:'row',
             justifyContent:'space-between',
-            marginTop:20,
+            //marginTop:20,
             alignItems:'center'
         }}>
             <Text style={{
