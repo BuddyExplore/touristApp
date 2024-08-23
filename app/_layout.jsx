@@ -40,6 +40,12 @@ export default function RootLayout() {
             headerShown:false
           }}>
             <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="Booking/Tourguides" />
+            <Stack.Screen name="Booking/Vehicles" />
+            <Stack.Screen name="Booking/Hotels" />
+            <Stack.Screen name="Booking/Items" />
+            <Stack.Screen name="Booking/Activities" />
+            <Stack.Screen name="MyBookings" />
           </Stack>
   );
 }

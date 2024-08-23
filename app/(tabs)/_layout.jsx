@@ -18,9 +18,9 @@ export default function TabLayout() {
           tabBarLabel:"Book",
           tabBarIcon:({color}) => <Ionicons name="calendar-clear-outline" size={24} color={color} />
         }}/>
-        <Tabs.Screen name='shop' options={{
-          tabBarLabel:"Shop",
-          tabBarIcon:({color}) => <Ionicons name="bag-outline" size={24} color={color} />
+        <Tabs.Screen name='mytrip' options={{
+          tabBarLabel:"My Trip",
+          tabBarIcon:({color}) => <Ionicons name="location-outline" size={24} color={color} />
         }}/>
         <Tabs.Screen name='blogs' options={{
           tabBarLabel:"Blogs",
