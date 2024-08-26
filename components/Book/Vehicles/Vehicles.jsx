@@ -13,7 +13,7 @@ const Vehicles = () => {
     setSearchPressedBtn(!searchPressedBtn);
   };
   return (
-    <View>
+    <View style={{height: "100%", backgroundColor: "white"}}>
       {!searchPressedBtn && (
         <>
           <VehicleSearchFilter
