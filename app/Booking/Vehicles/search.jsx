@@ -1,15 +1,15 @@
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, Modal} from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Modal } from 'react-native'
 import React,{ useState } from 'react'
-import { useRouter } from 'expo-router';
+import PopularVehicles from '../../../components/Book/Vehicles/PopularVehicles';
 import { Ionicons } from "@expo/vector-icons";
 import { Calendar } from "react-native-calendars";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Colors } from '../../../constants/Colors';
-import PopularVehicles from '../../../components/Book/Vehicles/PopularVehicles';
+import { useRouter } from 'expo-router';
 
-
-export default function book() {
+export default function search() {
   const router = useRouter();
+
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [selectedDates, setSelectedDates] = useState({});
@@ -33,7 +33,7 @@ export default function book() {
         pickupDate,
         dropoffDate,
         pickupTime,
-        dropoffTime,
+        dropoffTime
       }
     });
   };
@@ -103,7 +103,7 @@ export default function book() {
     }
   };
 
-  const isSearchEnabled = () => {
+  const Enabled = () => {
     return (
       pickupLocation.trim() !== "" &&
       pickupDate.trim() !== "" &&
@@ -113,246 +113,247 @@ export default function book() {
     );
   };
 
-  return ( 
+  return (
     <View style={{flex: 1, backgroundColor: "white"}}>
-
-      <View
-        style={{
-          height: 60,
-          marginHorizontal: 20,
-          display: "flex",
-          flexDirection: "row",
-          gap: 10,
-          alignItems: "center",
-          backgroundColor: "#FAFAFA",
-          paddingHorizontal: 20,
-          borderRadius: 10,
-        }}
-      >
-        <Ionicons name="location-outline" size={20} color="black" />
-        <View style={{flex: 1}}>
-          <TextInput
-            placeholder="Enter pick-up location"
-            style={{
-              fontFamily: "outfit",
-              color: "#A4A4A4",
-              fontSize: 15,
-            }}
-            value={pickupLocation}
-            onChangeText={setPickupLocation}
-          />
+      <View style={{backgroundColor:"white"}}>
+        <View
+          style={{
+            height: 60,
+            marginHorizontal: 20,
+            display: "flex",
+            flexDirection: "row",
+            gap: 10,
+            alignItems: "center",
+            backgroundColor: "#FAFAFA",
+            paddingHorizontal: 20,
+            borderRadius: 10,
+            marginTop: 10
+          }}
+        >
+          <Ionicons name="location-outline" size={24} color={"black"} />
+          <View style={{flex: 1}}>
+            <TextInput
+              placeholder="Enter pick-up location"
+              style={{
+                fontFamily: "outfit",
+                color: "#A4A4A4",
+                fontSize: 15,
+              }}
+              value={pickupLocation}
+              onChangeText={setPickupLocation}
+            />
+          </View>
         </View>
-      </View>
 
-      <View
-        style={{
-          marginHorizontal: 20,
-          display: "flex",
-          flexDirection: "row",
-          marginTop: 10,
-          borderRadius: 30,
-          gap: 10,
-        }}
-      >
-        <TouchableOpacity
-          style={styles.dateTouchable}
-          onPress={handleOpenSelectDate}
+        <View
+          style={{
+            marginHorizontal: 20,
+            display: "flex",
+            flexDirection: "row",
+            marginTop: 10,
+            borderRadius: 30,
+            gap: 10,
+          }}
         >
-          <View style={styles.dateTimeContainer}>
-            <Ionicons name="calendar-clear-outline" size={22} color={"black"} />
-            <View style={{flex: 1}}>
-              <TextInput
-                placeholder="Pick-up date"
-                style={{
-                  fontFamily: "outfit",
-                  color: "#A4A4A4",
-                  fontSize: 15,
-                }}
-                value={pickupDate}
-                editable={false}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.dateTouchable}
-          onPress={() => setShowTimePicker(true)}
-        >
-          <View style={styles.dateTimeContainer}>
-            <Ionicons name="time-outline" size={22} color={"black"} />
-            <View style={{flex: 1}}>
-              <TextInput
-                placeholder="Pick-up time"
-                style={{
-                  fontFamily: "outfit",
-                  color: "#A4A4A4",
-                  fontSize: 15,
-                }}
-                value={pickupTime}
-                editable={false}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-      </View>
-
-      <View
-        style={{
-          marginHorizontal: 20,
-          display: "flex",
-          flexDirection: "row",
-          marginTop: 10,
-          borderRadius: 30,
-          gap: 10,
-        }}
-      >
-        <TouchableOpacity
-          style={styles.dateTouchable}
-          onPress={handleOpenSelectDate1}
-        >
-          <View style={styles.dateTimeContainer}>
-            <Ionicons name="calendar-clear-outline" size={22} color={"black"} />
-            <View style={{flex: 1}}>
-              <TextInput
-                placeholder="Drop-off date"
-                style={{
-                  fontFamily: "outfit",
-                  color: "#A4A4A4",
-                  fontSize: 15,
-                }}
-                value={dropoffDate}
-                editable={false}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.dateTouchable}
-          onPress={() => setShowTimePicker1(true)}
-        >
-          <View style={styles.dateTimeContainer}>
-            <Ionicons name="time-outline" size={22} color={"black"} />
-            <View style={{flex: 1}}>
-              <TextInput
-                placeholder="Drop-off time"
-                style={{
-                  fontFamily: "outfit",
-                  color: "#A4A4A4",
-                  fontSize: 15,
-                }}
-                value={dropoffTime}
-                editable={false}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-      </View>
-
-      <TouchableOpacity
-        style={[
-          styles.searchButton,
-          { opacity: isSearchEnabled() ? 1 : 0.5 },
-        ]}
-        onPress={handleSearch}
-        disabled={!isSearchEnabled()}
-      >
-        <Text style={{ fontSize: 16, fontWeight: "500", color: "#EEEEEE" }}>
-          Search Vehicle
-        </Text>
-      </TouchableOpacity>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.modalView}>
-          <Calendar
-            onDayPress={onDayPress}
-            markedDates={selectedDates}
-            markingType={"multi-dot"}
-            style={styles.calendar}
-            theme={{
-              backgroundColor: "transparent",
-              calendarBackground: "transparent",
-            }}
-          />
-
-          <View
-            style={{ display: "flex", alignItems: "center", marginTop: 30 }}
+          <TouchableOpacity
+            style={styles.dateTouchable}
+            onPress={handleOpenSelectDate}
           >
-            <TouchableOpacity
-              style={styles.selectDateButton}
-              onPress={handleSelectDate}
-            >
-              <Text>Select Date</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+            <View style={styles.dateTimeContainer}>
+              <Ionicons name="calendar-clear-outline" size={22} color={"black"} />
+              <View style={{flex: 1}}>
+                <TextInput
+                  placeholder="Pick-up date"
+                  style={{
+                    fontFamily: "outfit",
+                    color: "#A4A4A4",
+                    fontSize: 15,
+                  }}
+                  value={pickupDate}
+                  editable={false}
+                />
+              </View>
+            </View>
+          </TouchableOpacity>
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible1}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.modalView}>
-          <Calendar
-            onDayPress={onDayPress1}
-            markedDates={selectedDates1}
-            markingType={"multi-dot"}
-            style={styles.calendar}
-            theme={{
-              backgroundColor: "transparent",
-              calendarBackground: "transparent",
-            }}
-          />
-
-          <View
-            style={{ display: "flex", alignItems: "center", marginTop: 30 }}
+          <TouchableOpacity
+            style={styles.dateTouchable}
+            onPress={() => setShowTimePicker(true)}
           >
-            <TouchableOpacity
-              style={styles.selectDateButton}
-              onPress={handleSelectDate}
-            >
-              <Text>Select Date</Text>
-            </TouchableOpacity>
-          </View>
+            <View style={styles.dateTimeContainer}>
+              <Ionicons name="time-outline" size={22} color={"black"} />
+              <View style={{flex: 1}}>
+                <TextInput
+                  placeholder="Pick-up time"
+                  style={{
+                    fontFamily: "outfit",
+                    color: "#A4A4A4",
+                    fontSize: 15,
+                  }}
+                  value={pickupTime}
+                  editable={false}
+                />
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
-      </Modal>
 
-      {showTimePicker && (
-        <DateTimePicker value={time} mode="time" onChange={onTimeChange} />
-      )}
+        <View
+          style={{
+            marginHorizontal: 20,
+            display: "flex",
+            flexDirection: "row",
+            marginTop: 10,
+            borderRadius: 30,
+            gap: 10,
+          }}
+        >
+          <TouchableOpacity
+            style={styles.dateTouchable}
+            onPress={handleOpenSelectDate1}
+          >
+            <View style={styles.dateTimeContainer}>
+              <Ionicons name="calendar-clear-outline" size={22} color={"black"} />
+              <View style={{flex: 1}}>
+                <TextInput
+                  placeholder="Drop-off date"
+                  style={{
+                    fontFamily: "outfit",
+                    color: "#A4A4A4",
+                    fontSize: 15,
+                  }}
+                  value={dropoffDate}
+                  editable={false}
+                />
+              </View>
+            </View>
+          </TouchableOpacity>
 
-      {showTimePicker1 && (
-        <DateTimePicker value={time1} mode="time" onChange={onTimeChange1} />
-      )}
+          <TouchableOpacity
+            style={styles.dateTouchable}
+            onPress={() => setShowTimePicker1(true)}
+          >
+            <View style={styles.dateTimeContainer}>
+              <Ionicons name="time-outline" size={22} color={"black"} />
+              <View style={{flex: 1}}>
+                <TextInput
+                  placeholder="Drop-off time"
+                  style={{
+                    fontFamily: "outfit",
+                    color: "#A4A4A4",
+                    fontSize: 15,
+                  }}
+                  value={dropoffTime}
+                  editable={false}
+                />
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <TouchableOpacity
-        style={styles.planYourTrip}
-        onPress={() => {
-        }}
-      >
-        <Text style={styles.planYourTripTextTitle}>Plan your trip</Text>
-        <Text style={styles.planYourTripText}>
-          Introducing personalized trip plans for your preferences
-        </Text>
-        <TouchableOpacity style={styles.tryOutButton}>
-          <Text style={styles.tryOutButtonText}>Try out now</Text>
+        <TouchableOpacity
+          style={[
+            styles.searchButton,
+            { opacity: Enabled() ? 1 : 0.5 },
+          ]}
+          onPress={handleSearch}
+          disabled={!Enabled()}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "500", color: "#EEEEEE" }}>
+            Search Vehicle
+          </Text>
         </TouchableOpacity>
-      </TouchableOpacity>
-    
 
-    <PopularVehicles />
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.modalView}>
+            <Calendar
+              onDayPress={onDayPress}
+              markedDates={selectedDates}
+              markingType={"multi-dot"}
+              style={styles.calendar}
+              theme={{
+                backgroundColor: "transparent",
+                calendarBackground: "transparent",
+              }}
+            />
+
+            <View
+              style={{ display: "flex", alignItems: "center", marginTop: 30 }}
+            >
+              <TouchableOpacity
+                style={styles.selectDateButton}
+                onPress={handleSelectDate}
+              >
+                <Text>Select Date</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible1}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.modalView}>
+            <Calendar
+              onDayPress={onDayPress1}
+              markedDates={selectedDates1}
+              markingType={"multi-dot"}
+              style={styles.calendar}
+              theme={{
+                backgroundColor: "transparent",
+                calendarBackground: "transparent",
+              }}
+            />
+
+            <View
+              style={{ display: "flex", alignItems: "center", marginTop: 30 }}
+            >
+              <TouchableOpacity
+                style={styles.selectDateButton}
+                onPress={handleSelectDate}
+              >
+                <Text>Select Date</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
+        {showTimePicker && (
+          <DateTimePicker value={time} mode="time" onChange={onTimeChange} />
+        )}
+
+        {showTimePicker1 && (
+          <DateTimePicker value={time1} mode="time" onChange={onTimeChange1} />
+        )}
+
+        <TouchableOpacity
+          style={styles.planYourTrip}
+          onPress={() => {
+          }}
+        >
+          <Text style={styles.planYourTripTextTitle}>Plan your trip</Text>
+          <Text style={styles.planYourTripText}>
+            Introducing personalized trip plans for your preferences
+          </Text>
+          <TouchableOpacity style={styles.tryOutButton}>
+            <Text style={styles.tryOutButtonText}>Try out now</Text>
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
+
+      <PopularVehicles />
 
     </View>
   )
@@ -379,7 +380,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 50,
     paddingHorizontal: 10,
-    paddingVertical: 16,
+    paddingVertical: 12,
     alignItems: "center",
   },
   modalView: {
@@ -412,8 +413,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderRadius: 15,
     marginHorizontal: 20,
-    marginBottom: 5,
-    marginTop: 25
+    marginBottom: 10,
+    marginTop: 50
   },
   planYourTripTextTitle: {
     fontSize: 14,
