@@ -17,15 +17,15 @@ export default function VehList() {
         { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', icon: '⚙️', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
     ];
 
-    const navigation = useNavigation();
+    // const navigation = useNavigation();
 
-    const handleBackStep = () => {
-        navigation.goBack(); // Or navigate to the specific screen if needed
-    };
+    // const handleBackStep = () => {
+    //     navigation.goBack(); // Or navigate to the specific screen if needed
+    // };
 
     return (
         <View>
-            <View style={{
+            {/* <View style={{
                 padding: 20,
                 paddingBottom: 0,
                 display: 'flex',
@@ -57,7 +57,7 @@ export default function VehList() {
                     color: Colors.PRIMARY,
                     fontFamily: 'outfit-medium'
                 }}>Filter</Text>
-            </View>
+            </View> */}
 
             <FlatList
                 data={preferencesList}
@@ -65,6 +65,7 @@ export default function VehList() {
                 renderItem={({ item }) => (
                     <VehListItem prefernce={item} />
                 )}
+                showsVerticalScrollIndicator={false}
             />
         </View>
     );

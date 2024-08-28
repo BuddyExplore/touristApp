@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 10,
+    // marginVertical: 10,
   },
   touchable: {
     width: '100%',

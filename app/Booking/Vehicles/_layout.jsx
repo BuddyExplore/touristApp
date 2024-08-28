@@ -6,18 +6,67 @@ export default function RootLayout() {
       <Stack screenOptions={{
         headerShadowVisible: false,
       }}>
+
         <Stack.Screen name="search" options={{
           title: "Book a vehicle",
           headerTitleAlign: 'center',
-          headerStyle: {
-            height: 100,
-          },
           headerTitleStyle: {
             marginHorizontal: "auto",
             fontSize: 18,
             fontWeight: '600',
           },
         }}/>
+
+        <Stack.Screen name="searchResults" options={{
+          title: "Search results",
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            marginHorizontal: "auto",
+            fontSize: 18,
+            fontWeight: '600',
+          },
+        }}/>
+
+        <Stack.Screen name="vehicleInfo" options={{
+          title: "Book a vehicle",
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            marginHorizontal: "auto",
+            fontSize: 18,
+            fontWeight: '600',
+          },
+        }}/>
+
+        <Stack.Screen name="selectDestination" options={{
+          title: "Book a vehicle",
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            marginHorizontal: "auto",
+            fontSize: 18,
+            fontWeight: '600',
+          },
+        }}/>
+
+        <Stack.Screen name="selectPassengers" options={{
+          title: "Book a vehicle",
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            marginHorizontal: "auto",
+            fontSize: 18,
+            fontWeight: '600',
+          },
+        }}/>
+        
+        <Stack.Screen name="summaryBooking" options={{
+          title: "Book a vehicle",
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            marginHorizontal: "auto",
+            fontSize: 18,
+            fontWeight: '600',
+          },
+        }}/>
+
       </Stack>
   );
 }

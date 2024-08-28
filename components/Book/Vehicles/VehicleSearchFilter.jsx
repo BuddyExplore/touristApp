@@ -247,7 +247,7 @@ const VehicleSearchFilter = ({ searchPressed, isSearch, closeModal }) => {
       <TouchableOpacity
         style={[
           styles.searchButton,
-          // { opacity: isSearchEnabled() ? 1 : 0.5 },
+          { opacity: isSearchEnabled() ? 1 : 0.5 },
         ]}
         onPress={handleSearch}
         disabled={!isSearchEnabled()}
