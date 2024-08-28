@@ -5,9 +5,11 @@ import VehList from "./VehList";
 import VehicleSearchFilter from "./VehicleSearchFilter";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../../constants/Colors";
+import { useRouter } from "expo-router";
 
 const Vehicles = () => {
   const [searchPressedBtn, setSearchPressedBtn] = useState(false);
+  const router = useRouter();
 
   const handleSearch = () => {
     setSearchPressedBtn(!searchPressedBtn);
@@ -26,9 +28,9 @@ const Vehicles = () => {
 
       {searchPressedBtn && (
         <>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View contentContainerStyle={styles.Container}>
         <VehList />
-        </ScrollView>
+        </View>
         </>
       )}
      

@@ -18,6 +18,18 @@ export default function RootLayout() {
             fontWeight: '600',
           },
         }}/>
+        <Stack.Screen name="searchResults" options={{
+          title: "Search results",
+          headerTitleAlign: 'center',
+          headerStyle: {
+            height: 100,
+          },
+          headerTitleStyle: {
+            marginHorizontal: "auto",
+            fontSize: 18,
+            fontWeight: '600',
+          },
+        }}/>
       </Stack>
   );
 }

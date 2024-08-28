@@ -25,7 +25,7 @@ export default function VehList() {
 
     return (
         <View>
-            <View style={{
+            {/* <View style={{
                 padding: 20,
                 paddingBottom: 0,
                 display: 'flex',
@@ -57,11 +57,12 @@ export default function VehList() {
                     color: Colors.PRIMARY,
                     fontFamily: 'outfit-medium'
                 }}>Filter</Text>
-            </View>
+            </View> */}
 
             <FlatList
                 data={preferencesList}
                 keyExtractor={(item, index) => index.toString()}
+                showsVerticalScrollIndicator={false} 
                 renderItem={({ item }) => (
                     <VehListItem prefernce={item} />
                 )}
