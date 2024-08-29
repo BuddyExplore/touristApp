@@ -16,6 +16,17 @@ export default function TabLayout() {
         }}/>
         <Tabs.Screen name='book' options={{
           tabBarLabel:"Book",
+          headerShown: true,
+          title: "Book",
+          headerTitleAlign: 'center',
+          headerStyle: {
+            height: 100
+          },
+          headerTitleStyle: {
+            marginHorizontal: "auto",
+            fontSize: 24,
+            fontWeight: 700
+          },
           tabBarIcon:({color}) => <Ionicons name="calendar-clear-outline" size={24} color={color} />
         }}/>
         <Tabs.Screen name='mytrip' options={{

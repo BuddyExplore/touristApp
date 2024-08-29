@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity,  StyleSheet  } from 'react-native'
+import { View, Text, TouchableOpacity,  StyleSheet, ScrollView, Image  } from 'react-native'
 import React,{ useState } from 'react'
 import { useRouter } from 'expo-router';
 import Header from '../../components/Book/Header';
@@ -48,31 +48,91 @@ export default function book() {
 
   return (
     
-    <View style={styles.container}>
-      <Text>Book</Text>
-      <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Vehicles/search')}>
-        <Text>Vehicles & Drivers</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Tourguides/search')}>
-        <Text>Tour Guides</Text>
-      </TouchableOpacity>
+    // <View style={styles.container}>
+    //   <Text>Book</Text>
+    //   <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Vehicles/search')}>
+    //     <Text>Vehicles & Drivers</Text>
+    //   </TouchableOpacity>
+    //   <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Tourguides/search')}>
+    //     <Text>Tour Guides</Text>
+    //   </TouchableOpacity>
 
-      <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Hotels/search')}>
-        <Text>Hotels</Text>
-      </TouchableOpacity>
+    //   <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Hotels/search')}>
+    //     <Text>Hotels</Text>
+    //   </TouchableOpacity>
 
-      <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Items/discover')}>
-        <Text>Items from Shops</Text>
-      </TouchableOpacity>
+    //   <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Items/discover')}>
+    //     <Text>Items from Shops</Text>
+    //   </TouchableOpacity>
 
-      <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Activities/search')}>
-        <Text>Activities</Text>
-      </TouchableOpacity>
-
-
-
+    //   <TouchableOpacity style={styles.option} onPress={() => router.push('/Booking/Activities/search')}>
+    //     <Text>Activities</Text>
+    //   </TouchableOpacity>
  
-    </View>
+    // </View>
+
+    <ScrollView style={{flex:1,backgroundColor: "white", paddingHorizontal: 15}}>
+
+      <TouchableOpacity onPress={() => router.push('/Booking/Vehicles/search')} style={{marginVertical: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: "#F3F3F3", paddingVertical: 25, paddingHorizontal: 25, borderRadius: 30}}>
+        <View>
+          <Image style={{height: 70, width: 70}} source={require('../../assets/images/BookingCard/vehicle.png')} />
+        </View>
+
+        <View style={{ marginLeft: 8, flex: 1}}>
+            <Text style={{fontSize: 16, fontWeight: 700, marginBottom: 2}}>Vehicles & drivers</Text>
+            <Text style={{fontSize: 12, flexWrap: "wrap"}}>Book vehicles with drivers who can
+            drive you to your destination</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => router.push('/Booking/Tourguides/search')} style={{marginVertical: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: "#F3F3F3", paddingVertical: 25, paddingHorizontal: 25, borderRadius: 30}}>
+        <View>
+          <Image style={{height: 70, width: 70}} source={require('../../assets/images/BookingCard/guide.png')} />
+        </View>
+
+        <View style={{ marginLeft: 8, flex: 1}}>
+            <Text style={{fontSize: 16, fontWeight: 700, marginBottom: 2}}>Tour Guides</Text>
+            <Text style={{fontSize: 12, flexWrap: "wrap"}}>Book experienced tour guides who can
+            guide you during your journey</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => router.push('/Booking/Hotels/search')} style={{marginVertical: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: "#F3F3F3", paddingVertical: 25, paddingHorizontal: 25, borderRadius: 30}}>
+        <View>
+          <Image style={{height: 70, width: 70}} source={require('../../assets/images/BookingCard/hotel.png')} />
+        </View>
+
+        <View style={{ marginLeft: 8, flex: 1}}>
+            <Text style={{fontSize: 16, fontWeight: 700, marginBottom: 2}}>Hotels</Text>
+            <Text style={{fontSize: 12, flexWrap: "wrap"}}>Book comfortable hotels that provide excellent services during your stay</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => router.push('/Booking/Items/discover') } style={{marginVertical: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: "#F3F3F3", paddingVertical: 25, paddingHorizontal: 25, borderRadius: 30}}>
+        <View>
+          <Image style={{height: 70, width: 70}} source={require('../../assets/images/BookingCard/shop.png')} />
+        </View>
+
+        <View style={{ marginLeft: 8, flex: 1}}>
+            <Text style={{fontSize: 16, fontWeight: 700, marginBottom: 2}}>Items from Shops</Text>
+            <Text style={{fontSize: 12, flexWrap: "wrap"}}>Shop from stores that offer a wide range
+            of items for all your needs.</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => router.push('/Booking/Activities/search')} style={{marginVertical: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: "#F3F3F3", paddingVertical: 25, paddingHorizontal: 25, borderRadius: 30}}>
+        <View>
+          <Image style={{height: 70, width: 70}} source={require('../../assets/images/BookingCard/activity.png')} />
+        </View>
+
+        <View style={{ marginLeft: 8, flex: 1}}>
+            <Text style={{fontSize: 16, fontWeight: 700, marginBottom: 2}}>Activities</Text>
+            <Text style={{fontSize: 12, flexWrap: "wrap"}}>Book exciting activities around the island
+            which enhance your travel experience.</Text>
+        </View>
+      </TouchableOpacity>
+
+    </ScrollView>
   )
 }
 
