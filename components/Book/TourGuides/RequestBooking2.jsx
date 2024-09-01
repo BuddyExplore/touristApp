@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Modal, TextInput } from 'react-native';
 import { useNavigation } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function RequestBooking2({ guideInfo, onNext,destinations }) {
   const [modalVisible, setModalVisible] = useState(false);
-  const navigation = useNavigation();
-
+  const [note, setNote] = useState(''); 
+ 
   const handleBookingRequest = () => {
     setModalVisible(true);
   };
@@ -70,16 +70,20 @@ export default function RequestBooking2({ guideInfo, onNext,destinations }) {
         <Text style={styles.text}>4 Guests</Text>
       </View>
 
-       {/* Guests Section */}
+       {/* Add note Section */}
        <View style={styles.section}>
        <View style={{ flexDirection: "row" }}>
          <Ionicons name="document-outline" size={20} color="black" style={styles.closeButton} />
          <Text style={styles.label}>Add Note</Text>
        </View>
-       <View style={{ borderRadius:10, height:30, backgroundColor:"rgba(127,127,127,0.1)", marginTop:20}}>
-       <Text style={{fontSize: 14,
-        marginTop: 5, marginLeft:20, color:"gray"}}>Add Note</Text>
-       </View>
+       <TextInput
+         style={styles.noteInput}
+         placeholder="Add Note"
+         placeholderTextColor="gray"
+         value={note} 
+         onChangeText={(text) => setNote(text)} 
+         multiline={true} 
+       />
      </View>
 
       {/* Booking Button */}
@@ -237,5 +241,14 @@ const styles = StyleSheet.create({
   modalLinkText: {
     color: '#0078A1',
     fontSize: 16,
+  },
+  noteInput: {
+    borderRadius: 10,
+    height: 40, 
+    backgroundColor: "rgba(127,127,127,0.1)",
+    marginTop: 20,
+    padding: 10, 
+    fontSize: 14,
+    color: "black",
   },
 });

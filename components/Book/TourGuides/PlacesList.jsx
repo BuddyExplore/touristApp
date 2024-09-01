@@ -44,7 +44,7 @@ export default function PlacesList() {
           alignItems: 'center',
         }}
       >
-        <Text style={{ fontSize: 20, fontFamily: 'outfit-bold' }}>Book Tour Guide</Text>
+        <Text style={{ fontSize: 20, fontFamily: 'outfit-bold' }}></Text>
         <Text style={{ color: Colors.PRIMARY, fontFamily: 'outfit-medium' }}>View all</Text>
       </View>
 

@@ -10,7 +10,7 @@ import {
   import { Ionicons } from "@expo/vector-icons";
   import { Colors } from "../../../constants/Colors";
   
-  export default function TourGuideModalDetails() {
+  export default function TourGuideModalDetails({guideInfo}) {
 
     return (
       <View style={styles.container}>
@@ -38,7 +38,7 @@ import {
 
           <Text style={styles.label}>Languages</Text>
           <Text style={styles.descriptionTxt}>
-          English, Sinhala, Tamil
+          {guideInfo.lang}
           </Text>
         </ScrollView>
   
