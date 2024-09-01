@@ -44,7 +44,7 @@ const searchResults = () => {
 
       </View>
 
-      <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+      <View style={{flexDirection: 'row', justifyContent: 'flex-start', marginTop:20}}>
         <Pressable style={{display: 'flex', flexDirection: 'row', gap: 5, paddingVertical: 10, paddingHorizontal: 12, paddingRight: 20, backgroundColor: '#FAFAFA', borderRadius: 15, width:"100%" }}>
           <Ionicons name="search-outline" size={16} color="#878787" />
           <Text style={{fontSize: 15, color: "#878787"}}>Search</Text>

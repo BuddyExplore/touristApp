@@ -5,11 +5,10 @@ import PopularVehItems from './PopularVehItems';
 
 export default function PopularVehicles() { 
     const preferencesList = [
-        { name: 'Nissan Clipper', where:'Battaramulla', icon: '🔔', img:require('../../../assets/images/Book/Vehicles/Vehicle1.jpg')  },
-        { name: 'Toyota Hiace', where:'Maharagama', icon: '👤', img:require('../../../assets/images/Book/Vehicles/Vehicle2.jpg')  },
-        { name: 'Toyota Coaster', where:'Maharagama', icon: '🔔', img:require('../../../assets/images/Book/Vehicles/Vehicle3.jpg')  },
-        { name: 'Volkswagon Caddy', where:'Pannipitiya', icon: '⚙️', img:require('../../../assets/images/Book/Vehicles/Vehicle4.jpg')  },
-        // { name: 'Kayaking', icon: '🔔', img:require('../../assets/images/Home/Prefernces/kayak.png') },
+        { name: 'Nissan Clipper', where:'Battaramulla',  img:require('../../../assets/images/Book/Vehicles/Vehicle1.jpg')  },
+        { name: 'Toyota Hiace', where:'Maharagama',  img:require('../../../assets/images/Book/Vehicles/Vehicle2.jpg')  },
+        { name: 'Toyota Coaster', where:'Maharagama',  img:require('../../../assets/images/Book/Vehicles/Vehicle3.jpg')  },
+        { name: 'Volkswagon Caddy', where:'Pannipitiya', img:require('../../../assets/images/Book/Vehicles/Vehicle4.jpg')  },
       ];
 
   return (

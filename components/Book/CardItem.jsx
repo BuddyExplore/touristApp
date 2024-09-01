@@ -40,16 +40,16 @@ const styles = StyleSheet.create({
         width: 100,
         height: 70,
         borderRadius: 10,
-        overflow: 'hidden', // Ensures rounded corners are applied to the image ''
+        overflow: 'hidden', 
     },
     image: {
         width: '100%',
         height: '100%',
-        justifyContent: 'flex-end', // Positions text at the bottom
+        justifyContent: 'flex-end',
     },
     textContainer: {
         padding: 10,
-        backgroundColor: 'rgba(0, 0, 0, 0.3)', // Semi-transparent background for text visibility
+        backgroundColor: 'rgba(0, 0, 0, 0.3)', 
         borderBottomLeftRadius:10,
         justifyContent: 'center',
     },
