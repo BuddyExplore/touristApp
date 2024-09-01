@@ -3,8 +3,6 @@ import React from 'react'
 import { Colors } from '../../../constants/Colors'
 import GuidesListItem from './GuidesListItem';
 
-
-
 export default function GuidesList() {
     const preferencesList = [
         { name: 'J.F. Silva', where:'Nugegoda' , icon: '🔔', img:require('../../../assets/images/Book/Tourguides/person5.jpg')  },

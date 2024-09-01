@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import React , {useState} from 'react';
-import GuideModal from './GuideModal';
+import GuideModal from './GuideModal1';
 
 export default function GuidesListItem({ prefernce }) {
 
@@ -50,6 +50,7 @@ export default function GuidesListItem({ prefernce }) {
             </View>
         </View>
             </TouchableOpacity>
+            
             {showModal && <GuideModal guideInfo={prefernce} visibility={showModal} closeModal={handleCloseModal}/>}
         </View>
     );
