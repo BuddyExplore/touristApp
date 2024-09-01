@@ -1,66 +1,106 @@
-import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import React from 'react';
-
-export default function PopularTourguidesItems({ prefernce }) {
+import {
+    View,
+    Text,
+    ImageBackground,
+    TouchableOpacity,
+    StyleSheet,
+    Image,
+    Pressable,
+  } from "react-native";
+  import React, { useState } from "react";
+  import GuideModal from "./GuideModal1";
+  import { Ionicons } from "@expo/vector-icons";
+  
+  export default function PopularTourguideItems({ prefernce }) {
+    const [showModal, setShowModal] = useState(false);
+  
+    const handleShowModal = () => {
+      setShowModal(true);
+    };
+  
+    const handleCloseModal = (itemName) => {
+      if (itemName === 1) {
+        setShowModal(false);
+      }
+    };
+  
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.touchable}>
-                <ImageBackground source={prefernce.img} style={styles.image}>
-                    <View style={styles.textContainer}>
-                        {/* <Text style={styles.likesText}>❤️ 1500</Text> */}
-                        <Text style={styles.mainText}>{prefernce.name}</Text>
-                        <Image source={require("../../../assets/images/Book/4star.png")}
-                style={{
-                    width:50,
-                    height:15,
-                    marginLeft: 5
-                }}
+      <View style={styles.container}>
+        <ImageBackground
+          source={prefernce.img}
+          style={styles.image}
+        ></ImageBackground>
+  
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() => setShowModal(true)}
+        >
+          <View style={styles.textContainer}>
+            <Text style={styles.mainText}>{prefernce.name}</Text>
+            <Pressable style={styles.moreButton}>
+              <Ionicons name="ellipsis-vertical" size={14} color="black" />
+            </Pressable>
+            <Image
+              source={require("../../../assets/images/Book/4star.png")}
+              style={styles.starImage}
             />
-                        <Text style={styles.subText}> 📍 {prefernce.where}</Text>
-                    </View>
-                </ImageBackground>
-            </TouchableOpacity>
-        </View>
+            {/*<Text style={styles.subText}> 📍 {prefernce.where}</Text>*/}
+          </View>
+        </TouchableOpacity>
+  
+        {showModal && (
+          <GuideModal
+            vehicleInfo={prefernce}
+            visibility={showModal}
+            closeModal={handleCloseModal}
+          />
+        )}
+      </View>
     );
-}
-
-const styles = StyleSheet.create({
+  }
+  
+  const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 10,
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 10,
     },
     touchable: {
-        width: 200,
-        height: 200,
-        borderRadius: 10,
-        overflow: 'hidden', // Ensures rounded corners are applied to the image ''
-        backgroundColor: 'rgba(0, 0, 0, 0.02)'
+      //width: 130,
+      borderRadius: 10,
+      overflow: "hidden",
+      //backgroundColor: "rgba(0, 0, 0, 0.02)",
     },
     image: {
-        width: '100%',
-        height: '100%',
-        justifyContent: 'flex-end', // Positions text at the bottom
+      width: "100%",
+      height: 90,
+      borderRadius: 10,
     },
     textContainer: {
-        padding: 10,
-        backgroundColor: 'rgba(0, 0, 0, 0.3)', // Semi-transparent background for text visibility
-        borderBottomLeftRadius:10,
-        justifyContent: 'center',
-    },
-    likesText: {
-        color: 'white',
-        fontWeight: 'bold',
-        position: 'absolute',
-        top: 10,
-        right: 10,
+      padding: 10,
+      width: 130,
+      //backgroundColor: "rgba(0, 0, 0, 0.3)",
+      //borderBottomLeftRadius: 10,
+      //borderBottomRightRadius: 10,
     },
     mainText: {
-        color: 'white',
-        fontWeight: 'bold',
-        marginLeft: 5
+      color: "black",
+      fontWeight: "bold",
+      marginBottom: 5,
+    },
+    moreButton: {
+      position: "absolute",
+      right: 0,
+      top: 13,
+      zIndex: 1,
+    },
+    starImage: {
+      width: 70,
+      height: 20,
+      //marginVertical: 5,
     },
     subText: {
-        color: 'white',
+      color: "black",
     },
-});
+  });
+  
