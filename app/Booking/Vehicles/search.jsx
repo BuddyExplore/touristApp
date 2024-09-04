@@ -104,13 +104,15 @@ export default function search() {
   };
 
   const Enabled = () => {
-    return (
-      pickupLocation.trim() !== "" &&
-      pickupDate.trim() !== "" &&
-      dropoffDate.trim() !== "" &&
-      pickupTime.trim() !== "" &&
-      dropoffTime.trim() !== ""
-    );
+    // return (
+    //   pickupLocation.trim() !== "" &&
+    //   pickupDate.trim() !== "" &&
+    //   dropoffDate.trim() !== "" &&
+    //   pickupTime.trim() !== "" &&
+    //   dropoffTime.trim() !== ""
+    // );
+
+    return true;
   };
 
   return (

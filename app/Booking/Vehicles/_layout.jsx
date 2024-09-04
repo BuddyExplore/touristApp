@@ -27,14 +27,8 @@ export default function RootLayout() {
           },
         }}/>
 
-        <Stack.Screen name="vehicleInfo" options={{
-          title: "Book a vehicle",
-          headerTitleAlign: 'center',
-          headerTitleStyle: {
-            marginHorizontal: "auto",
-            fontSize: 18,
-            fontWeight: '600',
-          },
+        <Stack.Screen name="vehicleInformation" options={{
+          headerShown: false
         }}/>
 
         <Stack.Screen name="selectDestination" options={{

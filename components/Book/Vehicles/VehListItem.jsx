@@ -8,8 +8,11 @@ import {
 import React, { useState } from 'react';
 import VehicleModal from './VehicleModal';
 import { Ionicons } from '@expo/vector-icons'; // Import Ionicons for the arrowhead
+import { useRouter } from 'expo-router';
 
-export default function VehListItem({ prefernce }) {
+export default function VehListItem({ preference, vehicleNo }) {
+  const router = useRouter();
+
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
@@ -26,25 +29,31 @@ export default function VehListItem({ prefernce }) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.touchable}
-        onPress={() => setShowModal(true)}
+        // onPress={() => setShowModal(true)}
+        onPress={() =>     router.push({
+          pathname: './vehicleInformation',
+          params: {
+            vehicleNo
+          }
+        })}
       >
         <View style={styles.rowContainer}>
-          <Image source={prefernce.img} style={styles.image} />
+          <Image source={preference.img} style={styles.image} />
           <View style={styles.textContainer}>
-            <Text style={styles.mainText}>{prefernce.name}</Text>
-            {/* <Text style={styles.subText}>Driver : {prefernce.driver}</Text> */}
+            <Text style={styles.mainText}>{preference.name}</Text>
+            {/* <Text style={styles.subText}>Driver : {preference.driver}</Text> */}
             <Image
               source={require("../../../assets/images/Book/4star.png")}
               style={styles.starImage}
             />
-            <Text style={styles.subText}>{prefernce.where}</Text>
+            <Text style={styles.subText}>{preference.where}</Text>
           </View>
           <Ionicons name="chevron-forward" size={24} color="black" style={styles.arrowIcon} />
         </View>
       </TouchableOpacity>
       {showModal && (
         <VehicleModal
-          vehicleInfo={prefernce}
+          vehicleInfo={preference}
           visibility={showModal}
           closeModal={handleCloseModal}
         />
