@@ -120,13 +120,13 @@ export default function VehicleModal({ vehicleInfo, visibility, closeModal }) {
 
             {/* Buttons positioned on top of the image */}
             <TouchableOpacity style={styles.backButton} onPress={handleCloseModal}>
-              <Ionicons name="arrow-back-outline" size={22} color={'black'} />
+              <Ionicons name="arrow-back" size={22} color={'black'} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.shareButton}>
-              <Ionicons name="share-social-outline" size={22} color={'black'} />
+              <Ionicons name="share-social" size={22} color={'black'} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.moreButton}>
-              <Ionicons name="ellipsis-vertical-outline" size={22} color={'black'} />
+              <Ionicons name="ellipsis-vertical" size={22} color={'black'} />
             </TouchableOpacity>
 
             <View style={styles.buttonContainer}>

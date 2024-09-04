@@ -1,11 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native'
 import React from 'react'
 import { useLocalSearchParams } from 'expo-router'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { Colors } from '../../../constants/Colors';
-import VehList from '../../../components/Book/Vehicles/VehList';
+import VehListItem from '../../../components/Book/Vehicles/VehListItem';
 
 const searchResults = () => {
   const { 
@@ -14,6 +14,17 @@ const searchResults = () => {
     dropoffDate,
     pickupTime,
     dropoffTime } = useLocalSearchParams();
+
+    const preferencesList = [
+      { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle5.jpg') },
+      { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', icon: '👤', img: require('../../../assets/images/Book/Vehicles/Vehicle6.jpg') },
+      { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle7.jpg') },
+      { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', icon: '⚙️', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
+      { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle1.jpg') },
+      { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', icon: '👤', img: require('../../../assets/images/Book/Vehicles/Vehicle2.jpg') },
+      { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle3.jpg') },
+      { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', icon: '⚙️', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
+  ];
 
   return (
     <View style={{flex: 1, backgroundColor: 'white', paddingHorizontal: 15}}>
@@ -67,7 +78,16 @@ const searchResults = () => {
       </View>
 
       {/* Vehicle List */}
-      <VehList />   
+      <View>
+        <FlatList
+            data={preferencesList}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => (
+                <VehListItem preference={item} vehicleNo={index} />
+            )}
+            showsVerticalScrollIndicator={false}
+        />
+        </View>
     </View>
   )
 }
