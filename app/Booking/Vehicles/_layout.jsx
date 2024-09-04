@@ -15,6 +15,15 @@ export default function RootLayout() {
             fontWeight: '600',
           },
         }}/>
+        <Stack.Screen name="searchResults" options={{
+          title: "Book a vehicle",
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            marginHorizontal: "auto",
+            fontSize: 18,
+            fontWeight: '600',
+          },
+        }}/>
 
         <Stack.Screen name="vehicleInformation" options={{
           headerShown: false
