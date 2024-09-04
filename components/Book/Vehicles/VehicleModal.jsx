@@ -1,5 +1,5 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image, Modal, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Modal, ScrollView, StatusBar } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../../constants/Colors';
 import VehicleModalDetails from './VehicleModalDetails';
@@ -86,6 +86,7 @@ export default function VehicleModal({ vehicleInfo, visibility, closeModal }) {
         transparent={true}
         visible={modalVisible}
         onRequestClose={handleCloseModal}
+        statusBarTranslucent={true}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -145,6 +146,7 @@ export default function VehicleModal({ vehicleInfo, visibility, closeModal }) {
         transparent={true}
         visible={showBookingModal}
         onRequestClose={() => setShowBookingModal(false)}
+        statusBarTranslucent={true}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -170,6 +172,7 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: 'center',
+    marginTop: 0
   },
   modalView: {
     flex: 1,

@@ -4,8 +4,9 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
+  StatusBar
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import VehicleModal from './VehicleModal';
 import { Ionicons } from '@expo/vector-icons'; // Import Ionicons for the arrowhead
 import { useRouter } from 'expo-router';
@@ -24,6 +25,14 @@ export default function VehListItem({ preference, vehicleNo }) {
       setShowModal(false);
     }
   };
+
+  // useEffect(() => {
+  //   if (showModal) {
+  //     StatusBar.setHidden(true);
+  //   } else {
+  //     StatusBar.setHidden(false);
+  //   }
+  // }, [showModal]);
 
   return (
     <View style={styles.container}>
@@ -66,7 +75,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 10,
+    marginVertical: 10,
   },
   touchable: {
     width: '100%',
@@ -88,6 +97,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     paddingLeft: 10,
+    marginLeft: 10
   },
   mainText: {
     color: 'black',

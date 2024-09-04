@@ -27,13 +27,13 @@ export default function DriverModalDetails({ vehicleInfo }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Ensure the container takes up the full height
+    flex: 1, 
     paddingHorizontal: 20,
     paddingTop: 30,
-    justifyContent: "space-between", // Ensure space is distributed between scroll content and buttons
+    justifyContent: "space-between", 
   },
   scrollContainer: {
-    flex: 1, // Allows the ScrollView to take up remaining space above the button
+    flex: 1, 
   },
   header: {
     flexDirection: "row",

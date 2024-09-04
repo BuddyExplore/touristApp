@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Modal } from 'react-native'
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, Modal} from 'react-native'
 import React,{ useState } from 'react'
 import PopularVehicles from '../../../components/Book/Vehicles/PopularVehicles';
 import { Ionicons } from "@expo/vector-icons";
@@ -6,10 +6,16 @@ import { Calendar } from "react-native-calendars";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Colors } from '../../../constants/Colors';
 import { useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { Ionicons } from "@expo/vector-icons";
+import { Calendar } from "react-native-calendars";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { Colors } from '../../../constants/Colors';
+import PopularVehicles from '../../../components/Book/Vehicles/PopularVehicles';
 
-export default function search() {
+
+export default function book() {
   const router = useRouter();
-
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [selectedDates, setSelectedDates] = useState({});
@@ -33,7 +39,7 @@ export default function search() {
         pickupDate,
         dropoffDate,
         pickupTime,
-        dropoffTime
+        dropoffTime,
       }
     });
   };
@@ -103,16 +109,14 @@ export default function search() {
     }
   };
 
-  const Enabled = () => {
-    // return (
-    //   pickupLocation.trim() !== "" &&
-    //   pickupDate.trim() !== "" &&
-    //   dropoffDate.trim() !== "" &&
-    //   pickupTime.trim() !== "" &&
-    //   dropoffTime.trim() !== ""
-    // );
-
-    return true;
+  const isSearchEnabled = () => {
+    return (
+      pickupLocation.trim() !== "" &&
+      pickupDate.trim() !== "" &&
+      dropoffDate.trim() !== "" &&
+      pickupTime.trim() !== "" &&
+      dropoffTime.trim() !== ""
+    );
   };
 
   return (
