@@ -38,13 +38,14 @@ export default function VehListItem({ preference, vehicleNo }) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.touchable}
-        // onPress={() => setShowModal(true)}
-        onPress={() =>     router.push({
-          pathname: './vehicleInformation',
-          params: {
-            vehicleNo
-          }
-        })}
+        onPress={() => setShowModal(true)}
+        // onPress={() =>     router.push({
+        //   pathname: './vehicleInformation',
+        //   params: {
+        //     vehicleNo
+        //   }
+        // }
+      // )}
       >
         <View style={styles.rowContainer}>
           <Image source={preference.img} style={styles.image} />
