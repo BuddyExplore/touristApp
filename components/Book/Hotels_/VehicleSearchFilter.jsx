@@ -1,15 +1,19 @@
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, Modal} from 'react-native'
-import React,{ useState } from 'react'
-import { useRouter } from 'expo-router';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Modal,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Colors } from "../../../constants/Colors";
 import { Calendar } from "react-native-calendars";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { Colors } from '../../../constants/Colors';
-import PopularVehicles from '../../../components/Book/Hotels_/PopularVehicles';
 
-
-export default function book() {
-  const router = useRouter();
+const VehicleSearchFilter = ({ searchPressed, isSearch, closeModal }) => {
+  const [searchPressedBtn, setSearchPressedBtn] = useState(isSearch);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const [selectedDates, setSelectedDates] = useState({});
@@ -26,16 +30,7 @@ export default function book() {
   const [dropoffTime, setDropoffTime] = useState("");
 
   const handleSearch = () => {
-    router.push({
-      pathname: './searchResults',
-      params: {
-        pickupLocation,
-        pickupDate,
-        dropoffDate,
-        pickupTime,
-        dropoffTime,
-      }
-    });
+    searchPressed(true);
   };
 
   const handleSelectDate = () => {
@@ -113,9 +108,8 @@ export default function book() {
     );
   };
 
-  return ( 
-    <View style={{flex: 1, backgroundColor: "white"}}>
-
+  return (
+    <View>
       <View
         style={{
           height: 60,
@@ -129,10 +123,10 @@ export default function book() {
           borderRadius: 10,
         }}
       >
-        <Ionicons name="location-outline" size={20} color="black" />
+        <Ionicons name="search" size={20} color={"black"} />
         <View style={{flex: 1}}>
           <TextInput
-            placeholder="Where are you going?"
+            placeholder="Enter pick-up location"
             style={{
               fontFamily: "outfit",
               color: "#A4A4A4",
@@ -162,7 +156,7 @@ export default function book() {
             <Ionicons name="calendar-clear-outline" size={22} color={"black"} />
             <View style={{flex: 1}}>
               <TextInput
-                placeholder="Check-in"
+                placeholder="Pick-up date"
                 style={{
                   fontFamily: "outfit",
                   color: "#A4A4A4",
@@ -177,34 +171,13 @@ export default function book() {
 
         <TouchableOpacity
           style={styles.dateTouchable}
-          onPress={handleOpenSelectDate1}
-        >
-          <View style={styles.dateTimeContainer}>
-            <Ionicons name="calendar-clear-outline" size={22} color={"black"} />
-            <View style={{flex: 1}}>
-              <TextInput
-                placeholder="Check-out"
-                style={{
-                  fontFamily: "outfit",
-                  color: "#A4A4A4",
-                  fontSize: 15,
-                }}
-                // value={dropoffDate}
-                editable={false}
-              />
-            </View>
-          </View>
-        </TouchableOpacity>
-
-        {/* <TouchableOpacity
-          style={styles.dateTouchable}
           onPress={() => setShowTimePicker(true)}
         >
           <View style={styles.dateTimeContainer}>
-            <Ionicons name="calendar-clear-outline" size={22} color={"black"} />
+            <Ionicons name="time-outline" size={22} color={"black"} />
             <View style={{flex: 1}}>
               <TextInput
-                placeholder="Check-out"
+                placeholder="Pick-up time"
                 style={{
                   fontFamily: "outfit",
                   color: "#A4A4A4",
@@ -215,7 +188,7 @@ export default function book() {
               />
             </View>
           </View>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
 
       <View
@@ -230,21 +203,20 @@ export default function book() {
       >
         <TouchableOpacity
           style={styles.dateTouchable}
-          // onPress={handleOpenSelectDate1}
+          onPress={handleOpenSelectDate1}
         >
           <View style={styles.dateTimeContainer}>
-            <Ionicons name="people-outline" size={22} color={"black"} />
+            <Ionicons name="calendar-clear-outline" size={22} color={"black"} />
             <View style={{flex: 1}}>
               <TextInput
-                placeholder="Guests"
+                placeholder="Drop-off date"
                 style={{
                   fontFamily: "outfit",
                   color: "#A4A4A4",
                   fontSize: 15,
                 }}
-                keyboardType="numeric"
-                // value={pickupTime} // convert to string for TextInput
-                // onChangeText={(value) => setGuests(parseInt(value) || 1)} // Parse the input and ensure it's a number
+                value={dropoffDate}
+                editable={false}
               />
             </View>
           </View>
@@ -252,20 +224,20 @@ export default function book() {
 
         <TouchableOpacity
           style={styles.dateTouchable}
-          // onPress={() => setShowTimePicker1(true)}
+          onPress={() => setShowTimePicker1(true)}
         >
           <View style={styles.dateTimeContainer}>
-            <Ionicons name="bed-outline" size={22} color={"black"} />
+            <Ionicons name="time-outline" size={22} color={"black"} />
             <View style={{flex: 1}}>
               <TextInput
-                placeholder="Rooms"
+                placeholder="Drop-off time"
                 style={{
                   fontFamily: "outfit",
                   color: "#A4A4A4",
                   fontSize: 15,
                 }}
-                keyboardType="numeric"
                 value={dropoffTime}
+                editable={false}
               />
             </View>
           </View>
@@ -278,10 +250,10 @@ export default function book() {
           { opacity: isSearchEnabled() ? 1 : 0.5 },
         ]}
         onPress={handleSearch}
-        // disabled={!isSearchEnabled()}
+        disabled={!isSearchEnabled()}
       >
         <Text style={{ fontSize: 16, fontWeight: "500", color: "#EEEEEE" }}>
-          Search Hotel
+          Search Vehicle
         </Text>
       </TouchableOpacity>
 
@@ -372,13 +344,11 @@ export default function book() {
           <Text style={styles.tryOutButtonText}>Try out now</Text>
         </TouchableOpacity>
       </TouchableOpacity>
-    
-
-    <PopularVehicles />
-
     </View>
-  )
-}
+  );
+};
+
+export default VehicleSearchFilter;
 
 const styles = StyleSheet.create({
   dateTouchable: {
