@@ -51,7 +51,7 @@ const vehicleInformation = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{position: 'relative'}}>
+      <View>
         <View style={styles.vehicleImgContainer}>
           <Image source={vehicleInfo.img} style={styles.vehicleImg} />
         </View>
@@ -127,8 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    position: 'absolute',
-    
+    marginTop: -20
   },
   vehicleName: {
     fontSize: 25,

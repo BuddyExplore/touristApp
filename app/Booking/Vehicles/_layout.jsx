@@ -29,7 +29,7 @@ export default function RootLayout() {
           headerShown: false
         }}/>
 
-        <Stack.Screen name="selectDestination" options={{
+        {/* <Stack.Screen name="selectDestination" options={{
           title: "Book a vehicle",
           headerTitleAlign: 'center',
           headerTitleStyle: {
@@ -57,7 +57,8 @@ export default function RootLayout() {
             fontSize: 18,
             fontWeight: '600',
           },
-        }}/>
+        }}/> */}
+
       </Stack>
   );
 }

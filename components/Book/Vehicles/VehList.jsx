@@ -63,8 +63,8 @@ export default function VehList() {
                 data={preferencesList}
                 keyExtractor={(item, index) => index.toString()}
                 showsVerticalScrollIndicator={false} 
-                renderItem={({ item }) => (
-                    <VehListItem preference={item} />
+                renderItem={({ item, index }) => (
+                    <VehListItem preference={item} vehicleNo={index} />
                 )}
             />
         </View>

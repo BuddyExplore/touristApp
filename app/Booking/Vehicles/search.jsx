@@ -1,12 +1,14 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Modal } from 'react-native'
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, Modal, Button} from 'react-native'
 import React,{ useState } from 'react'
-import PopularVehicles from '../../../components/Book/Vehicles/PopularVehicles';
+// import PopularVehicles from '../../../components/Book/Vehicles/PopularVehicles';
 import { Ionicons } from "@expo/vector-icons";
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Calendar } from "react-native-calendars";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Colors } from '../../../constants/Colors';
 import { useRouter } from 'expo-router';
 
+export default function search() {
 export default function search() {
   const router = useRouter();
 
@@ -24,6 +26,7 @@ export default function search() {
   const [dropoffDate, setDropoffDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [dropoffTime, setDropoffTime] = useState("");
+  const [destinations, setDestinations] = useState([""]);
 
   const handleSearch = () => {
     router.push({
@@ -37,6 +40,18 @@ export default function search() {
       }
     });
   };
+
+  const addDestination = () => {
+    setDestinations([...destinations, '']);
+  }
+
+  const updateDestinations = (text, index) => {
+    setDestinations(
+      destinations.map((destination, i) =>
+        i  ===  index ? text : destination
+      )
+    )
+  }
 
   const handleSelectDate = () => {
     setModalVisible(false);
@@ -132,7 +147,7 @@ export default function search() {
             marginTop: 10
           }}
         >
-          <Ionicons name="location-outline" size={24} color={"black"} />
+          <MaterialIcons name="my-location" size={24} color="black" />
           <View style={{flex: 1}}>
             <TextInput
               placeholder="Enter pick-up location"
@@ -199,7 +214,56 @@ export default function search() {
             </View>
           </TouchableOpacity>
         </View>
+        
+        <View>
+          <View>
+          {/* Select Destination */}
+          {destinations.map((destination, index) => (
+            <View key={index}
+              style={{
+                height: 60,
+                marginHorizontal: 20,
+                display: "flex",
+                flexDirection: "row",
+                gap: 10,
+                alignItems: "center",
+                backgroundColor: "#FAFAFA",
+                paddingHorizontal: 20,
+                borderRadius: 10,
+                marginTop: 10
+              }}
+            >
+              <Ionicons name="location" size={24} color={"black"} />
+              <View style={{flex: 1}}>
+                <TextInput
+                  placeholder="Select Destination"
+                  style={{
+                    fontFamily: "outfit",
+                    color: "#A4A4A4",
+                    fontSize: 15,
+                  }}
+                  value={destinations[index]}
+                  onChangeText={(text) => updateDestinations(text, index)}
+                />
+              </View>
+            </View>
+          ))}
+          </View>
 
+          <View>
+            
+          </View>
+        </View>
+
+        <View>
+        <Button
+              title="Add Item"
+              onPress={() => {
+                addDestination(); // Set the index of the item to be edited
+              }}
+            />
+        </View>
+          
         <View
           style={{
             marginHorizontal: 20,
@@ -256,10 +320,10 @@ export default function search() {
         <TouchableOpacity
           style={[
             styles.searchButton,
-            { opacity: Enabled() ? 1 : 0.5 },
+            { opacity: isSearchEnabled() ? 1 : 0.5 },
           ]}
           onPress={handleSearch}
-          disabled={!Enabled()}
+          disabled={!isSearchEnabled()}
         >
           <Text style={{ fontSize: 16, fontWeight: "500", color: "#EEEEEE" }}>
             Search Vehicle
@@ -355,7 +419,7 @@ export default function search() {
         </TouchableOpacity>
       </View>
 
-      <PopularVehicles />
+      {/* <PopularVehicles /> */}
 
     </View>
   )
