@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, Modal, Button} from 'react-native'
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, Modal, Button, Pressable, ScrollView} from 'react-native'
 import React,{ useState } from 'react'
 // import PopularVehicles from '../../../components/Book/Vehicles/PopularVehicles';
 import { Ionicons } from "@expo/vector-icons";
@@ -7,6 +7,7 @@ import { Calendar } from "react-native-calendars";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Colors } from '../../../constants/Colors';
 import { useRouter } from 'expo-router';
+import Entypo from '@expo/vector-icons/Entypo';
 
 export default function search() {
   const router = useRouter();
@@ -24,7 +25,11 @@ export default function search() {
   const [dropoffDate, setDropoffDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [dropoffTime, setDropoffTime] = useState("");
-  const [destinations, setDestinations] = useState([""]);
+
+  const [searchDestination, setSearchDestination] = useState("");
+  const [destinations, setDestinations] = useState([]);
+
+  const [passengers, setPassengers] = useState(1);
 
   const handleSearch = () => {
     router.push({
@@ -39,17 +44,23 @@ export default function search() {
     });
   };
 
-  const addDestination = () => {
-    setDestinations([...destinations, '']);
+  const addDestination = (text) => {
+    setDestinations([...destinations, text]);
+    setSearchDestination("");
   }
 
-  const updateDestinations = (text, index) => {
-    setDestinations(
-      destinations.map((destination, i) =>
-        i  ===  index ? text : destination
-      )
-    )
+  const removeDestination = (i) => {
+    const newDestinations = destinations.filter((destination, index) => index != i);
+    setDestinations(newDestinations)
   }
+
+  // const updateDestinations = (text, index) => {
+  //   setDestinations(
+  //     destinations.map((destination, i) =>
+  //       i  ===  index ? text : destination
+  //     )
+  //   )
+  // }
 
   const handleSelectDate = () => {
     setModalVisible(false);
@@ -128,7 +139,7 @@ export default function search() {
 
   return (
     <View style={{flex: 1, backgroundColor: "white"}}>
-      <View style={{backgroundColor:"white"}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:"white"}}>
         <View
           style={{
             height: 60,
@@ -212,52 +223,79 @@ export default function search() {
         </View>
         
         <View>
-          <View>
           {/* Select Destination */}
-          {destinations.map((destination, index) => (
-            <View key={index}
-              style={{
-                height: 60,
-                marginHorizontal: 20,
-                display: "flex",
-                flexDirection: "row",
-                gap: 10,
-                alignItems: "center",
-                backgroundColor: "#FAFAFA",
-                paddingHorizontal: 20,
-                borderRadius: 10,
-                marginTop: 10
-              }}
-            >
-              <Ionicons name="location" size={24} color={"black"} />
-              <View style={{flex: 1}}>
-                <TextInput
-                  placeholder="Select Destination"
-                  style={{
-                    fontFamily: "outfit",
-                    color: "#A4A4A4",
-                    fontSize: 15,
-                  }}
-                  value={destinations[index]}
-                  onChangeText={(text) => updateDestinations(text, index)}
-                />
+          {destinations.map((destination, index) => {
+            return (
+              <View
+                key={index} 
+                style={{
+                  height: 60,
+                  marginHorizontal: 20,
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 10,
+                  alignItems: "center",
+                  backgroundColor: "#FAFAFA",
+                  paddingHorizontal: 20,
+                  borderRadius: 10,
+                  marginTop: 10
+                }}
+              >
+                <Ionicons name="location" size={24} color={"black"} />
+                <View style={{flexDirection: 'row', flex: 1, justifyContent: 'space-between'}}>
+                  <TextInput
+                    // placeholder="Select Destination"
+                    style={{
+                      fontFamily: "outfit",
+                      color: "#A4A4A4",
+                      fontSize: 15,
+                      width: '90%'
+                    }}
+                    editable={false}
+                    value={destinations[index]}
+                    // onChangeText={(text) => updateDestinations(text, index)}
+                  />
+                  <Pressable onPress={() => removeDestination(index)}>
+                    <Entypo name="minus" size={24} color="black" />
+                  </Pressable>
+                </View>
               </View>
+            )
+          })}
+
+          <View
+            style={{
+              height: 60,
+              marginHorizontal: 20,
+              display: "flex",
+              flexDirection: "row",
+              gap: 10,
+              alignItems: "center",
+              backgroundColor: "#FAFAFA",
+              paddingHorizontal: 20,
+              borderRadius: 10,
+              marginTop: 10
+            }}
+          >
+            <Ionicons name="location" size={24} color={"black"} />
+            <View style={{flexDirection: 'row', flex: 1, justifyContent: 'space-between'}}>
+              <TextInput
+                placeholder="Select Destination"
+                style={{
+                  fontFamily: "outfit",
+                  color: "#A4A4A4",
+                  fontSize: 15,
+                  width: '90%'
+                }}
+                value={searchDestination}
+                onChangeText={setSearchDestination}
+              />
+              <Pressable onPress={() => { if(searchDestination.length > 0) addDestination(searchDestination) }}>
+                  <Entypo name="plus" size={24} color="black" />
+              </Pressable>
             </View>
-          ))}
           </View>
 
-          <View>
-            
-          </View>
-        </View>
-
-        <View>
-        <Button
-              title="Add Item"
-              onPress={() => {
-                addDestination(); // Set the index of the item to be edited
-              }}
-            />
         </View>
           
         <View
@@ -313,7 +351,7 @@ export default function search() {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={[
             styles.searchButton,
             { opacity: isSearchEnabled() ? 1 : 0.5 },
@@ -324,7 +362,7 @@ export default function search() {
           <Text style={{ fontSize: 16, fontWeight: "500", color: "#EEEEEE" }}>
             Search Vehicle
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <Modal
           animationType="slide"
@@ -400,7 +438,8 @@ export default function search() {
           <DateTimePicker value={time1} mode="time" onChange={onTimeChange1} />
         )}
 
-        <TouchableOpacity
+        {/* Adverticement */}
+        {/* <TouchableOpacity
           style={styles.planYourTrip}
           onPress={() => {
           }}
@@ -412,10 +451,39 @@ export default function search() {
           <TouchableOpacity style={styles.tryOutButton}>
             <Text style={styles.tryOutButtonText}>Try out now</Text>
           </TouchableOpacity>
-        </TouchableOpacity>
-      </View>
+        </TouchableOpacity> */}
+
+        {/* Passenger Count */}
+        <View style={{flexDirection: "row", justifyContent: 'center', gap: 30, marginTop: 80}}>
+          <Pressable style={styles.btn} onPress={() => { setPassengers(Math.max(1, passengers-1)) }}>
+            <Entypo name="minus" size={24} color="black" />
+          </Pressable>
+
+          <View style={{flexDirection: 'row', gap: 10, marginHorizontal: 20, alignItems: 'center', justifyContent: 'center'}}>
+            <Ionicons name="people-outline" size={24} color="black" />
+            <Text>{passengers}</Text>
+          </View>
+
+          <Pressable style={styles.btn} onPress={() => { setPassengers(passengers + 1) }}>
+            <Entypo name="plus" size={24} color="black" />
+          </Pressable>
+        </View>
+
+      </ScrollView>
 
       {/* <PopularVehicles /> */}
+      <TouchableOpacity
+          style={[
+            styles.searchButton,
+            { opacity: isSearchEnabled() ? 1 : 0.5 },
+          ]}
+          onPress={handleSearch}
+          disabled={!isSearchEnabled()}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "500", color: "#EEEEEE" }}>
+            Search Vehicle
+          </Text>
+        </TouchableOpacity>
 
     </View>
   )
@@ -500,4 +568,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 12,
   },
+  btn: {
+    backgroundColor: "#FAFAFA",
+    padding: 10,
+    borderRadius: 15
+  }
 });
