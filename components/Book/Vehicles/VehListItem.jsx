@@ -11,7 +11,7 @@ import VehicleModal from './VehicleModal';
 import { Ionicons } from '@expo/vector-icons'; // Import Ionicons for the arrowhead
 import { useRouter } from 'expo-router';
 
-export default function VehListItem({ preference, vehicleNo }) {
+export default function VehListItem({ preference, vehicleID, handleClick }) {
   const router = useRouter();
 
   const [showModal, setShowModal] = useState(false);
@@ -34,20 +34,19 @@ export default function VehListItem({ preference, vehicleNo }) {
   //   }
   // }, [showModal]);
 
+
+  const BASE_URL = 'http://192.168.8.122:8080';
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.touchable}
-        onPress={() => setShowModal(true)}
-        // onPress={() =>     router.push({
-        //   pathname: './vehicleInformation',
-        //   params: {
-        //     vehicleNo
-        //   }
-        // }
-      // )}
+        // onPress={() => setShowModal(true)}
+        onPress={() => {
+          handleClick(vehicleID);
+        }}
       >
         <View style={styles.rowContainer}>
+          {/* <Image source={{uri: `${BASE_URL}/images${preference.imgPath}`}} style={styles.image} /> */}
           <Image source={preference.img} style={styles.image} />
           <View style={styles.textContainer}>
             <Text style={styles.mainText}>{preference.name}</Text>

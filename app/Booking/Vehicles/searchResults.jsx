@@ -1,30 +1,59 @@
 import { Pressable, StyleSheet, Text, View, FlatList } from 'react-native'
-import React from 'react'
-import { useLocalSearchParams } from 'expo-router'
-import AntDesign from '@expo/vector-icons/AntDesign';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import React, {useEffect, useState} from 'react'
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { Colors } from '../../../constants/Colors';
 import VehListItem from '../../../components/Book/Vehicles/VehListItem';
+import axios from 'axios';
 
 const searchResults = () => {
+  const [vehicles, setVehicles] = useState([]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://192.168.8.122:8080/getVehicle")
+  //     .then((response) => setVehicles(response.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  const preferencesList = [
+    { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', img: require('../../../assets/images/Book/Vehicles/Vehicle5.jpg') },
+    { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', img: require('../../../assets/images/Book/Vehicles/Vehicle6.jpg') },
+    { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', img: require('../../../assets/images/Book/Vehicles/Vehicle7.jpg') },
+    { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
+    { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', img: require('../../../assets/images/Book/Vehicles/Vehicle1.jpg') },
+    { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', img: require('../../../assets/images/Book/Vehicles/Vehicle2.jpg') },
+    { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', img: require('../../../assets/images/Book/Vehicles/Vehicle3.jpg') },
+    { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
+  ];
+
+  const router = useRouter();
   const { 
     pickupLocation,
     pickupDate,
-    dropoffDate,
     pickupTime,
-    dropoffTime } = useLocalSearchParams();
+    destinations_json,
+    dropoffDate,
+    dropoffTime,
+    passengers 
+  } = useLocalSearchParams();
 
-    const preferencesList = [
-      { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle5.jpg') },
-      { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', icon: '👤', img: require('../../../assets/images/Book/Vehicles/Vehicle6.jpg') },
-      { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle7.jpg') },
-      { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', icon: '⚙️', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
-      { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle1.jpg') },
-      { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', icon: '👤', img: require('../../../assets/images/Book/Vehicles/Vehicle2.jpg') },
-      { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle3.jpg') },
-      { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', icon: '⚙️', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
-  ];
+
+  const handleClick = (vehicleID) => {
+    router.push({
+      pathname: './bookingSummary',
+      params: {
+        pickupLocation,
+        pickupDate,
+        pickupTime,
+        destinations_json,
+        dropoffDate,
+        dropoffTime,
+        passengers,
+        vehicleID
+      }
+    });
+  }
 
   return (
     <View style={{flex: 1, backgroundColor: 'white', paddingHorizontal: 15}}>
@@ -77,17 +106,18 @@ const searchResults = () => {
         </Pressable>
       </View>
 
-      {/* Vehicle List */}
+      {/* <VehList /> */}
       <View>
         <FlatList
-            data={preferencesList}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => (
-                <VehListItem preference={item} vehicleNo={index} />
-            )}
-            showsVerticalScrollIndicator={false}
+          // data={vehicles}
+          data={preferencesList}
+          keyExtractor={(item, index) => index.toString()}
+          showsVerticalScrollIndicator={false} 
+          renderItem={({ item, index }) => (
+            <VehListItem preference={item} vehicleID={index} handleClick={handleClick}/>
+          )}
         />
-        </View>
+      </View>
     </View>
   )
 }

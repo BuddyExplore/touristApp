@@ -33,7 +33,12 @@ const vehicleInformation = () => {
   const [activeTab, setActiveTab] = useState('Vehicle Details');
 
   const handleRequestBooking = () => {
-    // setShowBookingModal(true);
+      router.push({
+        pathname: './bookingSummary',
+        params: {
+          vehicleNo
+        }
+      });
   };
 
   const renderContent = () => {
@@ -57,25 +62,25 @@ const vehicleInformation = () => {
         </View>
         <View style={styles.vehicleInfoContainer}>
           <Text style={styles.vehicleName}>{vehicleInfo.name}</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%' }}>
-            <Ionicons name="location-outline" size={20} color={'black'} />
+          <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%', marginLeft: 10}}>
+            <Ionicons name="location-outline" size={24} color={'black'} />
             <Text style={styles.subText}> {vehicleInfo.where}</Text>
           </View>
         </View>
       </View>
 
       <View style={styles.tabContainer}>
-        <TouchableOpacity onPress={() => setActiveTab('Vehicle Details')}>
+        <TouchableOpacity style={[styles.tabPart, activeTab === 'Vehicle Details' && styles.activeTabPart]} onPress={() => setActiveTab('Vehicle Details')}>
           <Text style={[styles.tabText, activeTab === 'Vehicle Details' && styles.activeTabText]}>
             Vehicle Details
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setActiveTab('Driver Details')}>
+        <TouchableOpacity style={[styles.tabPart, activeTab === 'Driver Details' && styles.activeTabPart]} onPress={() => setActiveTab('Driver Details')}>
           <Text style={[styles.tabText, activeTab === 'Driver Details' && styles.activeTabText]}>
             Driver Details
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setActiveTab('Reviews')}>
+        <TouchableOpacity style={[styles.tabPart, activeTab === 'Reviews' && styles.activeTabPart]} onPress={() => setActiveTab('Reviews')}>
           <Text style={[styles.tabText, activeTab === 'Reviews' && styles.activeTabText]}>
             Reviews
           </Text>
@@ -84,7 +89,7 @@ const vehicleInformation = () => {
       {renderContent()}
 
       {/* Buttons positioned on top of the image */}
-      <TouchableOpacity style={styles.backButton} onPress={() => { router.push('./searchResults') }}>
+      <TouchableOpacity style={styles.backButton} onPress={() => { router.back()}}>
         <Ionicons name="arrow-back-outline" size={22} color={'black'} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.shareButton}>
@@ -100,7 +105,7 @@ const vehicleInformation = () => {
             <Text style={styles.buttonTxt}>Request Booking</Text>
           </TouchableOpacity>
         </View>
-        <Ionicons name="heart-outline" size={35} color={Colors.PRIMARY} style={styles.iconStyle} />
+        <Ionicons name="heart-outline" size={40} color={Colors.PRIMARY} style={styles.iconStyle} />
       </View>
       
   </View>
@@ -124,26 +129,48 @@ const styles = StyleSheet.create({
   },
   vehicleInfoContainer: {
     padding: 20,
+    paddingBottom: 12,
     backgroundColor: '#fff',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
     marginTop: -20
   },
   vehicleName: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    marginTop: 10
   },
+  subText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: "#8C8C8C"
+  }, 
   tabContainer: {
+    paddingHorizontal: 10,
+    paddingTop: 5,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '100%',
-    marginTop: 10,
-    marginBottom: 10,
+    // width: '100%',
+    // marginBottom: 10,
+    // borderBottomWidth: 2,
+    // borderBottomColor: '#ECECEC',
+    // marginHorizontal: 10,
+  },
+  tabPart: {
+    width: '33.33%',
+    borderBottomWidth: 2,
+    paddingVertical: 10,
+    borderBottomColor: '#ECECEC',
+  },
+  activeTabPart: {
+    borderBottomColor: Colors.PRIMARY
   },
   tabText: {
-    fontSize: 16,
-    color: 'grey',
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#878787',
   },
   activeTabText: {
     color: Colors.PRIMARY,
@@ -151,7 +178,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 10,
+    top: 23,
     left: 10,
     backgroundColor: 'white',
     borderRadius: 25,
@@ -160,7 +187,7 @@ const styles = StyleSheet.create({
   },
   shareButton: {
     position: 'absolute',
-    top: 10,
+    top: 23,
     right: 60,
     backgroundColor: 'white',
     borderRadius: 25,
@@ -169,7 +196,7 @@ const styles = StyleSheet.create({
   },
   moreButton: {
     position: 'absolute',
-    top: 10,
+    top: 23,
     right: 10,
     backgroundColor: 'white',
     borderRadius: 25,
@@ -180,23 +207,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingBottom: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 23,
     backgroundColor: "white",
+    marginBottom: 15
   },
   nextButtonContainer: {
     backgroundColor: Colors.PRIMARY,
-    height: 45,
     width: "80%",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: 15,
+    padding: 10
   },
   iconStyle: {
-    marginLeft: 20,
+    marginLeft: 10,
   },
   buttonTxt: {
-    fontSize: 21,
-    fontWeight: "bold",
+    fontSize: 16,
+    fontWeight: "600",
     color: "white",
   },
   headerTxt: {

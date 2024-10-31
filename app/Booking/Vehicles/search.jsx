@@ -34,14 +34,18 @@ export default function search() {
   const [passengers, setPassengers] = useState(1);
 
   const handleSearch = () => {
+    const destinations_json = JSON.stringify(destinations);
+
     router.push({
       pathname: './searchResults',
       params: {
         pickupLocation,
         pickupDate,
-        dropoffDate,
         pickupTime,
-        dropoffTime
+        destinations_json,
+        dropoffDate,
+        dropoffTime,
+        passengers
       }
     });
   };
@@ -129,7 +133,7 @@ export default function search() {
     }
   };
 
-  const Enabled = () => {
+  const isSearchEnabled = () => {
     // return (
     //   pickupLocation.trim() !== "" &&
     //   pickupDate.trim() !== "" &&
