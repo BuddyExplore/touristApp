@@ -22,14 +22,14 @@ import {
               marginTop: 20,
             }}
           >
-            <Ionicons name="people-outline" size={20} color={"black"} />
+            <Ionicons name="people-outline" size={21} color={"black"} />
             <Text style={styles.text2}>28 Passengers</Text>
           </View>
           <Text style={styles.label}>Amenities</Text>
           <View
             style={{
               flexDirection: "row",
-              gap: 10,
+              gap: 5,
               marginTop: 10,
             }}
           >
@@ -61,7 +61,7 @@ import {
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-between',
-      paddingHorizontal: 20,
+      paddingHorizontal: 20
     },
     scrollContainer: {
       flex: 1,
@@ -70,12 +70,13 @@ import {
       marginTop: 20,
       fontSize: 16,
       color: "black",
-      fontWeight: "bold",
+      fontWeight: '500',
     },
     descriptionTxt: {
-      marginTop: 5,
+      marginTop: 8,
       fontSize: 14,
       color: "black",
+      lineHeight: 20
     },
     text1: {
       color: "black",
@@ -92,8 +93,10 @@ import {
       justifyContent: "center",
       borderWidth: 0.5,
       borderColor: "black",
-      paddingHorizontal: 5,
+      paddingVertical: 2.5,
+      paddingHorizontal: 10,
       borderRadius: 30,
+      backgroundColor: '#FAFAFA'
     },
    
   });

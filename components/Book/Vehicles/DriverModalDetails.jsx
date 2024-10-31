@@ -6,13 +6,14 @@ import { Colors } from "../../../constants/Colors";
 export default function DriverModalDetails({ vehicleInfo }) {
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollContainer}>
+      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <Text style={styles.driverInfoHeader}>Driver Information</Text>
         <View style={styles.header}>
           <Image source={require("../../../assets/images/Home/profile.png")} style={styles.profileImg} />
           <View style={styles.driverInfo}>
             <Text style={styles.driverName}>{vehicleInfo.driver}</Text>
             <Image source={require("../../../assets/images/Book/4star.png")} style={styles.ratingImg} />
-            <Text style={styles.driverPhone}>077 - 2XXXXXX</Text>
+            <Text style={styles.driverRides}>23 Rides</Text>
           </View>
         </View>
         <Text style={styles.bioTitle}>Bio</Text>
@@ -29,16 +30,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
     paddingHorizontal: 20,
-    paddingTop: 30,
-    justifyContent: "space-between", 
+    paddingTop: 22,
   },
   scrollContainer: {
     flex: 1, 
   },
+  driverInfoHeader: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "black",
+    marginBottom: 20
+  },
   header: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 15,
+    marginTop: 6,
+    marginBottom: 10,
+    marginLeft: 10
   },
   profileImg: {
     width: 70,
@@ -49,8 +57,8 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   driverName: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 16,
+    fontWeight: "400",
     color: "black",
   },
   ratingImg: {
@@ -58,13 +66,13 @@ const styles = StyleSheet.create({
     height: 20,
     marginTop: 5,
   },
-  driverPhone: {
+  driverRides: {
     color: "grey",
     marginTop: 5,
   },
   bioTitle: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "500",
     color: "black",
     marginTop: 20,
   },
