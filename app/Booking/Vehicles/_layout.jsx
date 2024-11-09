@@ -1,4 +1,6 @@
 import { Stack } from "expo-router";
+import { View } from 'react-native';
+import { Colors } from '../../../constants/Colors';
 
 export default function RootLayout() {
 
@@ -9,9 +11,6 @@ export default function RootLayout() {
         <Stack.Screen name="search" options={{
           title: "Book a vehicle",
           headerTitleAlign: 'center',
-          headerStyle: {
-            height: 100,
-          },
           headerTitleStyle: {
             marginHorizontal: "auto",
             fontSize: 18,
@@ -19,17 +18,26 @@ export default function RootLayout() {
           },
         }}/>
         <Stack.Screen name="searchResults" options={{
-          title: "Search results",
+          title: "Book a vehicle",
           headerTitleAlign: 'center',
-          headerStyle: {
-            height: 100,
-          },
           headerTitleStyle: {
             marginHorizontal: "auto",
             fontSize: 18,
             fontWeight: '600',
           },
         }}/>
+
+        <Stack.Screen name="vehicleInformation" options={{
+          headerShown: false
+        }}/>
+        
+        <Stack.Screen name="bookingSummary" options={{
+          headerTitle: () => (
+            <View style={{height: 10, width: '70%', borderRadius: 80, backgroundColor: Colors.PRIMARY}}></View>
+          ),
+          headerTitleAlign: 'center',
+        }}/> 
+
       </Stack>
   );
 }

@@ -10,7 +10,7 @@ import {
   import { Ionicons } from "@expo/vector-icons";
   import { Colors } from "../../../constants/Colors";
   
-  export default function VehicleModalDetails() {
+  export default function TourGuideModalDetails({guideInfo}) {
 
     return (
       <View style={styles.container}>
@@ -18,36 +18,27 @@ import {
           <View
             style={{
               flexDirection: "row",
+              alignItems: "center",
               gap: 10,
-              marginTop: 20,
             }}
           >
-            <Ionicons name="people-outline" size={21} color={"black"} />
-            <Text style={styles.text2}>28 Passengers</Text>
+            <Ionicons name="star" size={28} color={"orange"} style={{marginTop: 20,}}/>
+            <Text style={styles.label}>4.4</Text>
           </View>
-          <Text style={styles.label}>Amenities</Text>
-          <View
-            style={{
-              flexDirection: "row",
-              gap: 5,
-              marginTop: 10,
-            }}
-          >
-            <View style={styles.amenityContainer}>
-              <Ionicons name="snow-outline" size={15} color={"black"} />
-              <Text style={styles.text1}>Air Conditioned</Text>
-            </View>
-  
-            <View style={styles.amenityContainer}>
-              <Ionicons name="radio-outline" size={15} color={"black"} />
-              <Text style={styles.text1}>Radio System</Text>
-            </View>
-          </View>
-  
-          <Text style={styles.label}>Description</Text>
+      
+          
           <Text style={styles.descriptionTxt}>
-            Comfortable vehicle with a professional driver. Safe, reliable, and
-            perfect for all your travel needs. Book now for a great experience.
+          Available on Aug 09, 2023
+          </Text>
+
+          <Text style={styles.label}>Bio</Text>
+          <Text style={styles.descriptionTxt}>
+          Experienced tour guide with 10+ years of expertise in cultural and historical tours, fluent in English and Sinhala, passionate about storytelling
+          </Text>
+
+          <Text style={styles.label}>Languages</Text>
+          <Text style={styles.descriptionTxt}>
+          {guideInfo.lang}
           </Text>
         </ScrollView>
   
@@ -61,7 +52,7 @@ import {
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-between',
-      paddingHorizontal: 20
+      paddingHorizontal: 20,
     },
     scrollContainer: {
       flex: 1,
@@ -70,13 +61,12 @@ import {
       marginTop: 20,
       fontSize: 16,
       color: "black",
-      fontWeight: '500',
+      fontWeight: "bold",
     },
     descriptionTxt: {
-      marginTop: 8,
+      marginTop: 5,
       fontSize: 14,
       color: "black",
-      lineHeight: 20
     },
     text1: {
       color: "black",
@@ -93,10 +83,8 @@ import {
       justifyContent: "center",
       borderWidth: 0.5,
       borderColor: "black",
-      paddingVertical: 2.5,
-      paddingHorizontal: 10,
+      paddingHorizontal: 5,
       borderRadius: 30,
-      backgroundColor: '#FAFAFA'
     },
    
   });

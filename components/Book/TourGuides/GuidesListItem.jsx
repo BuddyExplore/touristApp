@@ -1,98 +1,113 @@
-import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import React , {useState} from 'react';
-import GuideModal from './GuideModal';
-
-export default function GuidesListItem({ prefernce }) {
-
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    StyleSheet,
+    Image,
+  } from 'react-native';
+  import React, { useState } from 'react';
+  import GuideModal from './GuideModal1';
+  import Ionicons from '@expo/vector-icons/Ionicons';
+  
+  export default function GuidesListItem({ prefernce }) {
     const [showModal, setShowModal] = useState(false);
-
-    handleShowModal = () => {
-        setShowModal(true);
-    }
-
-    handleCloseModal = (itemName) => {
-        if(itemName === 1 ){
-            setShowModal(false);
-        }
-        
-    }
-
+  
+    const handleShowModal = () => {
+      setShowModal(true);
+    };
+  
+    const handleCloseModal = (itemName) => {
+      if (itemName === 1) {
+        setShowModal(false);
+      }
+    };
+  
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.touchable} onPress={() => setShowModal(true)}>
-            <View style={{
-            display:'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 20,
-            backgroundColor:'white'
-        }}>
-            <Image source={prefernce.img}
-                style={{
-                    width:100,
-                    height:100,
-                }}
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={handleShowModal}
+        >
+          <View style={styles.rowContainer}>
+            <Image
+              source={prefernce.img}
+              style={styles.image}
             />
-            <View>
-            <Text style={{
-                    color:'black',
-                    fontSize:19,
-                    fontWeight: 'bold'
-                }}>{prefernce.name}</Text>
-            
-                <Image source={require("../../../assets/images/Book/4star.png")}
-                style={{
-                    width:70,
-                    height:20,
-                }} />
-                <Text style={styles.subText}>📍 {prefernce.where}</Text>
-                
+            <View style={styles.textContainer}>
+              <Text style={styles.mainText}>{prefernce.name}</Text>
+              <Image
+                source={require('../../../assets/images/Book/4star.png')}
+                style={styles.ratingImage}
+              />
+              <View style={styles.langContainer}>
+                <Ionicons name="globe-outline" size={16} color={"grey"} style={styles.icon} />
+                <Text style={styles.subText}>{prefernce.lang}</Text>
+              </View>
             </View>
-        </View>
-            </TouchableOpacity>
-            {showModal && <GuideModal guideInfo={prefernce} visibility={showModal} closeModal={handleCloseModal}/>}
-        </View>
+            <Ionicons name="chevron-forward-outline" size={16} color={"#878787"} style={styles.arrowIcon} />
+          </View>
+        </TouchableOpacity>
+  
+        {showModal && (
+          <GuideModal
+            guideInfo={prefernce}
+            visibility={showModal}
+            closeModal={handleCloseModal}
+          />
+        )}
+      </View>
     );
-}
-
-const styles = StyleSheet.create({
+  }
+  
+  const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     touchable: {
-        width: '100%',
-        height: 100,
-        borderRadius: 10,
-        overflow: 'hidden', // Ensures rounded corners are applied to the image ''
-        backgroundColor: 'rgba(0, 0, 0, 0.02)'
+      width: '100%',
+      borderRadius: 10,
+      overflow: 'hidden',
+      backgroundColor: 'rgba(0, 0, 0, 0.02)',
+    },
+    rowContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: 'white',
+      padding: 10,
     },
     image: {
-        width: 100,
-        height: '100%',
-        justifyContent: 'flex-end', // Positions text at the bottom
+      width: 100,
+      height: 100,
+      borderRadius: 10,
+      marginRight: 15,
     },
     textContainer: {
-        padding: 10,
-        backgroundColor: 'rgba(0, 0, 0, 0.3)', // Semi-transparent background for text visibility
-        borderBottomLeftRadius:10,
-        justifyContent: 'center',
-    },
-    likesText: {
-        color: 'white',
-        fontWeight: 'bold',
-        position: 'absolute',
-        top: 10,
-        right: 10,
+      flex: 1,
     },
     mainText: {
-        color: 'white',
-        fontWeight: 'bold',
+      color: 'black',
+      fontSize: 19,
+      fontWeight: 'bold',
+    },
+    ratingImage: {
+      width: 70,
+      height: 20,
+      marginVertical: 5,
+    },
+    langContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    icon: {
+      marginRight: 5,
     },
     subText: {
-        marginTop: 5,
-        color: 'black',
-        fontSize: 12
+      color: 'grey',
+      fontSize: 12,
     },
-});
+    arrowIcon: {
+      marginLeft: 10, 
+    },
+  });
+  
