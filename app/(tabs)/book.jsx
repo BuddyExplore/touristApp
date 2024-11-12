@@ -108,7 +108,7 @@ export default function book() {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => router.push('/Booking/Items/discover') } style={{marginVertical: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: "#F3F3F3", paddingVertical: 25, paddingHorizontal: 25, borderRadius: 30}}>
+      <TouchableOpacity onPress={() => router.push('/Booking/Items') } style={{marginVertical: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: "#F3F3F3", paddingVertical: 25, paddingHorizontal: 25, borderRadius: 30}}>
         <View>
           <Image style={{height: 70, width: 70}} source={require('../../assets/images/BookingCard/shop.png')} />
         </View>
