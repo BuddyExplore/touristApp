@@ -20,7 +20,14 @@ const vehicleInformation = () => {
   ];
 
   const router = useRouter();
-  const { vehicleNo } = useLocalSearchParams();
+  const {         pickupLocation,
+    pickupDate,
+    pickupTime,
+    destinations_json,
+    dropoffDate,
+    dropoffTime,
+    passengers,
+    vehicleNo } = useLocalSearchParams();
   const vehicleInfo = preferencesList[vehicleNo];
 
   const reviews = [
@@ -36,6 +43,13 @@ const vehicleInformation = () => {
       router.push({
         pathname: './bookingSummary',
         params: {
+          pickupLocation,
+          pickupDate,
+          pickupTime,
+          destinations_json,
+          dropoffDate,
+          dropoffTime,
+          passengers,
           vehicleNo
         }
       });
@@ -117,7 +131,7 @@ export default vehicleInformation
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     backgroundColor: 'white',
   },
   vehicleImgContainer: {

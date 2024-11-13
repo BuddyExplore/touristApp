@@ -134,14 +134,16 @@ export default function search() {
   };
 
   const isSearchEnabled = () => {
-    return (
-      pickupLocation.trim() !== "" &&
-      pickupDate.trim() !== "" &&
-      dropoffDate.trim() !== "" &&
-      pickupTime.trim() !== "" &&
-      dropoffTime.trim() !== "" &&
-      (destinations.length > 0)
-    );
+    // return (
+    //   pickupLocation.trim() !== "" &&
+    //   pickupDate.trim() !== "" &&
+    //   dropoffDate.trim() !== "" &&
+    //   pickupTime.trim() !== "" &&
+    //   dropoffTime.trim() !== "" &&
+    //   (destinations.length > 0)
+    // );
+
+    return true;
   };
 
   return (
