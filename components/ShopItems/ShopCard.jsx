@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
+import { useRouter } from 'expo-router';
 
 const ShopCard = ({shop}) => {
+  const router = useRouter();
+  const BASE_URL = 'http://192.168.8.122:5001/custom-static/images/Shop/';
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.touchable}>
-          <ImageBackground source={require('../../assets/images/ShopItems/Lakpahana.png') } style={styles.image}>
+          {/* <ImageBackground source={{uri: `${BASE_URL}${shop.name.split(" ").join("")}.png`}} style={styles.image}> */}
+          <ImageBackground source={shop.img} style={styles.image}>
               <View style={styles.textContainer}>
                   <Text style={styles.mainText}>{shop.name}</Text>
                   <Text style={styles.subText}>{shop.city}</Text>

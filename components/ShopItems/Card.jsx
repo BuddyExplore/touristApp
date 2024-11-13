@@ -2,9 +2,12 @@ import { View, Text, ImageBackground, TouchableOpacity, StyleSheet } from 'react
 import React from 'react';
 
 export default function Card({ item }) {
+    const BASE_URL = 'http://192.168.8.122:5001/custom-static/images/Shop/';
+    
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.touchable}>
+                {/* <ImageBackground source={{uri: `${BASE_URL}${item.name}.jpg`}} style={styles.image}> */}
                 <ImageBackground source={item.img} style={styles.image}>
                     <View style={styles.textContainer}>
                         <Text style={styles.subText}>{item.name}</Text>
@@ -22,7 +25,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 5,
-        marginVertical: 10
+        marginVertical: 10,
+        // marginHorizontal: 'auto',
     },
     touchable: {
         width: 120,

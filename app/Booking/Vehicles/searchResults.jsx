@@ -44,8 +44,10 @@ const searchResults = () => {
 
 
   const handleClick = (vehicleID) => {
+    const vehicleNo = vehicleID;
+
     router.push({
-      pathname: './bookingSummary',
+      pathname: './vehicleInformation',
       params: {
         pickupLocation,
         pickupDate,
@@ -54,7 +56,7 @@ const searchResults = () => {
         dropoffDate,
         dropoffTime,
         passengers,
-        vehicleID
+        vehicleNo
       }
     });
   }

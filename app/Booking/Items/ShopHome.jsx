@@ -122,7 +122,7 @@ const ShopHome = () => {
 
         <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingBottom: 10, paddingTop: 17}}>
           <Text style={{fontSize: 18, fontWeight: 'bold', verticalAlign: 'center'}}>Explore shops</Text>
-          <Pressable onPress={() => router.push("Booking/Items/exploreShops")} style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5}}>
+          <Pressable onPress={() => router.push("Booking/Items/ExploreShops")} style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5}}>
             <Text style={{fontSize: 18, verticalAlign: 'center', color: Colors.PRIMARY}}>View all</Text>
             <AntDesign name="arrowright" size={22} color={Colors.PRIMARY}/>
           </Pressable>
@@ -154,7 +154,7 @@ const ShopHome = () => {
           <Category category={categoryList[3]} color={activeCategory == 3 ? "white" : "#878787"} backgroundColor={activeCategory == 3 ? Colors.PRIMARY : "#fff"} onPress={() => setActiveCategory(3)} />
         </View>
 
-        <CardContainer />
+        <CardContainer limit={6} />
 
       </View>
 
