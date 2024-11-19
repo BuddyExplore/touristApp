@@ -1,10 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useRouter } from 'expo-router';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
 
 export default function Articles() {
   const router = useRouter();
@@ -22,7 +18,7 @@ export default function Articles() {
       <View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Most Popular</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("MostPopularBlogs")}>
+          <TouchableOpacity onPress={() => handleNavigate("MostPopularBlogs")}>
             <Text style={{ color: 'blue' }}>View All</Text>
           </TouchableOpacity>
         </View>
@@ -80,7 +76,7 @@ export default function Articles() {
               style={{ marginRight: 15 }}
             >
               <Image
-               source={require("../../../assets/images/Blogs/image8.png")}
+                source={require("../../../assets/images/Blogs/image8.png")}
                 style={{ width: 150, height: 100, borderRadius: 10 }}
               />
               <Text>Unforgettable trip to Sigiriya</Text>
@@ -95,7 +91,7 @@ export default function Articles() {
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Guides</Text>
           <TouchableOpacity onPress={() => handleNavigate('Guides')}>
             <Text style={{ color: 'blue' }}>View All</Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }}>
           {[...Array(3)].map((_, index) => (
@@ -142,3 +138,4 @@ export default function Articles() {
     </ScrollView>
   );
 }
+
