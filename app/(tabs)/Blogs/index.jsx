@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { useRouter } from 'expo-router';
+import React from "react";
+import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
+import { usePathname, useRouter } from "expo-router";
 
 export default function Articles() {
   const router = useRouter();
@@ -12,25 +12,41 @@ export default function Articles() {
     });
   };
 
+  const path = usePathname();
+
   return (
     <ScrollView style={{ padding: 20 }}>
       {/* Most Popular Section */}
       <View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Most Popular</Text>
-          <TouchableOpacity onPress={() => handleNavigate("MostPopularBlogs")}>
-            <Text style={{ color: 'blue' }}>View All</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>Most Popular</Text>
+          <TouchableOpacity
+            onPress={() => handleNavigate(path + "/MostPopularBlogs")}
+          >
+            <Text style={{ color: "blue" }}>View All</Text>
           </TouchableOpacity>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={{ marginTop: 10 }}
+        >
           {[...Array(3)].map((_, index) => (
             <TouchableOpacity
               key={index}
-              onPress={() => handleNavigate('BlogDetail', { blog: `Blog ${index}` })}
+              onPress={() =>
+                handleNavigate("BlogDetail", { blog: `Blog ${index}` })
+              }
               style={{ marginRight: 15 }}
             >
               <Image
-                source={require('../../../assets/images/Blogs/image1.png')}
+                source={require("../../../assets/images/Blogs/image1.png")}
                 style={{ width: 150, height: 100, borderRadius: 10 }}
               />
               <Text>A lifetime experience visiting southern beach</Text>
@@ -41,20 +57,34 @@ export default function Articles() {
 
       {/* Explore by Topics Section */}
       <View style={{ marginTop: 20 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Explore by Topics</Text>
-          <TouchableOpacity onPress={() => handleNavigate('ExploreTopics')}>
-            <Text style={{ color: 'blue' }}>View All</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            Explore by Topics
+          </Text>
+          <TouchableOpacity
+            onPress={() => handleNavigate(path + "/ExploreTopics")}
+          >
+            <Text style={{ color: "blue" }}>View All</Text>
           </TouchableOpacity>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={{ marginTop: 10 }}
+        >
           {[...Array(3)].map((_, index) => (
             <View key={index} style={{ marginRight: 15 }}>
               <Image
                 source={require("../../../assets/images/Blogs/image4.png")}
                 style={{ width: 100, height: 100, borderRadius: 10 }}
               />
-              <Text style={{ textAlign: 'center' }}>Culture</Text>
+              <Text style={{ textAlign: "center" }}>Culture</Text>
             </View>
           ))}
         </ScrollView>
@@ -62,17 +92,33 @@ export default function Articles() {
 
       {/* Posted by You Section */}
       <View style={{ marginTop: 20 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Posted by You</Text>
-          <TouchableOpacity onPress={() => handleNavigate('PostedByYou')}>
-            <Text style={{ color: 'blue' }}>View All</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            Posted by You
+          </Text>
+          <TouchableOpacity
+            onPress={() => handleNavigate(path + "/PostedByYou")}
+          >
+            <Text style={{ color: "blue" }}>View All</Text>
           </TouchableOpacity>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={{ marginTop: 10 }}
+        >
           {[...Array(3)].map((_, index) => (
             <TouchableOpacity
               key={index}
-              onPress={() => handleNavigate('BlogDetail', { blog: `Posted Blog ${index}` })}
+              onPress={() =>
+                handleNavigate("BlogDetail", { blog: `Posted Blog ${index}` })
+              }
               style={{ marginRight: 15 }}
             >
               <Image
@@ -87,17 +133,29 @@ export default function Articles() {
 
       {/* Guides Section */}
       <View style={{ marginTop: 20 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Guides</Text>
-          <TouchableOpacity onPress={() => handleNavigate('Guides')}>
-            <Text style={{ color: 'blue' }}>View All</Text>
-            </TouchableOpacity>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>Guides</Text>
+          <TouchableOpacity onPress={() => handleNavigate(path + "/Guides")}>
+            <Text style={{ color: "blue" }}>View All</Text>
+          </TouchableOpacity>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={{ marginTop: 10 }}
+        >
           {[...Array(3)].map((_, index) => (
             <TouchableOpacity
               key={index}
-              onPress={() => handleNavigate('BlogDetail', { blog: `Guide ${index}` })}
+              onPress={() =>
+                handleNavigate("BlogDetail", { blog: `Guide ${index}` })
+              }
               style={{ marginRight: 15 }}
             >
               <Image
@@ -112,23 +170,35 @@ export default function Articles() {
 
       {/* Recently Posted Section */}
       <View style={{ marginTop: 20 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Recently Posted</Text>
-          <TouchableOpacity onPress={() => handleNavigate('RecentlyPosted')}>
-            <Text style={{ color: 'blue' }}>View All</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            Recently Posted
+          </Text>
+          <TouchableOpacity
+            onPress={() => handleNavigate(path + "/RecentlyPosted")}
+          >
+            <Text style={{ color: "blue" }}>View All</Text>
           </TouchableOpacity>
         </View>
         {[...Array(3)].map((_, index) => (
           <TouchableOpacity
             key={index}
-            onPress={() => handleNavigate('BlogDetail', { blog: `Recent Blog ${index}` })}
-            style={{ flexDirection: 'row', marginTop: 10 }}
+            onPress={() =>
+              handleNavigate("BlogDetail", { blog: `Recent Blog ${index}` })
+            }
+            style={{ flexDirection: "row", marginTop: 10 }}
           >
             <Image
               source={require("../../../assets/images/Blogs/image13.png")}
               style={{ width: 100, height: 100, borderRadius: 10 }}
             />
-            <View style={{ marginLeft: 10, justifyContent: 'center' }}>
+            <View style={{ marginLeft: 10, justifyContent: "center" }}>
               <Text>Religious Places that I visited in Sri Lanka</Text>
               <Text>2 days ago</Text>
             </View>

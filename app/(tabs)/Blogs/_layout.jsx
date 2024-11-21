@@ -11,7 +11,7 @@ export default function BlogLayout() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Stack screenOptions={{ headerShown: true }}>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="index"
           component={TopicsScreen}
           options={{ headerShown: false }}
@@ -20,7 +20,7 @@ export default function BlogLayout() {
           name="MostPopularBlogs"
           component={MostPopularBlogs}
           options={{ title: "Most Popular Blogs" }}
-        />
+        /> */}
         {/* <Stack.Screen
           name="ExploreTopics"
           component={ExploreTopics}
@@ -46,11 +46,11 @@ export default function BlogLayout() {
           component={BlogDetail}
           options={{ title: "Blog Detail" }}
         /> */}
-        <Stack.Screen
+        {/* <Stack.Screen
           name="CultureBlogs"
           component={CultureBlogs}
           options={{ title: "Culture (Blogs)" }}
-        />
+        /> */}
       </Stack>
     </SafeAreaView>
   );
