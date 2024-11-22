@@ -1,8 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
-import { Route } from "expo-router/build/Route";
-import params from "expo-router/build/params";
 
 const BlogDetail = ({ route }) => {
   const { article } = route.params;

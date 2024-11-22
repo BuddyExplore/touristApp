@@ -68,7 +68,7 @@ export default function Articles() {
             Explore by Topics
           </Text>
           <TouchableOpacity
-            onPress={() => handleNavigate(path + "/ExploreTopics")}
+            onPress={() => handleNavigate(path + "/SelectPreferredTopic")}
           >
             <Text style={{ color: "blue" }}>View All</Text>
           </TouchableOpacity>
@@ -84,7 +84,11 @@ export default function Articles() {
                 source={require("../../../assets/images/Blogs/image4.png")}
                 style={{ width: 100, height: 100, borderRadius: 10 }}
               />
-              <Text style={{ textAlign: "center" }}>Culture</Text>
+              <TouchableOpacity
+                onPress={() => handleNavigate(path + "/CultureBlogs")}
+              >
+                <Text style={{ textAlign: "center" }}>Culture</Text>
+              </TouchableOpacity>
             </View>
           ))}
         </ScrollView>
@@ -181,7 +185,7 @@ export default function Articles() {
             Recently Posted
           </Text>
           <TouchableOpacity
-            onPress={() => handleNavigate(path + "/RecentlyPosted")}
+            onPress={() => handleNavigate(path + "/SelectPreferredTopic")}
           >
             <Text style={{ color: "blue" }}>View All</Text>
           </TouchableOpacity>
@@ -208,4 +212,3 @@ export default function Articles() {
     </ScrollView>
   );
 }
-
