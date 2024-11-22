@@ -13,16 +13,16 @@ export default function SelectPreferredTopic() {
   const [search, setSearch] = useState("");
 
   const topics = [
-    { id: "1", name: "Culture", posts: "28 posts", image: require("../../../assets/images/Blogs/image1.png") },
-    { id: "2", name: "Nature", posts: "21 posts", image: require("../../../assets/images/Blogs/image1.png") },
-    { id: "3", name: "Food", posts: "19 posts", image: require("../../../assets/images/Blogs/image1.png") },
-    { id: "4", name: "Historical", posts: "22 posts", image: require("../../../assets/images/Blogs/image1.png") },
-    { id: "5", name: "Wild Life", posts: "19 posts", image: require("../../../assets/images/Blogs/image1.png") },
-    { id: "6", name: "Religious", posts: "17 posts", image: require("../../../assets/images/Blogs/image1.png") },
+    { id: "1", name: "Culture", posts: "28 posts", image: require("../../../assets/images/Blogs/image4.png") },
+    { id: "2", name: "Nature", posts: "21 posts", image: require("../../../assets/images/Blogs/image5.png") },
+    { id: "3", name: "Food", posts: "19 posts", image: require("../../../assets/images/Blogs/image6.png") },
+    { id: "4", name: "Historical", posts: "22 posts", image: require("../../../assets/images/Blogs/imageE.jpeg") },
+    { id: "5", name: "Wild Life", posts: "19 posts", image: require("../../../assets/images/Blogs/imageF.jpeg") },
+    { id: "6", name: "Religious", posts: "17 posts", image: require("../../../assets/images/Blogs/imageG.jpeg") },
     { id: "7", name: "Beach", posts: "17 posts", image: require("../../../assets/images/Blogs/image1.png") },
-    { id: "8", name: "Entertainment", posts: "15 posts", image: require("../../../assets/images/Blogs/image1.png") },
-    { id: "9", name: "Games", posts: "15 posts", image: require("../../../assets/images/Blogs/image1.png") },
-    { id: "10", name: "Festivals", posts: "13 posts", image: require("../../../assets/images/Blogs/image1.png") },
+    { id: "8", name: "Entertainment", posts: "15 posts", image: require("../../../assets/images/Blogs/image15.png") },
+    { id: "9", name: "Games", posts: "15 posts", image: require("../../../assets/images/Blogs/image16.png") },
+    { id: "10", name: "Festivals", posts: "13 posts", image: require("../../../assets/images/Blogs/image17.png") },
   ];
 
   const filteredTopics = topics.filter((topic) =>
