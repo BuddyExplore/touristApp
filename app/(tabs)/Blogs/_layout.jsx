@@ -6,11 +6,13 @@ import MostPopularBlogs from "./MostPopularBlogs";
 import TopicsScreen from "./TopicsScreen";
 import CultureBlogs from "./CultureBlogs";
 // import ExploreTopics from "./ExploreTopics";
+import PostedByYou from "./PostedByYou";
+import SelectPreferredTopic from "./SelectPreferredTopic";
 
 export default function BlogLayout() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Stack screenOptions={{ headerShown: true }}>
+      <Stack screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen
           name="index"
           component={TopicsScreen}
