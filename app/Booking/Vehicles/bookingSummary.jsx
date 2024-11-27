@@ -39,10 +39,10 @@ const bookingSummary = () => {
     dropoffDate,
     dropoffTime,
     passengers, 
-    vehicleID
+    vehicleNo
   } = useLocalSearchParams();
   
-  const vehicleInfo = preferencesList[vehicleID];
+  const vehicleInfo = preferencesList[vehicleNo];
   const destinations = JSON.parse(destinations_json);
 
   return (
@@ -209,7 +209,7 @@ const bookingSummary = () => {
             <TouchableOpacity style={{marginTop: 30, marginBottom: 8, backgroundColor: Colors.PRIMARY, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 19}}
               onPress={() => {}}
             >
-              <Text sytle={{fontSize: 15, fontWeight: '500', color: '#FFFFFF'}}>View My Bookings</Text>
+              <Text style={{fontSize: 15, fontWeight: '500', color: '#FFFFFF'}}>View My Bookings</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={{padding: 10}} onPress={goToHome}>

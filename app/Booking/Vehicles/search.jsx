@@ -137,7 +137,8 @@ export default function search() {
     //   pickupDate.trim() !== "" &&
     //   dropoffDate.trim() !== "" &&
     //   pickupTime.trim() !== "" &&
-    //   dropoffTime.trim() !== ""
+    //   dropoffTime.trim() !== "" &&
+    //   (destinations.length > 0)
     // );
 
     return true;
