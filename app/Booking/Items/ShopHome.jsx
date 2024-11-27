@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Pressable, FlatList, Image } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Pressable, FlatList, Image, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Feather from '@expo/vector-icons/Feather';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -7,26 +7,35 @@ import ShopCard from '../../../components/ShopItems/ShopCard';
 import Category from '../../../components/ShopItems/Category';
 import CardContainer from '../../../components/ShopItems/CardContainer';
 import { useRouter } from 'expo-router';
+import Card from '../../../components/ShopItems/Card';
 
 const shopsList = [
-  { name: 'Lakpahana', img:require('../../../assets/images/ShopItems/Lakpahana.png'), city: 'Kandy'  },
-  { name: 'Laksala', img:require('../../../assets/images/ShopItems/Laksala.png'), city: 'Colombo'  },
-  { name: 'Royal Batiks', img:require('../../../assets/images/ShopItems/RoyalBatiks.png'), city: 'Anuradhapura' },
+  {id: 0, name: 'Lakpahana', img:require('../../../assets/images/ShopItems/Lakpahana.jpg'), city: 'Kandy'  },
+  {id: 1, name: 'Laksala', img:require('../../../assets/images/ShopItems/Laksala.jpg'), city: 'Colombo'  },
+  {id: 2, name: 'Royal Batiks', img:require('../../../assets/images/ShopItems/Royal Batiks.jpg'), city: 'Anuradhapura' },
 ];
 
 const categoryList = [
-  {icon: "tshirt-crew", name: "Fashion",},
-  {icon: "elephant", name: "Souvenirs",},
-  {icon: "flower-tulip", name: "Decor",},
-  {icon: "book-open-page-variant", name: "Books",}
+  {id: 0, icon: "tshirt-crew", name: "Fashion",},
+  {id: 1, icon: "elephant", name: "Souvenirs",},
+  {id: 2, icon: "flower-tulip", name: "Decor",},
+  {id: 3, icon: "book-open-page-variant", name: "Books",},
 ]
 
 const itemsList = [
-  {name: "Fashion",},
-  {name: "Souvenirs",},
-  {name: "Decor",},
-  {name: "Books",}
-]
+  {id: 0, name: 'SLtshirt', img:require('../../../assets/images/ShopItems/SLtshirt.jpg'), price: 4500.00, city: 'Colombo'  },
+  {id: 1, name: 'Trouser', img:require('../../../assets/images/ShopItems/Trouser.jpg'), price: 7500.00, city: 'Kandy'  },
+  {id: 2, name: 'BatikShirt', img:require('../../../assets/images/ShopItems/BatikShirt.jpg'), price: 4500.00, city: 'Gampaha'  },
+  {id: 3, name: 'Hat', img:require('../../../assets/images/ShopItems/Hat.jpg'), price: 3000.00, city: 'Dambulla'  },
+  {id: 4, name: 'Saree', img:require('../../../assets/images/ShopItems/Saree.jpg'), price: 11769.00, city: 'Anuradhapura'  },
+  {id: 5, name: 'Sarong', img:require('../../../assets/images/ShopItems/Sarong.jpg'), price: 4777.00, city: 'Anuradhapura'  },
+  // {id: 6, name: 'SLtshirt', img:require('../../../assets/images/ShopItems/SLtshirt.jpg'), price: 4500.00, city: 'Colombo'  },
+  // {id: 7, name: 'Trouser', img:require('../../../assets/images/ShopItems/Trouser.jpg'), price: 7500.00, city: 'Kandy'  },
+  // {id: 8, name: 'BatikShirt', img:require('../../../assets/images/ShopItems/BatikShirt.jpg'), price: 4500.00, city: 'Gampaha'  },
+  // {id: 9, name: 'Hat', img:require('../../../assets/images/ShopItems/Hat.jpg'), price: 3000.00, city: 'Dambulla'  },
+  // {id: 10, name: 'Saree', img:require('../../../assets/images/ShopItems/Saree.jpg'), price: 11769.00, city: 'Anuradhapura'  },
+  // {id: 11, name: 'Sarong', img:require('../../../assets/images/ShopItems/Sarong.jpg'), price: 4777.00, city: 'Anuradhapura'  },
+];
 
   // // Define state for shops
   // const [shops, setShops] = useState([]);
@@ -147,14 +156,48 @@ const ShopHome = () => {
             <AntDesign name="arrowright" size={22} color={Colors.PRIMARY}/>
           </Pressable>
         </View>
-        <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', gap: 5}}>
+
+        <View style={{ flexGrow: 1, justifyContent: 'center'}}>
+          <FlatList
+            data={categoryList}
+            horizontal={true} 
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item) => item.id} 
+            renderItem={({ item, index }) => {
+              let c = "#878787";
+              let bc = "#fff";
+
+              if(activeCategory === index) {
+                c = "#fff";
+                bc = Colors.PRIMARY;
+              }
+
+              return ( 
+                <Category category={item} color={c} backgroundColor={bc} onPress={() => setActiveCategory(index)} />
+              )
+            }}
+          />
+        </View>
+        {/* <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', gap: 5}}>
           <Category category={categoryList[0]} color={activeCategory == 0 ? "white" : "#878787"} backgroundColor={activeCategory == 0 ? Colors.PRIMARY : "#fff"} onPress={() => setActiveCategory(0)} />
           <Category category={categoryList[1]} color={activeCategory == 1 ? "white" : "#878787"} backgroundColor={activeCategory == 1 ? Colors.PRIMARY : "#fff"} onPress={() => setActiveCategory(1)} />
           <Category category={categoryList[2]} color={activeCategory == 2 ? "white" : "#878787"} backgroundColor={activeCategory == 2 ? Colors.PRIMARY : "#fff"} onPress={() => setActiveCategory(2)} />
           <Category category={categoryList[3]} color={activeCategory == 3 ? "white" : "#878787"} backgroundColor={activeCategory == 3 ? Colors.PRIMARY : "#fff"} onPress={() => setActiveCategory(3)} />
-        </View>
+        </View> */}
 
-        <CardContainer limit={6} />
+        <View style={{alignItems: 'center'}}>
+          <FlatList 
+              data={itemsList}
+              numColumns={3}
+              // scrollEnabled={false} // Disable FlatList's own scrolling
+              contentContainerStyle={{ flexGrow: 1 }}
+              renderItem={({item, index}) => (
+                <TouchableOpacity style={styles.cardContainer} onPress={() => router.push({pathname: "Booking/Items/ItemInfo" , params: {id: item.id}})}>
+                  <Card item={item} key={index} />
+                </TouchableOpacity>
+              )}
+          />
+        </View>
 
       </View>
 
@@ -180,5 +223,13 @@ const styles = StyleSheet.create({
     fontFamily: "outfit",
     color: "#A4A4A4",
     fontSize: 15,
+  },
+  cardContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 5,
+    marginVertical: 10,
   }
 })

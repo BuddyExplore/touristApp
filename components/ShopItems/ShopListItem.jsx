@@ -13,7 +13,7 @@ import { Colors } from '../../constants/Colors';
 
 export default function ShopListItem({ shop, shopID, handleClick }) {
   const router = useRouter();
-  const BASE_URL = 'http://192.168.8.122:5001/custom-static/images/Shop/';
+  const BASE_URL = 'http://192.168.8.122:5001/custom-static';
   
 
   return (
@@ -24,7 +24,7 @@ export default function ShopListItem({ shop, shopID, handleClick }) {
         onPress={handleClick}
       >
         <View style={styles.rowContainer}>
-          {/* <Image source={{uri: `${BASE_URL}${shop.name.split(" ").join("")}.png`}} style={styles.image} /> */}
+          {/* <Image source={{uri: `${BASE_URL}${shop.coverImage}`}} style={styles.image} /> */}
           <Image source={shop.img} style={styles.image} />
           <View style={styles.textContainer}>
             <Text style={styles.mainText}>{shop.name}</Text>
