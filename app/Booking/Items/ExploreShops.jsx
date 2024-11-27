@@ -5,22 +5,37 @@ import { useRouter } from 'expo-router';
 import Octicons from '@expo/vector-icons/Octicons';
 import { Colors } from '../../../constants/Colors';
 import ShopListItem from '../../../components/ShopItems/ShopListItem';
+import axios from 'axios';
 
 const shopsList = [
-  { name: 'Lakpahana', img:require('../../../assets/images/ShopItems/Lakpahana.png'), city: 'Kandy'  },
-  { name: 'Laksala', img:require('../../../assets/images/ShopItems/Laksala.png'), city: 'Colombo'  },
-  { name: 'Royal Batiks', img:require('../../../assets/images/ShopItems/RoyalBatiks.png'), city: 'Anuradhapura' },
-  { name: 'Lakpahana', img:require('../../../assets/images/ShopItems/Lakpahana.png'), city: 'Kandy'  },
-  { name: 'Laksala', img:require('../../../assets/images/ShopItems/Laksala.png'), city: 'Colombo'  },
-  { name: 'Royal Batiks', img:require('../../../assets/images/ShopItems/RoyalBatiks.png'), city: 'Anuradhapura' },
+  {id: 0, name: 'Lakpahana', img:require('../../../assets/images/ShopItems/Lakpahana.jpg'), city: 'Kandy'  },
+  {id: 1, name: 'Laksala', img:require('../../../assets/images/ShopItems/Laksala.jpg'), city: 'Colombo'  },
+  {id: 2, name: 'Royal Batiks', img:require('../../../assets/images/ShopItems/Royal Batiks.jpg'), city: 'Anuradhapura' },
+  {id: 3, name: 'Lakpahana', img:require('../../../assets/images/ShopItems/Lakpahana.jpg'), city: 'Kandy'  },
+  {id: 4, name: 'Laksala', img:require('../../../assets/images/ShopItems/Laksala.jpg'), city: 'Colombo'  },
+  {id: 5, name: 'Royal Batiks', img:require('../../../assets/images/ShopItems/Royal Batiks.jpg'), city: 'Anuradhapura' },
 ];
-
 
 const ExploreShops = () => {
   const router = useRouter();
-
+  // const [shopsList, setShopsList] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [activeCategory, setActiveCategory] = useState(0);
+
+  // useEffect(() => {
+  //   const fetchShops = async () => {
+  //     try {
+  //       const response = await axios.get(`${BASE_URL}/api/travel/shop/allShops`);
+  //       setShopsList(response.data);
+  //       console.log(response.data);
+  //     } catch(e) {
+  //       console.log(e);
+  //     }
+  //   }
+
+  //   fetchShops();
+
+  // }, [])
 
   const handleClick = (index) => {
     const id = index;

@@ -20,7 +20,8 @@ const vehicleInformation = () => {
   ];
 
   const router = useRouter();
-  const {         pickupLocation,
+  const {         
+    pickupLocation,
     pickupDate,
     pickupTime,
     destinations_json,

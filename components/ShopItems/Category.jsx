@@ -5,7 +5,7 @@ const Category = ({category, color, backgroundColor, onPress}) => {
   return (
     <Pressable style={styles.container} onPress={onPress}>
       <View style={{...styles.textView, borderWidth: 1, borderColor: color, backgroundColor: backgroundColor}}>
-        <MaterialCommunityIcons name={category.icon} size={20} color={color} />
+        {category.icon && <MaterialCommunityIcons name={category.icon} size={20} color={color} />}
         <Text style={{color: color}}>{category.name}</Text>
       </View>
     </Pressable>
@@ -17,10 +17,12 @@ export default Category
 const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
+    marginLeft: 10
   },
   textView: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
     gap: 3,
     borderRadius: 30,
