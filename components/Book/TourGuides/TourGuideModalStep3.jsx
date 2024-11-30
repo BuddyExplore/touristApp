@@ -2,24 +2,29 @@ import { View, Text,  TouchableOpacity, StyleSheet, Image , Modal, ScrollView} f
 import React , {useState} from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../../constants/Colors';
+import AddDestinationPlace from './AddDestinationPlace'
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-import GLI from './GLI'
+import CalendarPicker from 'react-native-calendar-picker';
 
-export default function GuideModalStep3({ guideInfo , onPress , locationName }) {
+export default function TourGuideModalStep3({ guideInfo , onPress , locationName }) {
 
     const [selectedDates, setSelectedDates] = useState({});
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
-    const onDayPress = (day) => {
-        const newSelectedDates = { ...selectedDates };
-        const dateString = day.dateString;
+
     
-        if (newSelectedDates[dateString]) {
-          delete newSelectedDates[dateString];
-        } else {
-          newSelectedDates[dateString] = { selected: true, marked: true, selectedColor: 'blue' };
-        }
+    const onDayPress = (day , type) => {
+        // const newSelectedDates = { ...selectedDates };
+        // const dateString = day.dateString;
     
-        setSelectedDates(newSelectedDates);
+        // if (newSelectedDates[dateString]) {
+        //   delete newSelectedDates[dateString];
+        // } else {
+        //   newSelectedDates[dateString] = { selected: true, marked: true, selectedColor: 'blue' };
+        // }
+    
+        // setSelectedDates(newSelectedDates);
       };
 
     handleNext = (itemName) => {
@@ -34,20 +39,44 @@ export default function GuideModalStep3({ guideInfo , onPress , locationName }) 
                 width: '100%',
                 alignItems: 'center'
             }}>
+                <Text style={{fontSize: 16}}><Text style={{fontWeight: 'bold'}}>Pickup location :</Text>{locationName}</Text>
                 <Text style={styles.destinationsHeader}>Select your destinations</Text>
-               
-                <GLI destinationName={'Sigiriya'} />
-                <GLI destinationName={'Dambulla'} />
-                <GLI destinationName={'Pidurangala'} />
-                
+                </View>
 
+                <AddDestinationPlace />
+
+                <View style={{
+                width: '100%',
+                alignItems: 'center'
+                }}>
+                    
+
+                <TouchableOpacity
+                    style={[styles.addDestinationBtn]}
+                    >
+                    <Text style={{color: 'white'}}><Ionicons name="add-outline" size={30} /></Text>
+                </TouchableOpacity>
                 <Text style={styles.destinationsHeader}>Select your dates</Text>
-                <Calendar
+                {/* <Calendar
                     onDayPress={onDayPress}
                     markedDates={selectedDates}
                     markingType={'multi-dot'}
                     style={styles.calendar}
-                />
+                /> */}
+                <View style={{transform: [{ scale: 0.8 }],}}>
+                 <CalendarPicker 
+                  onDateChange={onDayPress} 
+                  allowRangeSelection={true}
+                  minDate={new Date()}
+                  maxRangeDuration={10}
+                  selectedRangeStyle={{
+                      backgroundColor:Colors.PRIMARY,
+                  }}
+                  selectedDayTextStyle={{
+                      color:Colors.WHITE,
+                  }}
+                  />
+                  </View>
                 <TouchableOpacity
                     style={[styles.editButton, styles.buttonClose]}
                     onPress = {handleNext}
@@ -66,7 +95,7 @@ const styles = StyleSheet.create({
     destinationsHeader:{
         fontSize: 17,
         fontWeight: 'bold',
-        marginTop:  20
+        marginTop: 30
     },
     addDestinationBtn: {
         backgroundColor: 'white',

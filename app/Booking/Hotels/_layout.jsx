@@ -7,7 +7,7 @@ export default function RootLayout() {
         headerShadowVisible: false,
       }}>
         <Stack.Screen name="search" options={{
-          title: "Book a hotel",
+          title: "Book a Hotel",
           headerTitleAlign: 'center',
           headerStyle: {
             height: 100,

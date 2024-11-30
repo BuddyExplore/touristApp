@@ -7,20 +7,20 @@ import { useNavigation } from '@react-navigation/native'; // Assuming you are us
 
 export default function VehList() {
     const preferencesList = [
-        { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle5.jpg') },
-        { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', icon: '👤', img: require('../../../assets/images/Book/Vehicles/Vehicle6.jpg') },
-        { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle7.jpg') },
-        { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', icon: '⚙️', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
-        { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle1.jpg') },
-        { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', icon: '👤', img: require('../../../assets/images/Book/Vehicles/Vehicle2.jpg') },
-        { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle3.jpg') },
-        { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', icon: '⚙️', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
+        { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', img: require('../../../assets/images/Book/Vehicles/Vehicle5.jpg') },
+        { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', img: require('../../../assets/images/Book/Vehicles/Vehicle6.jpg') },
+        { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', img: require('../../../assets/images/Book/Vehicles/Vehicle7.jpg') },
+        { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
+        { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', img: require('../../../assets/images/Book/Vehicles/Vehicle1.jpg') },
+        { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', img: require('../../../assets/images/Book/Vehicles/Vehicle2.jpg') },
+        { name: 'Nissan Civillian', where: 'Moratuwa', driver: 'W.T. Saman', img: require('../../../assets/images/Book/Vehicles/Vehicle3.jpg') },
+        { name: 'Volkswagon Caddy', where: 'Pannipitiya', driver: 'S.S.M. Peiris', img: require('../../../assets/images/Book/Vehicles/Vehicle4.jpg') },
     ];
 
     const navigation = useNavigation();
 
     const handleBackStep = () => {
-        navigation.goBack(); // Or navigate to the specific screen if needed
+        navigation.goBack(); 
     };
 
     return (
@@ -63,8 +63,8 @@ export default function VehList() {
                 data={preferencesList}
                 keyExtractor={(item, index) => index.toString()}
                 showsVerticalScrollIndicator={false} 
-                renderItem={({ item }) => (
-                    <VehListItem prefernce={item} />
+                renderItem={({ item, index }) => (
+                    <VehListItem preference={item} vehicleNo={index} />
                 )}
             />
         </View>

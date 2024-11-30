@@ -9,8 +9,11 @@ import {
 import React, { useState, useEffect } from 'react';
 import VehicleModal from './VehicleModal';
 import { Ionicons } from '@expo/vector-icons'; // Import Ionicons for the arrowhead
+import { useRouter } from 'expo-router';
 
-export default function VehListItem({ prefernce }) {
+export default function VehListItem({ preference, vehicleID, handleClick }) {
+  const router = useRouter();
+
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
@@ -31,29 +34,35 @@ export default function VehListItem({ prefernce }) {
   //   }
   // }, [showModal]);
 
+
+  const BASE_URL = 'http://192.168.8.122:8080';
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.touchable}
-        onPress={() => setShowModal(true)}
+        // onPress={() => setShowModal(true)}
+        onPress={() => {
+          handleClick(vehicleID);
+        }}
       >
         <View style={styles.rowContainer}>
-          <Image source={prefernce.img} style={styles.image} />
+          {/* <Image source={{uri: `${BASE_URL}/images${preference.imgPath}`}} style={styles.image} /> */}
+          <Image source={preference.img} style={styles.image} />
           <View style={styles.textContainer}>
-            <Text style={styles.mainText}>{prefernce.name}</Text>
-            {/* <Text style={styles.subText}>Driver : {prefernce.driver}</Text> */}
+            <Text style={styles.mainText}>{preference.name}</Text>
+            {/* <Text style={styles.subText}>Driver : {preference.driver}</Text> */}
             <Image
               source={require("../../../assets/images/Book/4star.png")}
               style={styles.starImage}
             />
-            <Text style={styles.subText}>{prefernce.where}</Text>
+            <Text style={styles.subText}>{preference.where}</Text>
           </View>
           <Ionicons name="chevron-forward" size={24} color="black" style={styles.arrowIcon} />
         </View>
       </TouchableOpacity>
       {showModal && (
         <VehicleModal
-          vehicleInfo={prefernce}
+          vehicleInfo={preference}
           visibility={showModal}
           closeModal={handleCloseModal}
         />
