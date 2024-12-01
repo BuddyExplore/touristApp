@@ -68,8 +68,11 @@ export default function MyTrip() {
       </TouchableOpacity>
 
       <Text style={styles.planTripText}>Plan a trip</Text>
-      <TouchableOpacity style={styles.generateButton}>
+      <TouchableOpacity style={styles.generateButton}
+        onPress={() => router.push('/MyBookings/TripPlanner')}
+      >
         <Text style={styles.generateButtonText}>Generate Trip Plan</Text>
+        
       </TouchableOpacity>
 
       <Text style={styles.completedTripsText}>Completed Trips</Text>
