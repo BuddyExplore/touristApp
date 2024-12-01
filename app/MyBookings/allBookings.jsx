@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { useRouter } from 'expo-router';
 
-const BookingTab = ({ bookings, onUpcomingPress }) => (
+const BookingTab = ({ bookings, onUpcomingPress, onItemReserved, onItemPicked }) => (
   <ScrollView style={styles.tabContainer}>
     {Object.keys(bookings).map((status) => (
       <View key={status}>
@@ -12,7 +12,15 @@ const BookingTab = ({ bookings, onUpcomingPress }) => (
           <TouchableOpacity
             key={index}
             style={styles.bookingItem}
-            onPress={status === 'Upcoming' ? () => onUpcomingPress(booking) : null}
+            onPress={
+              status === 'Upcoming' 
+                ? () => onUpcomingPress(booking) 
+                : status === 'Reserved' 
+                ? () => onItemReserved(booking) 
+                : status === 'Picked' 
+                ? () => onItemPicked(booking) 
+                : null
+            }
           >
             <Image source={booking.image} style={styles.image} />
             <View style={styles.bookingInfo}>
@@ -151,7 +159,13 @@ const allBookings = () => {
     ),
     tourGuides: () => <BookingTab bookings={tourGuidesBookings} />,
     hotels: () => <BookingTab bookings={hotelsBookings} />,
-    items: () => <BookingTab bookings={itemsBookings} />,
+    items: () => (
+      <BookingTab
+        bookings={itemsBookings}
+        onItemReserved={() => router.push('./Items/reserved')}
+        onItemPicked={() => router.push('./Items/picked')}
+      />
+    ),
   });
 
   return (
