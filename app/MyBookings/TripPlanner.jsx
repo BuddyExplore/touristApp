@@ -1,3 +1,4 @@
+import { router, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
   View,
@@ -34,30 +35,7 @@ const TripPlanner = () => {
   };
 
   const handleSubmit = async () => {
-    const data = {
-      location,
-      budget: parseFloat(budget),
-      duration,
-      interests: interests.map((interest) => interest.toLowerCase()),
-    };
-
-    try {
-      const response = await fetch('http://localhost:8000/api/plan-trip', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        Alert.alert('Success', 'Trip plan generated successfully!');
-      } else {
-        Alert.alert('Error', 'Failed to generate the trip plan.');
-      }
-    } catch (error) {
-      Alert.alert('Error', 'Something went wrong.');
-    }
+    () => router.push('./result')
   };
 
   const renderStep = () => {
@@ -163,8 +141,14 @@ const TripPlanner = () => {
                 </TouchableOpacity>
               ))}
             </View>
-            <TouchableOpacity style={styles.nextButton} onPress={handleSubmit}>
-              <Text style={styles.nextButtonText}>Generate Plan</Text>
+            <TouchableOpacity
+                style={styles.nextButton}
+                onPress={() => {
+                    // handleSubmit(); // Call your function
+                    router.push('./result'); // Navigate to the results page
+                }}
+                >
+                <Text style={styles.nextButtonText}>Generate Plan</Text>
             </TouchableOpacity>
           </View>
         );
@@ -172,6 +156,10 @@ const TripPlanner = () => {
         return null;
     }
   };
+
+
+  const router = useRouter(); // Get the router object
+
 
   return (
     <View style={styles.container}>
