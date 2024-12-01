@@ -19,6 +19,10 @@ const BookingTab = ({ bookings, onUpcomingPress, onItemReserved, onItemPicked })
                 ? () => onItemReserved(booking) 
                 : status === 'Picked' 
                 ? () => onItemPicked(booking) 
+                : status === 'Completed' 
+                ? () => onItemReserved(booking) 
+                : status === 'Ongoing' 
+                ? () => onItemPicked(booking) 
                 : null
             }
           >
@@ -103,7 +107,7 @@ const allBookings = () => {
         title: 'Wilpattu Rest',
         subText: 'Wilpattu',
         date: 'Aug 09 - Aug 11',
-        status: 'Booked',
+        status: 'Ongoing',
         statusStyle: 'statusDispatched',
       },
     ],
@@ -158,7 +162,11 @@ const allBookings = () => {
       />
     ),
     tourGuides: () => <BookingTab bookings={tourGuidesBookings} />,
-    hotels: () => <BookingTab bookings={hotelsBookings} />,
+    hotels: () =><BookingTab
+    bookings={hotelsBookings}
+    onItemReserved={() => router.push('./Hotels/completed')}
+    onItemPicked={() => router.push('./Hotels/ongoing')}
+  />,
     items: () => (
       <BookingTab
         bookings={itemsBookings}
