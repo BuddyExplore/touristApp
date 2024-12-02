@@ -1,7 +1,9 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import React from 'react';
 import { useRouter } from 'expo-router';
 import { Colors } from '../../constants/Colors';
+import GenaratedTrips from '../../components/Home/GenaratedTrips';
+
 
 export default function MyTrip() {
   const router = useRouter();
@@ -9,7 +11,7 @@ export default function MyTrip() {
   const bookings = [
     {
       id: 1,
-      image: require('../../assets/images/Book/Hotels/Hotel1.jpg'), // Replace with actual path
+      image: require('../../assets/images/Book/Vehicles/Vehicle1.jpg'), // Replace with actual path
       title: 'Toyota Coach',
       location: 'Amal Perera',
       status: 'Trip Started',
@@ -18,11 +20,11 @@ export default function MyTrip() {
     },
     {
       id: 2,
-      image: require('../../assets/images/Book/Hotels/Hotel1.jpg'), // Replace with actual path
+      image: require('../../assets/images/Book/Tourguides/person1.jpg'), // Replace with actual path
       title: 'D.T.S. Gunasekara',
       location: 'Isurumuniya Temple',
       time: '5:45 PM',
-      icon: '🔽', // Emoji as an icon
+      icon: '👨', // Emoji as an icon
     },
     {
       id: 3,
@@ -35,8 +37,33 @@ export default function MyTrip() {
     }
   ];
 
+  const generatedTrips = [
+    {
+      id: 1,
+      image: require('../../assets/images/Book/Tourguides/Galle.jpg'),
+      title: 'Galle, Sri Lanka',
+      date: '04 Dec 2024',
+      details: 'A couple',
+    },
+    {
+      id: 2,
+      image: require('../../assets/images/Book/Tourguides/nuwaraeliya.jpg'),
+      title: 'Nuwara Eliya, Sri Lanka',
+      date: '01 Dec 2024',
+      details: 'Family',
+    },
+    {
+      id: 3,
+      image: require('../../assets/images/Book/Tourguides/anuradhapura.jpg'),
+      title: 'Anuradhapura, Sri Lanka',
+      date: '25 Nov 2024',
+      details: 'Just me',
+    },
+  ];
+  
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.header}>My Trip</Text>
 
       <View style={styles.section}>
@@ -64,7 +91,7 @@ export default function MyTrip() {
         style={styles.button}
         onPress={() => router.push('/MyBookings/allBookings')}
       >
-        <Text style={styles.buttonText}>My Bookings</Text>
+        <Text style={styles.buttonText}>My All Bookings</Text>
       </TouchableOpacity>
 
       <Text style={styles.planTripText}>Plan a trip</Text>
@@ -75,9 +102,14 @@ export default function MyTrip() {
         
       </TouchableOpacity>
 
+      <Text style={styles.gentopic}>Generated Trips</Text>
+
+      <GenaratedTrips trips={generatedTrips} />
+
+
       <Text style={styles.completedTripsText}>Completed Trips</Text>
       <Text style={styles.noTripsText}>No trips completed</Text>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -105,8 +137,8 @@ const styles = StyleSheet.create({
   bookingCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 15,
-    padding: 10,
+    marginBottom: 10,
+    padding: 8,
     backgroundColor: '#fff',
     borderRadius: 10,
     shadowColor: '#000',
@@ -120,8 +152,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   bookingImage: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     borderRadius: 10,
     marginRight: 10,
   },
@@ -145,28 +177,43 @@ const styles = StyleSheet.create({
     color: '#555',
   },
   button: {
-    marginVertical: 20,
+    marginBottom: 10,
     padding: 15,
     backgroundColor: '#f0f0f0',
     borderRadius: 10,
     alignItems: 'center',
+    borderColor: '#000',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   },
   buttonText: {
     fontWeight: 'bold',
   },
   planTripText: {
-    fontSize: 16,
+    fontSize: 20,
     marginBottom: 10,
+    fontWeight: 'bold',
   },
   generateButton: {
     padding: 15,
-    backgroundColor: Colors.blue,
+    backgroundColor: '#f0f0f0',
     borderRadius: 10,
     alignItems: 'center',
     marginBottom: 30,
+    borderColor: '#000',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   },
   generateButtonText: {
-    color: '#fff',
+    color: '#000',
     fontWeight: 'bold',
   },
   completedTripsText: {
@@ -176,4 +223,9 @@ const styles = StyleSheet.create({
   noTripsText: {
     color: '#888',
   },
+  gentopic: {
+    fontSize: 20,
+    marginBottom: 10,
+    fontWeight: 'bold',
+  }
 });
