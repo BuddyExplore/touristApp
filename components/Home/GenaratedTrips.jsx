@@ -1,14 +1,24 @@
-import React from 'react';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 
 export default function GenaratedTrips({ trips }) {
+  const router = useRouter();
+  
+  // Local state for trips
+  const [visibleTrips, setVisibleTrips] = useState(trips);
+
   const handleDelete = (id) => {
     console.log(`Delete trip with ID: ${id}`);
-    // Add logic to handle deleting a trip
+    
+    // Temporarily filter out the trip
+    setVisibleTrips((prevTrips) => prevTrips.filter((trip) => trip.id !== id));
   };
 
   const renderTripCard = ({ item }) => (
-    <View style={styles.card}>
+    <TouchableOpacity 
+        style={styles.card}
+        onPress={() => router.push('/MyBookings/result')}>
       <Image source={item.image} style={styles.image} />
       <View style={styles.cardContent}>
         <Text style={styles.title}>{item.title}</Text>
@@ -18,12 +28,12 @@ export default function GenaratedTrips({ trips }) {
       <TouchableOpacity style={styles.deleteButton} onPress={() => handleDelete(item.id)}>
         <Text style={styles.deleteText}>✖</Text>
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
     <FlatList
-      data={trips}
+      data={visibleTrips} // Use the local state for rendering
       keyExtractor={(item) => item.id.toString()}
       renderItem={renderTripCard}
       contentContainerStyle={styles.list}

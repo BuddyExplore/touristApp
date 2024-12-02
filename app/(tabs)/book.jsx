@@ -88,6 +88,13 @@ export default function book() {
           paddingVertical: 25,
           paddingHorizontal: 25,
           borderRadius: 30,
+          borderColor: '#000',
+          borderRadius: 10,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.1,
+          shadowRadius: 2,
+          elevation: 2,
         }}
       >
         <View>
@@ -98,7 +105,7 @@ export default function book() {
         </View>
 
         <View style={{ marginLeft: 8, flex: 1 }}>
-          <Text style={{ fontSize: 16, fontWeight: 700, marginBottom: 2 }}>
+          <Text style={{ fontSize: 20, fontWeight: 700, marginBottom: 2 }}>
             Vehicles & drivers
           </Text>
           <Text style={{ fontSize: 12, flexWrap: "wrap" }}>
@@ -117,6 +124,13 @@ export default function book() {
           paddingVertical: 25,
           paddingHorizontal: 25,
           borderRadius: 30,
+          borderColor: '#000',
+          borderRadius: 10,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.1,
+          shadowRadius: 2,
+          elevation: 2,
         }}
       >
         <View>
@@ -127,7 +141,7 @@ export default function book() {
         </View>
 
         <View style={{ marginLeft: 8, flex: 1 }}>
-          <Text style={{ fontSize: 16, fontWeight: 700, marginBottom: 2 }}>
+          <Text style={{ fontSize: 20, fontWeight: 700, marginBottom: 2 }}>
             Tour Guides
           </Text>
           <Text style={{ fontSize: 12, flexWrap: "wrap" }}>
@@ -146,6 +160,13 @@ export default function book() {
           paddingVertical: 25,
           paddingHorizontal: 25,
           borderRadius: 30,
+          borderColor: '#000',
+          borderRadius: 10,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.1,
+          shadowRadius: 2,
+          elevation: 2,
         }}
       >
         <View>
@@ -156,7 +177,7 @@ export default function book() {
         </View>
 
         <View style={{ marginLeft: 8, flex: 1 }}>
-          <Text style={{ fontSize: 16, fontWeight: 700, marginBottom: 2 }}>
+          <Text style={{ fontSize: 20, fontWeight: 700, marginBottom: 2 }}>
             Hotels
           </Text>
           <Text style={{ fontSize: 12, flexWrap: "wrap" }}>
@@ -186,7 +207,7 @@ export default function book() {
         </View>
 
         <View style={{ marginLeft: 8, flex: 1 }}>
-          <Text style={{ fontSize: 16, fontWeight: 700, marginBottom: 2 }}>
+          <Text style={{ fontSize: 20, fontWeight: 700, marginBottom: 2 }}>
             Items from Shops
           </Text>
           <Text style={{ fontSize: 12, flexWrap: "wrap" }}>
@@ -206,6 +227,13 @@ export default function book() {
           paddingVertical: 25,
           paddingHorizontal: 25,
           borderRadius: 30,
+          borderColor: '#000',
+          borderRadius: 10,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.1,
+          shadowRadius: 2,
+          elevation: 2,
         }}
       >
         <View>
@@ -216,7 +244,7 @@ export default function book() {
         </View>
 
         <View style={{ marginLeft: 8, flex: 1 }}>
-          <Text style={{ fontSize: 16, fontWeight: 700, marginBottom: 2 }}>
+          <Text style={{ fontSize: 20, fontWeight: 700, marginBottom: 2 }}>
             Activities
           </Text>
           <Text style={{ fontSize: 12, flexWrap: "wrap" }}>
