@@ -1,13 +1,38 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import VehicleModalDetails from '../../../components/Book/Vehicles/VehicleModalDetails';
 import DriverModalDetails from '../../../components/Book/Vehicles/DriverModalDetails';
 import ReviewModalDetails from '../../../components/Book/Vehicles/ReviewModalDetails';
 import { Colors } from '../../../constants/Colors';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const vehicleInformation = () => {
+
+  const [vehicleDetails, setVehicleDetails] = useState(null)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const fetchVehicleDetails = async () => {
+      try {
+        const vehicleData = await AsyncStorage.getItem('vehicleDetails');
+        const parsedVehicleDetails = JSON.parse(vehicleData);
+        setVehicleDetails(parsedVehicleDetails);
+      } catch (error) {
+        console.error('Error fetching vehicle details:', error);
+      } finally {
+        setLoading(false)
+      }
+    };
+
+    fetchVehicleDetails();
+    
+  }, []);
+
+
+
+  
+
   const preferencesList = [
     { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', icon: '🔔', img: require('../../../assets/images/Book/Vehicles/Vehicle5.jpg') },
     { name: 'Hiace Dolphin', where: 'Hokanda', driver: 'S.M. Perera', icon: '👤', img: require('../../../assets/images/Book/Vehicles/Vehicle6.jpg') },
@@ -40,7 +65,7 @@ const vehicleInformation = () => {
 
   const [activeTab, setActiveTab] = useState('Vehicle Details');
 
-  const handleRequestBooking = () => {
+  const handleRequestBooking = () =>  {
       router.push({
         pathname: './bookingSummary',
         params: {
@@ -51,35 +76,43 @@ const vehicleInformation = () => {
           dropoffDate,
           dropoffTime,
           passengers,
-          vehicleNo
+          
         }
       });
+
   };
 
   const renderContent = () => {
     switch (activeTab) {
       case 'Vehicle Details':
-        return <VehicleModalDetails vehicleInfo={vehicleInfo} />;
+        return <VehicleModalDetails vehicleInfo={vehicleDetails} />;
       case 'Driver Details':
-        return <DriverModalDetails vehicleInfo={vehicleInfo} />;
+        return <DriverModalDetails driverId={vehicleDetails.driverId} />;
       case 'Reviews':
         return <ReviewModalDetails reviews={reviews} />;
       default:
-        return <VehicleModalDetails vehicleInfo={vehicleInfo} />;
+        return <VehicleModalDetails vehicleInfo={vehicleDetails} />;
     }
   };
 
+  if (loading) {
+    return (
+      <Text style={{ justifyContent: "center", alignItems: "center" }}>
+        Loading...
+      </Text>
+    );
+  }
+  
   return (
     <View style={styles.container}>
       <View>
         <View style={styles.vehicleImgContainer}>
-          <Image source={vehicleInfo.img} style={styles.vehicleImg} />
+          {/* <Image source={vehicleInfo.img} style={styles.vehicleImg} /> */}
         </View>
         <View style={styles.vehicleInfoContainer}>
-          <Text style={styles.vehicleName}>{vehicleInfo.name}</Text>
+          <Text style={styles.vehicleName}>{vehicleDetails? vehicleDetails.vehicle_brand : 'Toyota'} {vehicleDetails? vehicleDetails.vehicle_model : 'Corrolla'} </Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%', marginLeft: 10}}>
-            <Ionicons name="location-outline" size={24} color={'black'} />
-            <Text style={styles.subText}> {vehicleInfo.where}</Text>
+            <Text style={styles.subText}> {vehicleDetails? vehicleDetails.type: 'Car'}</Text>
           </View>
         </View>
       </View>

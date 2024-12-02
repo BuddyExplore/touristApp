@@ -5,16 +5,35 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { Colors } from '../../../constants/Colors';
 import VehListItem from '../../../components/Book/Vehicles/VehListItem';
 import axios from 'axios';
+import {Urls} from "../../../constants/Urls"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const searchResults = () => {
   const [vehicles, setVehicles] = useState([]);
+  const [data,setData] = useState([]);
+  const [loading, setLoading]= useState(true)
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://192.168.8.122:8080/getVehicle")
-  //     .then((response) => setVehicles(response.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    
+    const fetchItems = async () => {
+      setLoading(true);
+      console.log("Here")
+      try {
+        const response = await axios.get(
+          `${Urls.SPRING}/api/travel/vehicle/allVehicles`
+        );
+        setData(response.data.content);
+        console.log(response.data.content)
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchItems();
+    setLoading(false);
+  }, []);
+
+
 
   const preferencesList = [
     { name: 'Suzuki Alto', where: 'Nugegoda', driver: 'A.D. Bandara', img: require('../../../assets/images/Book/Vehicles/Vehicle5.jpg') },
@@ -39,9 +58,8 @@ const searchResults = () => {
   } = useLocalSearchParams();
 
 
-  const handleClick = (vehicleID) => {
-    const vehicleNo = vehicleID;
-
+  const handleClick = async (vehicleDetails) => {
+    await AsyncStorage.setItem('vehicleDetails', JSON.stringify(vehicleDetails));
     router.push({
       pathname: './vehicleInformation',
       params: {
@@ -52,9 +70,16 @@ const searchResults = () => {
         dropoffDate,
         dropoffTime,
         passengers,
-        vehicleNo
+        vehicleDetails
       }
     });
+  }
+  if (loading) {
+    return (
+      <Text style={{ justifyContent: "center", alignItems: "center" }}>
+        Loading...
+      </Text>
+    );
   }
 
   return (
@@ -112,7 +137,7 @@ const searchResults = () => {
       <View>
         <FlatList
           // data={vehicles}
-          data={preferencesList}
+          data={data}
           keyExtractor={(item, index) => index.toString()}
           showsVerticalScrollIndicator={false} 
           renderItem={({ item, index }) => (
