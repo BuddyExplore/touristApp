@@ -92,7 +92,7 @@ export default function VehicleModal({ vehicleInfo, visibility, closeModal }) {
           <View style={styles.modalView}>
             <Image source={vehicleInfo.img} style={styles.vehicleImg} />
             <View style={styles.vehicleInfoContainer}>
-              <Text style={styles.vehicleName}>{vehicleInfo.name}</Text>
+              <Text style={styles.vehicleName}>{vehicleInfo.vehicle_model}</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%' }}>
                 <Ionicons name="location-outline" size={20} color={'black'} />
                 <Text style={styles.subText}> {vehicleInfo.where}</Text>

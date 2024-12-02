@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, Modal, Button, Pressable, ScrollView} from 'react-native'
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, Modal, Button, FlatList, Pressable, ScrollView} from 'react-native'
 import React,{ useState } from 'react'
 // import PopularVehicles from '../../../components/Book/Vehicles/PopularVehicles';
 import { Ionicons } from "@expo/vector-icons";
@@ -144,6 +144,58 @@ export default function search() {
     return true;
   };
 
+  const data = [
+    'Anuradhapura, Alakamanda',
+    'Batticaloa, Main Street',
+    'Colombo, Fort',
+    'Dehiwala, Mount Lavinia',
+    'Embilipitiya, Town Center',
+    'Fanla, Railway Station',
+    'Galle, Fort',
+    'Haputale, Hill Station',
+    'Ibbagamuwa, Junction',
+    'Jaffna, Town',
+    'Kandy, Bus Stand',
+    'Lahugala, Lagoon',
+    'Matara, Weliveriya',
+    'Negombo, Bolawalana Town',
+    'Omanthai, Road Junction',
+    'Pannala, Central Road',
+    'Quilon, Peraliya',
+    'Ratnapura, Gem Town',
+    'Seeduwa, Airport Road',
+    'Trincomalee, Kanniya Town',
+    'Udugama, Bus Stop',
+    'Vavuniya, Main Street',
+    'Weligama, Beach',
+    'Xylo, Unknown Location',
+    'Yala, National Park',
+    'Zoysa, Hilltop',
+  ];
+
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const handleInputChange = (value1) => {
+    const value = value1;
+    setPickupLocation(value);
+
+    if (value) {
+      const filteredSuggestions = data.filter((item) =>
+        item.toLowerCase().startsWith(value.toLowerCase())
+      );
+      setSuggestions(filteredSuggestions);
+      setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setPickupLocation(suggestion);
+    setShowSuggestions(false); // Hide suggestions after selecting one
+  };
+  
   return (
     <View style={{flex: 1, backgroundColor: "white"}}>
       <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:"white"}}>
@@ -162,7 +214,7 @@ export default function search() {
           }}
         >
           <MaterialIcons name="my-location" size={24} color="black" />
-          <View style={{flex: 1}}>
+          {/* <View style={{flex: 1}}>
             <TextInput
               placeholder="Enter pick-up location"
               style={{
@@ -173,6 +225,51 @@ export default function search() {
               value={pickupLocation}
               onChangeText={setPickupLocation}
             />
+          </View> */}
+          <View style={{  position: 'relative' }}>
+            <TextInput
+              placeholder="Enter pick-up location"
+              style={{
+                fontFamily: "outfit",
+                color: "#A4A4A4",
+                fontSize: 15,
+                width:  600
+              }}
+              value={pickupLocation}
+              onChangeText={handleInputChange}
+            />
+                 {showSuggestions && (
+            <FlatList
+              data={suggestions.filter((item) =>
+                item.toLowerCase().includes(pickupLocation.toLowerCase())
+              )}
+              keyExtractor={(item, index) => index.toString()}
+              style={{
+                position: 'absolute',
+                top: 40, // Adjust to place below the input field
+                left: 0,
+                backgroundColor: '#fff',
+                borderColor: '#ccc',
+                borderWidth: 1,
+                zIndex: 10,
+                maxHeight: 150,
+                width:300
+              }}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => handleSuggestionClick(item)}
+                  style={{
+                    padding: 10,
+                    borderBottomColor: '#eee',
+                    borderBottomWidth: 1,
+                    zIndex: 20
+                  }}
+                >
+                  <Text>{item}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          )}
           </View>
         </View>
 
@@ -184,6 +281,7 @@ export default function search() {
             marginTop: 10,
             borderRadius: 30,
             gap: 10,
+            zIndex: -1
           }}
         >
           <TouchableOpacity
@@ -245,23 +343,57 @@ export default function search() {
                   backgroundColor: "#FAFAFA",
                   paddingHorizontal: 20,
                   borderRadius: 10,
-                  marginTop: 10
+                  marginTop: 10,
+                  zIndex: -9
                 }}
               >
                 <Ionicons name="location" size={24} color={"black"} />
-                <View style={{flexDirection: 'row', flex: 1, justifyContent: 'space-between'}}>
+                <View style={{flexDirection: 'row', flex: 1, justifyContent: 'space-between', position: 'relative'}}>
                   <TextInput
                     // placeholder="Select Destination"
                     style={{
                       fontFamily: "outfit",
                       color: "#A4A4A4",
                       fontSize: 15,
-                      width: '90%'
+                      width: '90%',
+                      zIndex: -1
                     }}
                     editable={false}
                     value={destinations[index]}
                     // onChangeText={(text) => updateDestinations(text, index)}
                   />
+                        {showSuggestions && (
+                  <FlatList
+                    data={suggestions.filter((item) =>
+                      item.toLowerCase().includes(pickupLocation.toLowerCase())
+                    )}
+                    keyExtractor={(item, index) => index.toString()}
+                    style={{
+                      position: 'absolute',
+                      top: 40, // Adjust to place below the input field
+                      left: 0,
+                      backgroundColor: '#fff',
+                      borderColor: '#ccc',
+                      borderWidth: 1,
+                      zIndex: 10,
+                      maxHeight: 150,
+                      width:300
+                    }}
+                    renderItem={({ item }) => (
+                      <TouchableOpacity
+                        onPress={() => handleSuggestionClick(item)}
+                        style={{
+                          padding: 10,
+                          borderBottomColor: '#eee',
+                          borderBottomWidth: 1,
+                          zIndex: 20
+                        }}
+                      >
+                        <Text>{item}</Text>
+                      </TouchableOpacity>
+                    )}
+                  />
+                )}
                   <Pressable onPress={() => removeDestination(index)}>
                     <Entypo name="minus" size={24} color="black" />
                   </Pressable>
@@ -281,7 +413,8 @@ export default function search() {
               backgroundColor: "#FAFAFA",
               paddingHorizontal: 20,
               borderRadius: 10,
-              marginTop: 10
+              marginTop: 10,
+              zIndex: -1
             }}
           >
             <Ionicons name="location" size={24} color={"black"} />

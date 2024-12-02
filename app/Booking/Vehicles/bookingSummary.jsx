@@ -1,15 +1,38 @@
 import { StyleSheet, Text, View, Image, Pressable, TouchableOpacity, Modal, Button} from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Colors } from '../../../constants/Colors';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import {Urls} from "../../../constants/Urls"
 
 const bookingSummary = () => {
   const router = useRouter();
   
+  const [vehicleDetails, setVehicleDetails] = useState(null)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const fetchVehicleDetails = async () => {
+      try {
+        const vehicleData = await AsyncStorage.getItem('vehicleDetails');
+        const parsedVehicleDetails = JSON.parse(vehicleData);
+        setVehicleDetails(parsedVehicleDetails);
+      } catch (error) {
+        console.error('Error fetching vehicle details:', error);
+      } finally {
+        setLoading(false)
+      }
+    };
+
+    fetchVehicleDetails();
+    
+  }, []);
+
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const goToHome = () => {
@@ -17,6 +40,52 @@ const bookingSummary = () => {
   };
 
   const handleSendBooking = () => {
+    const fetchItems = async () => {
+      console.log("Here")
+
+      const bookingData = {
+        touristId: 1, //Change this!!!!!!!!!!!!!!!!
+        driverId: vehicleDetails.driverId,
+        vehicleId: vehicleDetails.id,
+        date: "2024-12-02",
+        pickUpLocation: pickupLocation,
+        pickUpDate: pickupDate,
+        pickUpTime: pickupTime,
+        dropOffDate: dropoffDate,
+        dropOffTime: dropoffTime,
+        passengers: passengers,
+        distance: 50,
+        fullName: "John Doe", //Change this!!!!!!!!!!!!
+        status: 0
+      };
+
+      
+      try {
+        const response = await axios.post(
+          `${Urls.SPRING}/api/Booking/Vehicle/addBooking`,
+          {
+            touristId: 1, //Change this!!!!!!!!!!!!!!!!
+            driverId: vehicleDetails.driverId,
+            vehicleId: vehicleDetails.id,
+            date: "2024-12-02",
+            pickUpLocation: pickupLocation,
+            pickUpDate: pickupDate,
+            pickUpTime: pickupTime.slice(0, -3),
+            dropOffDate: dropoffDate,
+            dropOffTime: dropoffTime.slice(0, -3),
+            passengers: passengers,
+            distance: 50,
+            fullName: "John Doe", //Change this!!!!!!!!!!!!
+            status: 0
+          }
+        );
+        console.log("Done")
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchItems();
     setIsModalVisible(true);
   }
 
@@ -64,14 +133,14 @@ const bookingSummary = () => {
 
         <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 36, marginTop: 8}}>
           <View style={{height: 79 , width: 99, borderRadius: 10}}>
-            <Image source={vehicleInfo.img} style={{width: '100%', height: '100%', borderRadius: 10}}/>
+            <Image source={require("../../../assets/images/Book/Vehicles/Vehicle5.jpg")} alt="None" style={{width: '100%', height: '100%', borderRadius: 10}}/>
           </View>
 
           <View style={{marginLeft: 22, gap: 5}}>
-            <Text style={{fontSize: 14, fontWeight: '500'}}>{vehicleInfo.name}</Text>
+            <Text style={{fontSize: 14, fontWeight: '500'}}>{vehicleDetails? vehicleDetails.vehicle_brand : 'Toyota'} {vehicleDetails? vehicleDetails.vehicle_model : 'Corolla'}</Text>
             <View style={{flexDirection: 'row', alignItems: 'center', gap: 5}}>
               <Ionicons name="person-outline" size={12} color="black" />
-              <Text style={{fontSize: 12}}>{vehicleInfo.driver}</Text>
+              <Text style={{fontSize: 12}}>Driver ID: {vehicleDetails? vehicleDetails.driverId : '21'}</Text>
             </View>
           </View>
         </View>

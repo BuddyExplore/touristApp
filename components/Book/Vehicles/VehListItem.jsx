@@ -42,20 +42,20 @@ export default function VehListItem({ preference, vehicleID, handleClick }) {
         style={styles.touchable}
         // onPress={() => setShowModal(true)}
         onPress={() => {
-          handleClick(vehicleID);
+          handleClick(preference);
         }}
       >
         <View style={styles.rowContainer}>
           {/* <Image source={{uri: `${BASE_URL}/images${preference.imgPath}`}} style={styles.image} /> */}
           <Image source={preference.img} style={styles.image} />
           <View style={styles.textContainer}>
-            <Text style={styles.mainText}>{preference.name}</Text>
+            <Text style={styles.mainText}>{preference.vehicle_brand} {preference.vehicle_model}</Text>
             {/* <Text style={styles.subText}>Driver : {preference.driver}</Text> */}
             <Image
               source={require("../../../assets/images/Book/4star.png")}
               style={styles.starImage}
             />
-            <Text style={styles.subText}>{preference.where}</Text>
+            <Text style={styles.subText}>{preference.type}</Text>
           </View>
           <Ionicons name="chevron-forward" size={24} color="black" style={styles.arrowIcon} />
         </View>

@@ -17,6 +17,7 @@
   "dependencies": {
     "@clerk/clerk-expo": "^1.2.2",
     "@expo/vector-icons": "^14.0.0",
+    "@react-native-async-storage/async-storage": "^1.24.0",
     "@react-native-community/datetimepicker": "^8.2.0",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",
@@ -37,16 +38,14 @@
     "native": "^0.3.3",
     "picker": "^0.1.4",
     "react": "^18.2.0",
+    "react-async-hook": "^4.0.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.2",
     "react-native-calendar-picker": "^8.0.5",
     "react-native-calendars": "^1.1306.0",
     "react-native-checkbox-group": "^1.0.3",
-<<<<<<< HEAD
     "react-native-country-picker-modal": "^2.0.0",
-=======
     "react-native-credit-card-input": "^1.0.0",
->>>>>>> 97535fe545a4e74937c7a7581f1c147c763c46a7
     "react-native-date-ranges": "^2.5.0",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-google-places-autocomplete": "^2.5.6",

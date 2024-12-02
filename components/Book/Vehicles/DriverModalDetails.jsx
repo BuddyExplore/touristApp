@@ -1,9 +1,44 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from "react-native";
-import React from "react";
+import React , {useState, useEffect} from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../../constants/Colors";
+import axios from 'axios';
+import {Urls} from "../../../constants/Urls"
 
-export default function DriverModalDetails({ vehicleInfo }) {
+export default function DriverModalDetails({ driverId }) {
+
+  const [data,setData] = useState();
+  const [loading, setLoading]= useState(true)
+
+  useEffect(() => {
+    
+    const fetchItems = async () => {
+      setLoading(true);
+      console.log("Here")
+      try {
+        const response = await axios.get(
+          `${Urls.SPRING}/getUser/${driverId}`
+        );
+        setData(response.data.content);
+        console.log(response.data.content)
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchItems();
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return (
+      <Text style={{ justifyContent: "center", alignItems: "center" , height: 300}}>
+        Loading...
+      </Text>
+    );
+  }
+
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
@@ -11,9 +46,9 @@ export default function DriverModalDetails({ vehicleInfo }) {
         <View style={styles.header}>
           <Image source={require("../../../assets/images/Home/profile.png")} style={styles.profileImg} />
           <View style={styles.driverInfo}>
-            <Text style={styles.driverName}>{vehicleInfo.driver}</Text>
+            <Text style={styles.driverName}>{data? data.first_name: 'Jagath'} {data? data.last_name: 'Kumara'}</Text>
             <Image source={require("../../../assets/images/Book/4star.png")} style={styles.ratingImg} />
-            <Text style={styles.driverRides}>23 Rides</Text>
+            <Text style={styles.driverRides}>{data? (data.id)%12+1 : '1'} Rides</Text>
           </View>
         </View>
         <Text style={styles.bioTitle}>Bio</Text>

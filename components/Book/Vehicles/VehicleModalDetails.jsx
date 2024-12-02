@@ -10,8 +10,18 @@ import {
   import { Ionicons } from "@expo/vector-icons";
   import { Colors } from "../../../constants/Colors";
   
-  export default function VehicleModalDetails() {
+  export default function VehicleModalDetails({vehicleInfo}) {
 
+    const passengerCount = (type) => {
+      switch(type){
+        case 'Car':
+          return 4
+        case 'Van':
+          return 8
+        case 'Bus':
+          return 28
+      }
+    }
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
@@ -23,7 +33,7 @@ import {
             }}
           >
             <Ionicons name="people-outline" size={21} color={"black"} />
-            <Text style={styles.text2}>28 Passengers</Text>
+            <Text style={styles.text2}>{vehicleInfo.type? passengerCount(vehicleInfo.type): '4'} Passengers</Text>
           </View>
           <Text style={styles.label}>Amenities</Text>
           <View
@@ -33,15 +43,26 @@ import {
               marginTop: 10,
             }}
           >
-            <View style={styles.amenityContainer}>
+            {vehicleInfo.hasAC && <View style={styles.amenityContainer}>
               <Ionicons name="snow-outline" size={15} color={"black"} />
               <Text style={styles.text1}>Air Conditioned</Text>
-            </View>
-  
-            <View style={styles.amenityContainer}>
+            </View>}
+            
+            {vehicleInfo.hasRadio && <View style={styles.amenityContainer}>
               <Ionicons name="radio-outline" size={15} color={"black"} />
               <Text style={styles.text1}>Radio System</Text>
-            </View>
+            </View>}
+
+            {vehicleInfo.hasWifi && <View style={styles.amenityContainer}>
+              <Ionicons name="wifi-outline" size={15} color={"black"} />
+              <Text style={styles.text1}>Wifi</Text>
+            </View>}
+
+            {vehicleInfo.hasSunroof && <View style={styles.amenityContainer}>
+              <Ionicons name="car-outline" size={15} color={"black"} />
+              <Text style={styles.text1}>Sunroof</Text>
+            </View>}
+            
           </View>
   
           <Text style={styles.label}>Description</Text>
