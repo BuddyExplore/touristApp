@@ -10,17 +10,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {Urls} from "../../../constants/Urls"
 
+
 const bookingSummary = () => {
   const router = useRouter();
   
   const [vehicleDetails, setVehicleDetails] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [userDetails, setUserDetails] = useState(null)
   useEffect(() => {
     const fetchVehicleDetails = async () => {
       try {
+        const user = await AsyncStorage.getItem("user");
         const vehicleData = await AsyncStorage.getItem('vehicleDetails');
         const parsedVehicleDetails = JSON.parse(vehicleData);
+        const parsedUserDetails = JSON.parse(user)
         setVehicleDetails(parsedVehicleDetails);
+        setUserDetails(parsedUserDetails)
       } catch (error) {
         console.error('Error fetching vehicle details:', error);
       } finally {
@@ -36,10 +41,11 @@ const bookingSummary = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const goToHome = () => {
-    router.push('/');
+    router.push('/explore');
   };
 
   const handleSendBooking = () => {
+    const user = user
     const fetchItems = async () => {
       console.log("Here")
       
@@ -47,7 +53,7 @@ const bookingSummary = () => {
         const response = await axios.post(
           `${Urls.SPRING}/api/Booking/Vehicle/addBooking`,
           {
-            touristId: 1, //Change this!!!!!!!!!!!!!!!!
+            touristId: userDetails.id, //Change this!!!!!!!!!!!!!!!!
             driverId: vehicleDetails.driverId,
             vehicleId: vehicleDetails.id,
             date: "2024-12-02",
@@ -58,7 +64,7 @@ const bookingSummary = () => {
             dropOffTime: dropoffTime.slice(0, -3),
             passengers: passengers,
             distance: 50,
-            fullName: "John Doe", //Change this!!!!!!!!!!!!
+            fullName: "John Parker", //Change this!!!!!!!!!!!!
             status: 0
           }
         );
@@ -116,7 +122,7 @@ const bookingSummary = () => {
 
         <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 36, marginTop: 8}}>
           <View style={{height: 79 , width: 99, borderRadius: 10}}>
-            <Image source={require("../../../assets/images/Book/Vehicles/Vehicle5.jpg")} alt="None" style={{width: '100%', height: '100%', borderRadius: 10}}/>
+            <Image source={require("../../../assets/images/corolla.jpg")} alt="None" style={{width: '100%', height: '100%', borderRadius: 10}}/>
           </View>
 
           <View style={{marginLeft: 22, gap: 5}}>

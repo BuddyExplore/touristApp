@@ -46,8 +46,12 @@ export default function VehListItem({ preference, vehicleID, handleClick }) {
         }}
       >
         <View style={styles.rowContainer}>
-          {/* <Image source={{uri: `${BASE_URL}/images${preference.imgPath}`}} style={styles.image} /> */}
-          <Image source={preference.img} style={styles.image} />
+          {preference.type == 'Car' && <Image source={require("../../../assets/images/corolla.jpg")} style={styles.image} />}
+          {preference.type == 'Bus' && <Image source={require("../../../assets/images/bus.jpg")} style={styles.image} />}
+          {preference.type == 'Van' && <Image source={require("../../../assets/images/van.jpg")} style={styles.image} />}
+          {!preference.type && <Image source={require("../../../assets/images/Book/taxi.png")} style={styles.image} />}
+          {/* <Image source={require("../../../assets/images/corolla.jpg")} style={styles.image} /> */}
+          {/* <Image source={preference.img} style={styles.image} /> */}
           <View style={styles.textContainer}>
             <Text style={styles.mainText}>{preference.vehicle_brand} {preference.vehicle_model}</Text>
             {/* <Text style={styles.subText}>Driver : {preference.driver}</Text> */}

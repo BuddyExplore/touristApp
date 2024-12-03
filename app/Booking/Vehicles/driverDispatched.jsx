@@ -1,7 +1,11 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default function DriverDispatched() {
+
+    const router = useRouter();
+
   return (
     <View style={styles.container}>
 
@@ -61,6 +65,12 @@ export default function DriverDispatched() {
       {/* Close Button */}
       <TouchableOpacity style={styles.closeButton}>
         <Text style={styles.closeButtonText}>Close</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.closeButton}
+        onPress={() => router.push("./tripStarted")}
+      >
+        <Text style={styles.closeButtonText}>Trip Started</Text>
       </TouchableOpacity>
     </View>
   );

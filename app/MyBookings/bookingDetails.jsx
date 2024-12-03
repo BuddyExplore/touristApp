@@ -114,7 +114,7 @@ export default BookingDetails;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 30,
     backgroundColor: '#fff',
   },
   header: {

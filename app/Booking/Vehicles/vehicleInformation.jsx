@@ -107,7 +107,10 @@ const vehicleInformation = () => {
     <View style={styles.container}>
       <View>
         <View style={styles.vehicleImgContainer}>
-          {/* <Image source={vehicleInfo.img} style={styles.vehicleImg} /> */}
+          {vehicleDetails.type == 'Car' && <Image source={require("../../../assets/images/corolla.jpg")} style={styles.vehicleImg} />}
+          {vehicleDetails.type == 'Bus' && <Image source={require("../../../assets/images/bus.jpg")} style={styles.vehicleImg} />}
+          {vehicleDetails.type == 'Van' && <Image source={require("../../../assets/images/van.jpg")} style={styles.vehicleImg} />}
+          {!vehicleDetails.type && <Image source={require("../../../assets/images/Book/taxi.png")} style={styles.vehicleImg} />}
         </View>
         <View style={styles.vehicleInfoContainer}>
           <Text style={styles.vehicleName}>{vehicleDetails? vehicleDetails.vehicle_brand : 'Toyota'} {vehicleDetails? vehicleDetails.vehicle_model : 'Corrolla'} </Text>

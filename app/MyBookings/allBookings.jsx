@@ -12,13 +12,14 @@ const VehicleBookingTab = ({ bookings, onUpcomingPress, onItemReserved, onItemPi
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [reloader, setReloader] = useState(1)
+  const [userData, setUserData] = useState(null)
 
-  const fetchItems = async () => {
+  const fetchItems = async (id) => {
     setLoading(true);
     console.log("Here")
     try {
       const response = await axios.get(
-        `${Urls.SPRING}/api/Booking/Vehicle/touristBookings/321`  //change 321 to actual id
+        `${Urls.SPRING}/api/Booking/Vehicle/touristBookings/${id}`  //change 321 to actual id
       );
       setData(response.data.content);
       console.log(response.data.content)
@@ -28,16 +29,35 @@ const VehicleBookingTab = ({ bookings, onUpcomingPress, onItemReserved, onItemPi
     setLoading(false)}
   };
 
+  const loadUserData = async () => {
+    try {
+      const user = await AsyncStorage.getItem("user");
+      const token = await AsyncStorage.getItem("token");
+      const parsedUserDetails = JSON.parse(user)
+      fetchItems(JSON.parse(user).id)
+      if (user && token) {
+        console.log(user)
+      }
+    } catch (error) {
+      console.error("Failed to load user data:", error);
+    } 
+  };
+
 
   useFocusEffect(
     React.useCallback(() => {
-      fetchItems(); // Fetch data when the screen gains focus
+      loadUserData(); // Fetch data when the screen gains focus
+      
+      
     }, [])
   );
 
   useEffect(() => {
+    
+
+    loadUserData();
     // Initial data fetch when the component is mounted
-    fetchItems();
+    
   }, []);
 
   useFocusEffect(
@@ -55,8 +75,14 @@ const VehicleBookingTab = ({ bookings, onUpcomingPress, onItemReserved, onItemPi
         return <Text style={{ color: '#337dff', fontSize: 12 }}>Accepted</Text>;
       case 2:
         return <Text style={{ color: '#337dff', fontSize: 12 }}>Dispatched</Text>;
-      default:
+      case 3:
         return <Text style={{ color: '#337dff', fontSize: 12 }}>Ongoing</Text>;
+      case 4:
+        return <Text style={{ color: '#337dff', fontSize: 12 }}>Finishing</Text>;
+      case 5:
+        return <Text style={{ color: '#337dff', fontSize: 12 }}>Completed</Text>;
+      default:
+        return <Text style={{ color: '#337dff', fontSize: 12 }}>Unkown</Text>;
     }
   };
   
@@ -94,6 +120,40 @@ const VehicleBookingTab = ({ bookings, onUpcomingPress, onItemReserved, onItemPi
           pickup_location
       }
     });
+  }else if(status === 3){
+    router.push({
+      pathname: './tripStarted',
+      params: {
+          bookingId,
+          driverId,
+          pickup_time,
+          dropoff_time,
+          pickup_location
+      }
+    });
+  }
+  else if(status === 4){
+    router.push({
+      pathname: './tripFinished',
+      params: {
+          bookingId,
+          driverId,
+          pickup_time,
+          dropoff_time,
+          pickup_location
+      }
+    });
+  }else if(status === 5){
+    router.push({
+      pathname: './tripCompleted',
+      params: {
+          bookingId,
+          driverId,
+          pickup_time,
+          dropoff_time,
+          pickup_location
+      }
+    });
   }
 
 
@@ -121,7 +181,7 @@ const VehicleBookingTab = ({ bookings, onUpcomingPress, onItemReserved, onItemPi
             style={styles.bookingItem}
             onPress={() => handleShowBooking(booking.status, booking.id, booking.driverId,`${booking.pickUpDate} at ${booking.pickUpTime}`, `${booking.dropOffDate} at ${booking.dropOffTime}`, booking.pickUpLocation)}
           >
-            <Image source={{ uri: "https://example.com/image.png" }} style={styles.image} />
+            <Image source={require("../../assets/images/Book/taxi.png")} style={styles.image} />
             <View style={styles.bookingInfo}>
               <Text style={styles.bookingTitle}>{booking.fullName}</Text> 
               <Text style={styles.subText}>Pick-up: {booking.pickUpLocation}</Text> 
@@ -185,7 +245,7 @@ const allBookings = () => {
   const vehiclesBookings = {
     Ongoing: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Vehicles/Vehicle1.jpg'),
         title: 'Toyota Coach',
         subText: 'Amal Perera',
         date: 'Aug 09 - Aug 11',
@@ -195,7 +255,7 @@ const allBookings = () => {
     ],
     Upcoming: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Vehicles/Vehicle2.jpg'),
         title: 'Toyota Coach',
         subText: 'Amal Perera',
         date: 'Aug 09 - Aug 11',
@@ -205,7 +265,7 @@ const allBookings = () => {
     ],
     Completed: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Vehicles/Vehicle3.jpg'),
         title: 'Nissan Clipper',
         subText: 'Kasun Gunawardene',
         date: 'Aug 09 - Aug 11',
@@ -218,7 +278,7 @@ const allBookings = () => {
   const tourGuidesBookings = {
     Ongoing: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Tourguides/person1.jpg'),
         title: 'D.T.A. Gunasekara',
         subText: 'Ruwanwelisaya',
         date: 'Aug 09',
@@ -228,7 +288,7 @@ const allBookings = () => {
     ],
     Completed: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Tourguides/person2.jpg'),
         title: 'B.D. Sivalingam',
         subText: 'Mihintale',
         date: 'Aug 07',
@@ -251,7 +311,7 @@ const allBookings = () => {
     ],
     Completed: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Hotels/Hotel2.jpg'),
         title: 'Holiday Inn',
         subText: 'Hikkaduwa',
         date: 'Aug 07 - Aug 08',
@@ -264,7 +324,7 @@ const allBookings = () => {
   const itemsBookings = {
     Reserved: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Shop/batikshirt.jpg'),
         title: 'Batik Shirt',
         subText: 'Gampaha',
         date: 'USD 45.00',
@@ -274,10 +334,10 @@ const allBookings = () => {
     ],
     Picked: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
-        title: 'Batik Shirt',
+        image: require('../../assets/images/Shop/batikshort.png'),
+        title: 'Batik Short',
         subText: 'Gampaha',
-        date: 'USD 45.00',
+        date: 'USD 35.00',
         status: 'Picked',
         statusStyle: 'statusCompleted',
       },
@@ -371,6 +431,8 @@ const styles = StyleSheet.create({
   },
   bookingItem: {
     flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
     padding: 10,
     marginHorizontal: 20,
     marginBottom: 10,

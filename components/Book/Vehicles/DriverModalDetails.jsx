@@ -44,7 +44,7 @@ export default function DriverModalDetails({ driverId }) {
       <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <Text style={styles.driverInfoHeader}>Driver Information</Text>
         <View style={styles.header}>
-          <Image source={require("../../../assets/images/Home/profile.png")} style={styles.profileImg} />
+          <Image source={require("../../../assets/images/default.jpg")} style={styles.profileImg} />
           <View style={styles.driverInfo}>
             <Text style={styles.driverName}>{data? data.first_name: 'Jagath'} {data? data.last_name: 'Kumara'}</Text>
             <Image source={require("../../../assets/images/Book/4star.png")} style={styles.ratingImg} />
