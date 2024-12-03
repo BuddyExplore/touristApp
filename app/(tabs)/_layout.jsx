@@ -1,8 +1,8 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { Tabs } from 'expo-router'
-import { Ionicons } from '@expo/vector-icons';
-import { Colors } from './../../constants/Colors'
+import { View, Text, Image } from "react-native";
+import React from "react";
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { Colors } from "./../../constants/Colors";
 
 export default function TabLayout() {
   return (
@@ -17,10 +17,11 @@ export default function TabLayout() {
         <Tabs.Screen name='book' options={{
           tabBarLabel:"Book",
           headerShown: true,
+          headerShadowVisible: false,
           title: "Book",
           headerTitleAlign: 'center',
           headerStyle: {
-            height: 100
+            height: 80,
           },
           headerTitleStyle: {
             marginHorizontal: "auto",
