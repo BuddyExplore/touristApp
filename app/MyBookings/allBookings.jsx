@@ -1,7 +1,145 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { useRouter } from 'expo-router';
+import { useRouter }from 'expo-router';
+import axios from 'axios';
+import {Urls} from "../../constants/Urls"
+import { useFocusEffect } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const VehicleBookingTab = ({ bookings, onUpcomingPress, onItemReserved, onItemPicked }) => {
+  const router = useRouter();
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [reloader, setReloader] = useState(1)
+
+  const fetchItems = async () => {
+    setLoading(true);
+    console.log("Here")
+    try {
+      const response = await axios.get(
+        `${Urls.SPRING}/api/Booking/Vehicle/touristBookings/321`  //change 321 to actual id
+      );
+      setData(response.data.content);
+      console.log(response.data.content)
+    } catch (error) {
+      console.error("Error fetching items:", error);
+    } finally {
+    setLoading(false)}
+  };
+
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchItems(); // Fetch data when the screen gains focus
+    }, [])
+  );
+
+  useEffect(() => {
+    // Initial data fetch when the component is mounted
+    fetchItems();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      setReloader(reloader + 1) // Reload data when the screen comes into focus
+    }, []) // Empty array ensures it only runs when the screen is focused
+  );
+
+  
+  const bookingStatus = (currentStatus) => {
+    switch (currentStatus) {
+      case 0:
+        return <Text style={{ color: '#337dff', fontSize: 12 }}>Requested</Text>;
+      case 1:
+        return <Text style={{ color: '#337dff', fontSize: 12 }}>Accepted</Text>;
+      case 2:
+        return <Text style={{ color: '#337dff', fontSize: 12 }}>Dispatched</Text>;
+      default:
+        return <Text style={{ color: '#337dff', fontSize: 12 }}>Ongoing</Text>;
+    }
+  };
+  
+  const handleShowBooking = (status, bookingId, driverId, pickup_time, dropoff_time, pickup_location) =>  {
+    if(status === 0){
+    router.push({
+      pathname: './bookingDetails',
+      params: {
+          bookingId,
+          driverId,
+          pickup_time,
+          dropoff_time,
+          pickup_location
+      }
+    });
+  }else if(status === 1){
+    router.push({
+      pathname: './bookingAccepted',
+      params: {
+          bookingId,
+          driverId,
+          pickup_time,
+          dropoff_time,
+          pickup_location
+      }
+    });
+  }else if(status === 2){
+    router.push({
+      pathname: './driverDispatched',
+      params: {
+          bookingId,
+          driverId,
+          pickup_time,
+          dropoff_time,
+          pickup_location
+      }
+    });
+  }
+
+
+};
+  
+  if (loading) {
+    return (
+      <Text style={{ justifyContent: "center", alignItems: "center" }}>
+        Loading...
+      </Text>
+    );
+  }
+
+  return(
+  <ScrollView style={styles.tabContainer}>
+          <View style={{paddingVertical: 20, paddingLeft: 10}}>
+            <Text style={{fontSize: 18, fontWeight: 'bold'}}>
+              Upcoming
+            </Text>
+          </View>
+            {!data && <Text style={{color : 'grey', margin: 'auto', marginTop: 30}}>No upcoming bookings</Text>}
+            {data && data.map((booking) => (
+          <TouchableOpacity
+            key={booking.id}
+            style={styles.bookingItem}
+            onPress={() => handleShowBooking(booking.status, booking.id, booking.driverId,`${booking.pickUpDate} at ${booking.pickUpTime}`, `${booking.dropOffDate} at ${booking.dropOffTime}`, booking.pickUpLocation)}
+          >
+            <Image source={{ uri: "https://example.com/image.png" }} style={styles.image} />
+            <View style={styles.bookingInfo}>
+              <Text style={styles.bookingTitle}>{booking.fullName}</Text> 
+              <Text style={styles.subText}>Pick-up: {booking.pickUpLocation}</Text> 
+              <Text style={styles.dateText}>
+                {booking.pickUpDate} at {booking.pickUpTime}
+              </Text> 
+              <Text style={styles.dateText}>
+                Drop-off: {booking.dropOffDate} at {booking.dropOffTime}
+              </Text> 
+              <Text style={styles.subText}>{bookingStatus(booking.status)}</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+    
+  </ScrollView>
+  )
+};
+
 
 const BookingTab = ({ bookings, onUpcomingPress, onItemReserved, onItemPicked }) => (
   <ScrollView style={styles.tabContainer}>
@@ -156,7 +294,7 @@ const allBookings = () => {
 
   const renderScene = SceneMap({
     vehicles: () => (
-      <BookingTab
+      <VehicleBookingTab
         bookings={vehiclesBookings}
         onUpcomingPress={() => router.push('./bookingDetails')}
       />

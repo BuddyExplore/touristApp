@@ -37,7 +37,7 @@ export default function search() {
     const destinations_json = JSON.stringify(destinations);
 
     router.push({
-      pathname: './searchResults',
+      pathname: './driverDispatched',
       params: {
         pickupLocation,
         pickupDate,

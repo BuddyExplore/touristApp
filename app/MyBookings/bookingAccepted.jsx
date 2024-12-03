@@ -5,7 +5,7 @@ import axios from 'axios';
 import {Urls} from "../../constants/Urls"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BookingDetails = () => {
+const bookingAccepted = () => {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null)
 
@@ -52,9 +52,9 @@ const BookingDetails = () => {
       
       <ScrollView>
         <View style={styles.section}>
-          <Text style={styles.status}>Request Sent</Text>
+          <Text style={styles.status}>Request Accepted</Text>
           <Text style={styles.description}>
-            Your booking request has been sent to the driver. Wait until the driver responds.
+            Your booking has been accepted. Make the payments before the trip date.
           </Text>
         </View>
         
@@ -109,7 +109,7 @@ const BookingDetails = () => {
   );
 };
 
-export default BookingDetails;
+export default bookingAccepted;
 
 const styles = StyleSheet.create({
   container: {
