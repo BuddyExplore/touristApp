@@ -51,7 +51,11 @@ export default function HotelModal({ hotelInfo , visibility , closeModal}) {
       
       
   }
-
+    return (
+      <View>
+        <Text>Hello</Text>
+      </View>
+    )
     return (
     <View>
              
