@@ -21,7 +21,7 @@ const BookingDetails = () => {
         <View style={styles.section}>
           <Text style={styles.sectionHeader}>Vehicle & Driver</Text>
           <View style={styles.vehicleInfo}>
-            <Image source={require('../../assets/images/Book/Hotels/Hotel1.jpg')} style={styles.vehicleImage} />
+            <Image source={require('../../assets/images/Book/Vehicles/Vehicle1.jpg')} style={styles.vehicleImage} />
             <View style={styles.vehicleDetails}>
               <Text style={styles.vehicleTitle}>Toyota Coach</Text>
               <Text style={styles.subText}>Piliyandala</Text>
@@ -34,7 +34,7 @@ const BookingDetails = () => {
             </View>
           </View>
           <View style={styles.driverInfo}>
-            <Image source={require('../../assets/images/Book/Hotels/Hotel1.jpg')} style={styles.driverImage} />
+            <Image source={require('../../assets/images/Book/Tourguides/person1.jpg')} style={styles.driverImage} />
             <View style={styles.driverDetails}>
               <Text style={styles.driverName}>Amal Perera</Text>
               <TouchableOpacity style={styles.messageButton}>
@@ -74,7 +74,7 @@ export default BookingDetails;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 30,
     backgroundColor: '#fff',
   },
   header: {
