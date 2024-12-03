@@ -215,6 +215,16 @@ const bookingSummary = () => {
             <TouchableOpacity style={{padding: 10}} onPress={goToHome}>
               <Text style={{fontSize: 15, fontWeight: '500', color: Colors.PRIMARY}}>Back to Home</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={{ padding: 10 }}
+              onPress={() => router.push('./driverDispatched')}
+            >
+              <Text style={{ fontSize: 15, fontWeight: '500', color: Colors.PRIMARY }}>
+                Dispatched
+              </Text>
+            </TouchableOpacity>
+
+
           </View>
         </View>
       </Modal>

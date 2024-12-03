@@ -1,6 +1,8 @@
 import React from "react";
-import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet, TextInput } from "react-native";
 import { usePathname, useRouter } from "expo-router";
+import Icon from 'react-native-vector-icons/Ionicons'; // Make sure to install this library
+import AddNewBlog from "./AddNewBlog";
 
 export default function Articles() {
   const router = useRouter();
@@ -16,6 +18,18 @@ export default function Articles() {
 
   return (
     <ScrollView style={{ padding: 20 }}>
+
+    <Text style={{ fontSize: 25, fontWeight: "bold", textAlign: "center", marginBottom: 20, }}>Articles & Blogs</Text>
+
+    <View style={styles.searchbar}>
+      <Icon name="search" size={20} color="#A9A9A9" style={styles.icon} />
+      <TextInput
+        style={styles.input}
+        placeholder="Search for articles or blogs"
+        placeholderTextColor="#A9A9A9"
+      />
+    </View>
+
       {/* Most Popular Section */}
       <View>
         <View
@@ -29,7 +43,7 @@ export default function Articles() {
           <TouchableOpacity
             onPress={() => handleNavigate(path + "/MostPopularBlogs")}
           >
-            <Text style={{ color: "blue" }}>View All</Text>
+            <Text style={{ color: "#0A89FF" }}>View All</Text>
           </TouchableOpacity>
         </View>
         <ScrollView
@@ -41,7 +55,8 @@ export default function Articles() {
             <TouchableOpacity
               key={index}
               onPress={() =>
-                handleNavigate("BlogDetail", { blog: `Blog ${index}` })
+                // handleNavigate("BlogDetail", { blog: `Blog ${index}` })
+                router.push("./Blogs/BlogDetail")
               }
               style={{ marginRight: 15 }}
             >
@@ -49,7 +64,7 @@ export default function Articles() {
                 source={require("../../../assets/images/Blogs/image1.png")}
                 style={{ width: 150, height: 100, borderRadius: 10 }}
               />
-              <Text>A lifetime experience visiting southern beach</Text>
+              <Text>A lifetime experience visiting..</Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -70,7 +85,7 @@ export default function Articles() {
           <TouchableOpacity
             onPress={() => handleNavigate(path + "/SelectPreferredTopic")}
           >
-            <Text style={{ color: "blue" }}>View All</Text>
+            <Text style={{ color: "#0A89FF" }}>View All</Text>
           </TouchableOpacity>
         </View>
         <ScrollView
@@ -109,7 +124,7 @@ export default function Articles() {
           <TouchableOpacity
             onPress={() => handleNavigate(path + "/PostedByYou")}
           >
-            <Text style={{ color: "blue" }}>View All</Text>
+            <Text style={{ color: "#0A89FF" }}>View All</Text>
           </TouchableOpacity>
         </View>
         <ScrollView
@@ -146,7 +161,7 @@ export default function Articles() {
         >
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>Guides</Text>
           <TouchableOpacity onPress={() => handleNavigate(path + "/Guides")}>
-            <Text style={{ color: "blue" }}>View All</Text>
+            <Text style={{ color: "#0A89FF" }}>View All</Text>
           </TouchableOpacity>
         </View>
         <ScrollView
@@ -187,7 +202,7 @@ export default function Articles() {
           <TouchableOpacity
             onPress={() => handleNavigate(path + "/SelectPreferredTopic")}
           >
-            <Text style={{ color: "blue" }}>View All</Text>
+            <Text style={{ color: "#0A89FF" }}>View All</Text>
           </TouchableOpacity>
         </View>
         {[...Array(3)].map((_, index) => (
@@ -212,3 +227,27 @@ export default function Articles() {
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  searchbar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F9F9F9',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    height: 50,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2, // For Android shadow
+    marginBottom: 20,
+  },
+  icon: {
+    marginRight: 10,
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+    color: '#333',
+  },
+});

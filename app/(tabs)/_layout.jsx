@@ -56,10 +56,7 @@ export default function TabLayout() {
         options={{
           tabBarLabel: "Blogs",
           tabBarIcon: ({ color }) => (
-            <Image
-              style={{ width: 20, height: 20 }}
-              source={require("../../assets/images/Blogs/Vector.png")}
-            />
+            <Ionicons name="newspaper-outline" size={24} color={color} />
           ),
         }}
       />
