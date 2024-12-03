@@ -185,7 +185,7 @@ const allBookings = () => {
   const vehiclesBookings = {
     Ongoing: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Vehicles/Vehicle1.jpg'),
         title: 'Toyota Coach',
         subText: 'Amal Perera',
         date: 'Aug 09 - Aug 11',
@@ -195,7 +195,7 @@ const allBookings = () => {
     ],
     Upcoming: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Vehicles/Vehicle2.jpg'),
         title: 'Toyota Coach',
         subText: 'Amal Perera',
         date: 'Aug 09 - Aug 11',
@@ -205,7 +205,7 @@ const allBookings = () => {
     ],
     Completed: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Vehicles/Vehicle3.jpg'),
         title: 'Nissan Clipper',
         subText: 'Kasun Gunawardene',
         date: 'Aug 09 - Aug 11',
@@ -218,7 +218,7 @@ const allBookings = () => {
   const tourGuidesBookings = {
     Ongoing: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Tourguides/person1.jpg'),
         title: 'D.T.A. Gunasekara',
         subText: 'Ruwanwelisaya',
         date: 'Aug 09',
@@ -228,7 +228,7 @@ const allBookings = () => {
     ],
     Completed: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Tourguides/person2.jpg'),
         title: 'B.D. Sivalingam',
         subText: 'Mihintale',
         date: 'Aug 07',
@@ -251,7 +251,7 @@ const allBookings = () => {
     ],
     Completed: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Book/Hotels/Hotel2.jpg'),
         title: 'Holiday Inn',
         subText: 'Hikkaduwa',
         date: 'Aug 07 - Aug 08',
@@ -264,7 +264,7 @@ const allBookings = () => {
   const itemsBookings = {
     Reserved: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
+        image: require('../../assets/images/Shop/batikshirt.jpg'),
         title: 'Batik Shirt',
         subText: 'Gampaha',
         date: 'USD 45.00',
@@ -274,10 +274,10 @@ const allBookings = () => {
     ],
     Picked: [
       {
-        image: require('../../assets/images/Book/Hotels/Hotel1.jpg'),
-        title: 'Batik Shirt',
+        image: require('../../assets/images/Shop/batikshort.png'),
+        title: 'Batik Short',
         subText: 'Gampaha',
-        date: 'USD 45.00',
+        date: 'USD 35.00',
         status: 'Picked',
         statusStyle: 'statusCompleted',
       },
