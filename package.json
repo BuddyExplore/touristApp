@@ -59,7 +59,8 @@
     "react-native-screens": "^3.34.0",
     "react-native-tab-view": "^4.0.5",
     "react-native-vector-icons": "^10.1.0",
-    "react-native-web": "~0.19.10"
+    "react-native-web": "~0.19.10",
+    "@payhere/payhere-mobilesdk-reactnative": "4.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
