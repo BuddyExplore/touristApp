@@ -42,23 +42,6 @@ const bookingSummary = () => {
   const handleSendBooking = () => {
     const fetchItems = async () => {
       console.log("Here")
-
-      const bookingData = {
-        touristId: 1, //Change this!!!!!!!!!!!!!!!!
-        driverId: vehicleDetails.driverId,
-        vehicleId: vehicleDetails.id,
-        date: "2024-12-02",
-        pickUpLocation: pickupLocation,
-        pickUpDate: pickupDate,
-        pickUpTime: pickupTime,
-        dropOffDate: dropoffDate,
-        dropOffTime: dropoffTime,
-        passengers: passengers,
-        distance: 50,
-        fullName: "John Doe", //Change this!!!!!!!!!!!!
-        status: 0
-      };
-
       
       try {
         const response = await axios.post(
