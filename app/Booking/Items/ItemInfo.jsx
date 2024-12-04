@@ -18,7 +18,7 @@ const shopsList = [
 ];
 
 const itemsList = [
-  {id: 0, name: 'SLtshirt', img:require('../../../assets/images/ShopItems/SLtshirt.jpg'), price: 4500.00, city: 'Colombo'  },
+  {id: 0, name: 'Sri Lanka Cricket T-Shirt', img:require('../../../assets/images/ShopItems/SLtshirt.jpg'), price: 4500.00, city: 'Colombo'  },
   {id: 1, name: 'Trouser', img:require('../../../assets/images/ShopItems/Trouser.jpg'), price: 7500.00, city: 'Kandy'  },
   {id: 2, name: 'BatikShirt', img:require('../../../assets/images/ShopItems/BatikShirt.jpg'), price: 4500.00, city: 'Gampaha'  },
   {id: 3, name: 'Hat', img:require('../../../assets/images/ShopItems/Hat.jpg'), price: 3000.00, city: 'Dambulla'  },
@@ -79,8 +79,8 @@ const ItemInfo = () => {
         <View style={styles.itemContainer}>
           <Text style={styles.vehicleName}>{item.name}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%', marginLeft: 10}}>
-            <Ionicons name="location-outline" size={24} color={'black'} />
-            <Text style={styles.subText}> {item.where}</Text>
+            <Text style={{fontSize: 22, fontWeight: '600'}}>LKR</Text>
+            <Text style={{fontSize: 22, fontWeight: '600'}}> {item.price.toFixed(2)}</Text>
           </View>
         </View>
       </View>

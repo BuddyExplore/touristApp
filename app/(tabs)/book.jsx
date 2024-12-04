@@ -214,7 +214,7 @@ export default function book() {
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => router.push("/Booking/Activities/search")}
+        onPress={() => router.push("/Booking/ShopManager")}
         style={{
           marginVertical: 10,
           flexDirection: "row",
